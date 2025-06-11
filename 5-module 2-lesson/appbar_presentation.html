@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AppBar Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #E3F2FD;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">AppBar nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> AppBar - Flutter ilovasining yuqori qismida joylashadigan navigatsiya paneli.
+        <br><br>
+        <strong>Asosiy vazifasi:</strong> Sahifa sarlavhasi, navigatsiya tugmalari va amallar uchun joy berish.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Deyarli barcha sahifalarda, foydalanuvchi yo'nalishini ko'rsatish uchun.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>AppBar ning asosiy tuzilishi</li>
+            <li>Title va centerTitle</li>
+            <li>Leading va actions</li>
+            <li>BackgroundColor va elevation</li>
+            <li>IconTheme va TextTheme</li>
+            <li>FlexibleSpace bilan ishlash</li>
+            <li>TabBar qo'shish</li>
+            <li>AppBar height o'zgartirish</li>
+            <li>Custom AppBar yaratish</li>
+            <li>SliverAppBar</li>
+            <li>Amaliy misollar</li>
+            <li>3 ta uy vazifasi</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Eng oddiy AppBar</div>
+    <div class="slide-description">Asosiy AppBar tuzilishi</div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(
+    title: Text('Mening Ilovam'),
+  ),
+  body: Center(
+    child: Text('Asosiy sahifa'),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">centerTitle nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>Javob:</strong> Title matnini markazda joylashtirish uchun ishlatiladi.
+        <br><br>
+        <strong>Default qiymat:</strong> Android'da false, iOS'da true.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Dizayn talablariga ko'ra title joylashuvini nazorat qilish uchun.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Markazlashtirilgan title</div>
+    <div class="slide-description">Title ni o'rtaga joylashtirish</div>
+    <div class="code-block">AppBar(
+  title: Text('Markazda'),
+  centerTitle: true,
+  backgroundColor: Colors.purple,
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Leading va actions farqi nima?</div>
+    <div class="theory-content">
+        <strong>Leading:</strong> AppBar ning chap tomonidagi widget (odatda orqaga qaytish tugmasi yoki menu).
+        <br><br>
+        <strong>Actions:</strong> AppBar ning o'ng tomonidagi widget ro'yxati (tugmalar, menular).
+        <br><br>
+        <strong>Eslatma:</strong> Actions List<Widget> turida bo'lishi kerak.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Leading va actions misoli</div>
+    <div class="slide-description">Chap va o'ng tomondagi tugmalar</div>
+    <div class="code-block">AppBar(
+  title: Text('Tugmalar'),
+  leading: Icon(Icons.menu),
+  actions: [
+    Icon(Icons.search),
+    SizedBox(width: 10),
+    Icon(Icons.settings),
+    SizedBox(width: 15),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">Elevation nima uchun muhim?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> AppBar ning soya chuqurligini belgilaydigan parametr.
+        <br><br>
+        <strong>Qiymatlar:</strong>
+        <br>• 0 - soyasiz (tekis)
+        <br>• 4 - default qiymat
+        <br>• 10+ - chuqur soya
+        <br><br>
+        <strong>Material Design qoidasiga mos keladi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Elevation misoli</div>
+    <div class="slide-description">Soyasiz va soyali AppBar</div>
+    <div class="code-block">AppBar(
+  title: Text('Soyasiz'),
+  elevation: 0,
+  backgroundColor: Colors.blue,
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">IconButton qanday qo'shiladi?</div>
+    <div class="theory-content">
+        <strong>Actions ichida:</strong> IconButton widget ishlatiladi.
+        <br><br>
+        <strong>onPressed:</strong> Tugma bosilganda nima qilishni belgilaydi.
+        <br><br>
+        <strong>icon:</strong> Ko'rsatiladigan icon.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">IconButton misoli</div>
+    <div class="slide-description">Bosiladigan tugmalar</div>
+    <div class="code-block">AppBar(
+  title: Text('Tugmalar'),
+  actions: [
+    IconButton(
+      icon: Icon(Icons.favorite),
+      onPressed: () {
+        print('Sevimli bosildi');
+      },
+    ),
+    IconButton(
+      icon: Icon(Icons.share),
+      onPressed: () {
+        print('Ulashish bosildi');
+      },
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">FlexibleSpace nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> AppBar orqa fonini to'liq customize qilish imkonini beradi.
+        <br><br>
+        <strong>Imkoniyatlari:</strong>
+        <br>• Gradient ranglar
+        <br>• Rasmlar
+        <br>• Custom widget'lar
+        <br><br>
+        <strong>Title ustida joylashadi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Gradient AppBar</div>
+    <div class="slide-description">FlexibleSpace bilan gradient</div>
+    <div class="code-block">AppBar(
+  title: Text('Gradient'),
+  flexibleSpace: Container(
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [Colors.blue, Colors.purple],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">TabBar qanday qo'shiladi?</div>
+    <div class="theory-content">
+        <strong>Kerakli elementlar:</strong>
+        <br>• TabController
+        <br>• AppBar ning bottom parametri
+        <br>• TabBarView
+        <br><br>
+        <strong>StatefulWidget kerak bo'ladi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">TabBar misoli</div>
+    <div class="slide-description">Tab'lar bilan AppBar</div>
+    <div class="code-block">DefaultTabController(
+  length: 3,
+  child: Scaffold(
+    appBar: AppBar(
+      title: Text('Tablar'),
+      bottom: TabBar(
+        tabs: [
+          Tab(text: 'Birinchi'),
+          Tab(text: 'Ikkinchi'),
+          Tab(text: 'Uchinchi'),
+        ],
+      ),
+    ),
+    body: TabBarView(
+      children: [
+        Center(child: Text('1-sahifa')),
+        Center(child: Text('2-sahifa')),
+        Center(child: Text('3-sahifa')),
+      ],
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">AppBar height qanday o'zgartiriladi?</div>
+    <div class="theory-content">
+        <strong>PreferredSize widget:</strong> AppBar height'ini o'zgartirish uchun ishlatiladi.
+        <br><br>
+        <strong>preferredSize:</strong> Size(width, height) parametri.
+        <br><br>
+        <strong>Default height:</strong> 56 piksel.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Baland AppBar</div>
+    <div class="slide-description">Height o'zgartirilgan AppBar</div>
+    <div class="code-block">Scaffold(
+  appBar: PreferredSize(
+    preferredSize: Size.fromHeight(100),
+    child: AppBar(
+      title: Text('Baland AppBar'),
+      centerTitle: true,
+      backgroundColor: Colors.green,
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">SliverAppBar nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Scroll qilganda o'zgaradigan AppBar.
+        <br><br>
+        <strong>Xususiyatlari:</strong>
+        <br>• expandedHeight - katta holatdagi height
+        <br>• floating - qisman ko'rinish
+        <br>• pinned - doimo ko'rinish
+        <br>• snap - tez yashirinish/ko'rinish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">SliverAppBar misoli</div>
+    <div class="slide-description">Scrollable AppBar</div>
+    <div class="code-block">CustomScrollView(
+  slivers: [
+    SliverAppBar(
+      title: Text('Sliver'),
+      expandedHeight: 200,
+      floating: true,
+      pinned: true,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(
+          color: Colors.orange,
+        ),
+      ),
+    ),
+    SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => ListTile(
+          title: Text('Element $index'),
+        ),
+        childCount: 20,
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">PopupMenuButton qanday qo'shiladi?</div>
+    <div class="theory-content">
+        <strong>Actions ichida:</strong> PopupMenuButton widget ishlatiladi.
+        <br><br>
+        <strong>itemBuilder:</strong> Menu elementlarini qaytaradi.
+        <br><br>
+        <strong>onSelected:</strong> Element tanlanganida ishlaydigan funksiya.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">PopupMenu misoli</div>
+    <div class="slide-description">Dropdown menu</div>
+    <div class="code-block">AppBar(
+  title: Text('Menu'),
+  actions: [
+    PopupMenuButton<String>(
+      onSelected: (value) {
+        print('Tanlandi: $value');
+      },
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 'profil',
+          child: Text('Profil'),
+        ),
+        PopupMenuItem(
+          value: 'sozlamalar',
+          child: Text('Sozlamalar'),
+        ),
+        PopupMenuItem(
+          value: 'chiqish',
+          child: Text('Chiqish'),
+        ),
+      ],
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Theme bilan rang o'zgartirish</div>
+    <div class="slide-description">Global AppBar rangi</div>
+    <div class="code-block">MaterialApp(
+  theme: ThemeData(
+    primarySwatch: Colors.teal,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.deepPurple,
+      foregroundColor: Colors.white,
+      elevation: 8,
+    ),
+  ),
+  home: Scaffold(
+    appBar: AppBar(
+      title: Text('Themed AppBar'),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Uy vazifasi 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Profile sahifasi uchun AppBar yarating. Leading da profil rasmi, title da foydalanuvchi ismi, actions da search va settings tugmalari bo'lsin.
+    </div>
+    <div class="code-block">AppBar(
+  leading: CircleAvatar(
+    backgroundImage: NetworkImage('https://picsum.photos/50/50'),
+  ),
+  title: Text('John Doe'),
+  actions: [
+    IconButton(
+      icon: Icon(Icons.search),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(Icons.settings),
+      onPressed: () {},
+    ),
+  ],
+  backgroundColor: Colors.indigo,
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Uy vazifasi 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> 4 ta tab bo'lgan TabBar yarating: "Uy", "Sevimli", "Qidiruv", "Profil". Har bir tab uchun icon ham qo'shing.
+    </div>
+    <div class="code-block">DefaultTabController(
+  length: 4,
+  child: Scaffold(
+    appBar: AppBar(
+      title: Text('Mening Ilovam'),
+      bottom: TabBar(
+        tabs: [
+          Tab(icon: Icon(Icons.home), text: 'Uy'),
+          Tab(icon: Icon(Icons.favorite), text: 'Sevimli'),
+          Tab(icon: Icon(Icons.search), text: 'Qidiruv'),
+          Tab(icon: Icon(Icons.person), text: 'Profil'),
+        ],
+      ),
+    ),
+    body: TabBarView(
+      children: [
+        Center(child: Text('Uy sahifasi')),
+        Center(child: Text('Sevimlilar')),
+        Center(child: Text('Qidiruv')),
+        Center(child: Text('Profil')),
+      ],
+    ),
+  ),
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Uy vazifasi 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> SliverAppBar yarating, background da rasm bo'lsin, title "Manzaralar", scroll qilganda AppBar kichrayib, title o'zgarmasin.
+    </div>
+    <div class="code-block">CustomScrollView(
+  slivers: [
+    SliverAppBar(
+      title: Text('Manzaralar'),
+      pinned: true,
+      expandedHeight: 250,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Image.network(
+          'https://picsum.photos/400/250',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => Card(
+          margin: EdgeInsets.all(8),
+          child: ListTile(
+            title: Text('Manzara ${index + 1}'),
+            subtitle: Text('Chiroyli manzara tavsifi'),
+            leading: Icon(Icons.landscape),
+          ),
+        ),
+        childCount: 15,
+      ),
+    ),
+  ],
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Best Practices</div>
+    <div class="theory-content">
+        <strong>1. Title qisqa bo'lsin</strong> - uzoq matnlar kesiladi
+        <br><br>
+        <strong>2. Actions 3-4 tadan ko'p bo'lmasin</strong> - ko'p bo'lsa PopupMenu ishlatting
+        <br><br>
+        <strong>3. Rang kontrasti yetarli bo'lsin</strong> - matn o'qilishi kerak
+        <br><br>
+        <strong>4. Elevation ni haddan tashqari oshirmang</strong> - 0-8 oralig'ida saqlang
+        <br><br>
+        <strong>5. Tab'lar soni 5 tadan ko'p bo'lmasin</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. Actions ro'yxat emas:</strong>
+        <br>• actions: Icon(Icons.search) ❌
+        <br>• actions: [Icon(Icons.search)] ✅
+        <br><br>
+        <strong>2. TabController yo'q:</strong>
+        <br>• TabBar ishlashi uchun Controller kerak
+        <br><br>
+        <strong>3. PreferredSize unutilgan:</strong>
+        <br>• Custom height uchun PreferredSize kerak
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>AppBar - </strong>Flutter ilovasining eng muhim qismi
+        <br><br>
+        <strong>Asosiy komponentlar:</strong>
+        <br>• title - sahifa nomi
+        <br>• leading - chap tugma
+        <br>• actions - o'ng tugmalar
+        <br>• flexibleSpace - custom background
+        <br><br>
+        <strong>Eslab qoling:</strong>
+        <br>• Oddiy va tushunarli dizayn
+        <br>• Foydalanuvchi uchun qulay navigatsiya
+        <br>• Platform standartlariga rioya qilish
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'AppBar_Flutter_Darsi.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>

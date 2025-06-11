@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Drawer va SnackBar - To'g'ri ketma-ketlik bilan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #E91E63;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E91E63;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #fce4ec;
+            border-left: 4px solid #E91E63;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #FCE4EC;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #E91E63;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #4CAF50;
+            margin: 15px 0;
+            font-style: italic;
+            color: #2E7D32;
+        }
+
+        .homework-section {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            background: #E91E63;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .progress-note {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            color: #e65100;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Mobile ilovalar va foydalanuvchi bilan muloqot</div>
+    <div class="theory-content">
+        <strong>Har qanday mobile ilovada ikki asosiy muloqot usuli bor:</strong>
+        <br><br>
+        <strong>Birinchi usul:</strong> Foydalanuvchi ilovaning turli bo'limlariga o'tishi kerak. Buni uchun menyu kerak bo'ladi.
+        <br><br>
+        <strong>Ikkinchi usul:</strong> Ilova foydalanuvchiga qisqa xabarlar yuborishi kerak. Masalan "Saqlandi" yoki "Xatolik" haqida.
+        <br><br>
+        <strong>Bugungi mavzu:</strong> Flutter'da bu ikki muammoni qanday hal qilishni o'rganamiz. Birinchisi uchun Drawer, ikkinchisi uchun SnackBar ishlatamiz.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Bugungi o'quv rejamiz</div>
+    <div class="plan-list">
+        <strong>BIRINCHI YARIM: DRAWER O'RGANISH</strong>
+        <ul>
+            <li>1. Drawer nima va nima uchun kerak?</li>
+            <li>2. Eng oddiy drawer yaratish</li>
+            <li>3. Drawer'ga birinchi menyu elementi qo'shish</li>
+            <li>4. Icon qo'shib chiroyliroq qilish</li>
+            <li>5. Ko'proq menyu elementlari qo'shish</li>
+            <li>6. DrawerHeader nima va nima uchun kerak?</li>
+            <li>7. Oddiy DrawerHeader qo'shish</li>
+            <li>8. DrawerHeader'ga foydalanuvchi ma'lumotlari qo'shish</li>
+            <li>9. Menyu elementlarini bosiladigan qilish</li>
+            <li>10. Drawer'ni to'g'ri yopish muammosi va yechimi</li>
+            <li>11. endDrawer (o'ng tomon drawer) qo'shish</li>
+        </ul>
+        <strong>IKKINCHI YARIM: SNACKBAR O'RGANISH</strong>
+        <ul>
+            <li>12. SnackBar nima va qachon ishlatiladi?</li>
+            <li>13. Birinchi SnackBar yaratish</li>
+            <li>14. SnackBar'ga rang berish</li>
+            <li>15. SnackBar davomiyligini sozlash</li>
+            <li>16. SnackBar'ga action tugmasi qo'shish</li>
+            <li>17. SnackBar'ni chiroyliroq qilish (icon va dizayn)</li>
+        </ul>
+        <strong>BIRLASHTIRIB ISHLASH</strong>
+        <ul>
+            <li>18. Drawer va SnackBar'ni birga ishlatish</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-divider">BIRINCHI QISM: DRAWER BILAN TANISHISH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Drawer nima va nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>Drawer deganda nimani tushunish kerak:</strong> Drawer - bu mobile ilovaning yon menyusi. Inglizcha "drawer" so'zi "tortma" degan ma'noni anglatadi.
+        <br><br>
+        <strong>Qanday ishlaydi:</strong> Foydalanuvchi hamburger tugmasini (uch chiziq) bossa, ekranning chap tomonidan menyu chiqadi.
+        <br><br>
+        <strong>Nima uchun kerak:</strong> Mobile telefonlarda ekran kichik. Agar barcha menyularni yuqorida qo'ysak, asosiy kontent uchun joy qolmaydi. Shuning uchun menyuni yashirib qo'yamiz.
+        <br><br>
+        <strong>Real hayotdan misol:</strong> WhatsApp, Telegram, Instagram kabi ilovalarning hammasida drawer mavjud.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Eng oddiy drawer yaratish</div>
+    <div class="slide-description">Faqat bitta bo'sh drawer</div>
+    <div class="progress-note">
+        Bu bosqichda biz Scaffold'ga drawer parametrini qo'shamiz. Ichiga hali hech narsa qo'ymaymiz - faqat bo'sh Drawer widget yaratamiz.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(
+    title: Text('Mening birinchi drawer'),
+  ),
+  drawer: Drawer(
+    child: Container(),
+  ),
+  body: Center(
+    child: Text('Asosiy sahifa'),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Drawer'ga birinchi menyu elementi qo'shish</div>
+    <div class="slide-description">ListView va bitta ListTile</div>
+    <div class="progress-note">
+        Endi bo'sh Container o'rniga ListView qo'yamiz. ListView ichiga birinchi ListTile qo'shamiz. ListTile - bu menyu elementi uchun tayyor widget.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(
+    title: Text('Birinchi menyu elementi'),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      children: [
+        ListTile(
+          title: Text('Birinchi element'),
+        ),
+      ],
+    ),
+  ),
+  body: Center(
+    child: Text('Asosiy sahifa'),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Menyu elementiga icon qo'shish</div>
+    <div class="slide-description">ListTile'ning leading parametri</div>
+    <div class="progress-note">
+        ListTile'da leading parametri bor. Bu chap tomondagi joy. Bu yerga icon qo'ysak, menyu elementi chiroyliroq ko'rinadi.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(
+    title: Text('Icon bilan menyu'),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      children: [
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Bosh sahifa'),
+        ),
+      ],
+    ),
+  ),
+  body: Center(
+    child: Text('Asosiy sahifa'),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Ko'proq menyu elementlari qo'shish</div>
+    <div class="slide-description">ListView ichiga bir nechta ListTile</div>
+    <div class="progress-note">
+        Endi ListView children ro'yxatiga ko'proq ListTile qo'shamiz. Har biri alohida menyu elementi bo'ladi.
+    </div>
+    <div class="code-block">Drawer(
+  child: ListView(
+    children: [
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text('Bosh sahifa'),
+      ),
+      ListTile(
+        leading: Icon(Icons.person),
+        title: Text('Profil'),
+      ),
+      ListTile(
+        leading: Icon(Icons.settings),
+        title: Text('Sozlamalar'),
+      ),
+      ListTile(
+        leading: Icon(Icons.help),
+        title: Text('Yordam'),
+      ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">DrawerHeader nima va nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>DrawerHeader tushunchasi:</strong> Bu drawer'ning eng yuqori qismidagi maxsus joy. Xuddi kitobning muqovasi kabi.
+        <br><br>
+        <strong>Nima uchun muhim:</strong> Bu joyda odatda ilova nomi, foydalanuvchi ma'lumotlari yoki logo ko'rsatiladi. Foydalanuvchi birinchi marta drawer ochganda eng avval bu qismni ko'radi.
+        <br><br>
+        <strong>O'lcham:</strong> DrawerHeader avtomatik ravishda 160 piksel balandlikka ega bo'ladi.
+        <br><br>
+        <strong>Joylashuvi:</strong> ListView'ning eng birinchi elementi sifatida qo'yiladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Oddiy DrawerHeader qo'shish</div>
+    <div class="slide-description">ListView'ning boshiga header qo'shamiz</div>
+    <div class="progress-note">
+        DrawerHeader'ni ListView'ning birinchi elementi sifatida qo'yamiz. padding: EdgeInsets.zero qo'yish muhim - bu keraksiz bo'shliqlarni olib tashlaydi.
+    </div>
+    <div class="code-block">Drawer(
+  child: ListView(
+    padding: EdgeInsets.zero,
+    children: [
+      DrawerHeader(
+        decoration: BoxDecoration(
+          color: Colors.blue,
+        ),
+        child: Text(
+          'Mening Ilovam',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+          ),
+        ),
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text('Bosh sahifa'),
+      ),
+      ListTile(
+        leading: Icon(Icons.settings),
+        title: Text('Sozlamalar'),
+      ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">DrawerHeader'ga foydalanuvchi ma'lumotlari qo'shish</div>
+    <div class="slide-description">Avatar, ism va email bilan</div>
+    <div class="progress-note">
+        DrawerHeader child'i sifatida Column ishlatib, bir nechta elementni vertikal joylashtiramiz. CircleAvatar foydalanuvchi rasmi uchun ishlatiladi.
+    </div>
+    <div class="code-block">DrawerHeader(
+  decoration: BoxDecoration(
+    color: Colors.green,
+  ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      CircleAvatar(
+        radius: 30,
+        backgroundColor: Colors.white,
+        child: Text(
+          'U',
+          style: TextStyle(fontSize: 24, color: Colors.green),
+        ),
+      ),
+      SizedBox(height: 10),
+      Text(
+        'Umid Karimov',
+        style: TextStyle(color: Colors.white, fontSize: 18),
+      ),
+      Text(
+        'umid@example.com',
+        style: TextStyle(color: Colors.white70, fontSize: 14),
+      ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Menyu elementlarini bosiladigan qilish</div>
+    <div class="slide-description">onTap parametri bilan hodisalar qo'shish</div>
+    <div class="progress-note">
+        Hozircha ListTile'larni bossak hech narsa bo'lmaydi. onTap parametri qo'shib, hodisa qo'shamiz. Hozircha faqat print() ishlatamiz.
+    </div>
+    <div class="code-block">ListView(
+  padding: EdgeInsets.zero,
+  children: [
+    DrawerHeader(
+      decoration: BoxDecoration(color: Colors.purple),
+      child: Text('Menyu', style: TextStyle(color: Colors.white, fontSize: 24)),
+    ),
+    ListTile(
+      leading: Icon(Icons.home),
+      title: Text('Bosh sahifa'),
+      onTap: () {
+        print('Bosh sahifa bosildi');
+      },
+    ),
+    ListTile(
+      leading: Icon(Icons.person),
+      title: Text('Profil'),
+      onTap: () {
+        print('Profil bosildi');
+      },
+    ),
+    ListTile(
+      leading: Icon(Icons.settings),
+      title: Text('Sozlamalar'),
+      onTap: () {
+        print('Sozlamalar bosildi');
+      },
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Drawer'ni to'g'ri yopish muammosi</div>
+    <div class="theory-content">
+        <strong>Muammo:</strong> Hozirgi holatda ListTile'ni bossangiz, drawer yopilmaydi va ochiq qoladi. Bu foydalanuvchi uchun noqulay.
+        <br><br>
+        <strong>Sabab:</strong> Flutter avtomatik ravishda drawer'ni yopmaydi. Buni dasturchi qo'lda qilishi kerak.
+        <br><br>
+        <strong>Yechim:</strong> Navigator.pop(context) funksiyasini chaqirish kerak. Bu drawer'ni yopadi.
+        <br><br>
+        <strong>Navigator.pop nima qiladi:</strong> Bu funksiya joriy sahifani yopib, oldingisiga qaytaradi. Drawer ham sahifa hisoblanadi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Navigator.pop bilan drawer'ni yopish</div>
+    <div class="slide-description">Har bir onTap'da to'g'ri yopish</div>
+    <div class="progress-note">
+        Har bir ListTile'ning onTap ichida birinchi Navigator.pop(context) yozamiz, keyin boshqa amallarni bajaramiz. Bu tartib muhim!
+    </div>
+    <div class="code-block">ListTile(
+  leading: Icon(Icons.home),
+  title: Text('Bosh sahifa'),
+  onTap: () {
+    Navigator.pop(context);
+    print('Bosh sahifaga o\'tildi');
+  },
+),
+ListTile(
+  leading: Icon(Icons.person),
+  title: Text('Profil'),
+  onTap: () {
+    Navigator.pop(context);
+    print('Profil ochildi');
+  },
+),
+ListTile(
+  leading: Icon(Icons.logout),
+  title: Text('Chiqish'),
+  onTap: () {
+    Navigator.pop(context);
+    print('Chiqish amalga oshirildi');
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">endDrawer - o'ng tomondagi drawer</div>
+    <div class="theory-content">
+        <strong>endDrawer nima:</strong> Bu o'ng tomondan chiqadigan drawer. Oddiy drawer chap tomondan chiqadi.
+        <br><br>
+        <strong>Qachon kerak:</strong> Ba'zi hollarda qo'shimcha menyular, filtrlar yoki asboblar uchun o'ng tomonda ham drawer kerak bo'ladi.
+        <br><br>
+        <strong>Qanday ochiladi:</strong> AppBar'da avtomatik ravishda uch nuqta (⋮) tugmasi paydo bo'ladi.
+        <br><br>
+        <strong>Birgalikda foydalanish:</strong> Bir Scaffold'da ham drawer, ham endDrawer bo'lishi mumkin.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">endDrawer qo'shish</div>
+    <div class="slide-description">O'ng va chap drawer birga</div>
+    <div class="progress-note">
+        Scaffold'ga ham drawer, ham endDrawer qo'shamiz. Endi foydalanuvchi ikkala tomonda ham menyu ocha oladi.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(
+    title: Text('Ikki tomon drawer'),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Colors.blue),
+          child: Text('Chap Menyu'),
+        ),
+        ListTile(title: Text('Asosiy'), leading: Icon(Icons.home)),
+        ListTile(title: Text('Profil'), leading: Icon(Icons.person)),
+      ],
+    ),
+  ),
+  endDrawer: Drawer(
+    child: ListView(
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Colors.orange),
+          child: Text('O\'ng Menyu'),
+        ),
+        ListTile(title: Text('Filtr 1'), leading: Icon(Icons.filter_1)),
+        ListTile(title: Text('Filtr 2'), leading: Icon(Icons.filter_2)),
+      ],
+    ),
+  ),
+  body: Center(child: Text('Ikki drawer bilan')),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="section-divider">IKKINCHI QISM: SNACKBAR BILAN TANISHISH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">SnackBar nima va qachon kerak?</div>
+    <div class="theory-content">
+        <strong>SnackBar nima:</strong> Bu ekranning pastidan chiqib keladigan qisqa xabar. Xuddi telefondagi SMS kelganda pastda paydo bo'ladigan xabar kabi.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Foydalanuvchiga tez xabar berish kerak bo'lganda. Masalan: "Fayl saqlandi", "Xatolik yuz berdi", "Ma'lumot yangilandi".
+        <br><br>
+        <strong>Qancha vaqt ko'rinadi:</strong> SnackBar avtomatik ravishda bir necha soniyadan keyin yo'qoladi.
+        <br><br>
+        <strong>Joylanishi:</strong> Har doim ekranning pastida paydo bo'ladi va yuqoriga ko'tariladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Birinchi SnackBar yaratish</div>
+    <div class="slide-description">ScaffoldMessenger bilan eng oddiy xabar</div>
+    <div class="progress-note">
+        SnackBar ko'rsatish uchun ScaffoldMessenger.of(context).showSnackBar() funksiyasidan foydalanamiz. Bu funksiya SnackBar widget qabul qiladi.
+    </div>
+    <div class="code-block">Center(
+  child: ElevatedButton(
+    onPressed: () {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Salom! Bu mening birinchi SnackBar!'),
+        ),
+      );
+    },
+    child: Text('SnackBar ko\'rsatish'),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">SnackBar'ga rang berish</div>
+    <div class="slide-description">backgroundColor parametri bilan ma'no berish</div>
+    <div class="progress-note">
+        Har xil rang foydalanuvchiga har xil ma'no beradi. Yashil odatda muvaffaqiyatni, qizil xatolikni, ko'k ma'lumotni anglatadi.
+    </div>
+    <div class="code-block">Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Muvaffaqiyat!'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      },
+      child: Text('Yashil (Muvaffaqiyat)'),
+    ),
+    SizedBox(height: 16),
+    ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Xatolik!'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      },
+      child: Text('Qizil (Xatolik)'),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">SnackBar davomiyligini sozlash</div>
+    <div class="theory-content">
+        <strong>Duration parametri:</strong> Bu SnackBar qancha vaqt ko'rinib turishini belgilaydi.
+        <br><br>
+        <strong>Standart vaqt:</strong> Agar duration yozmasangiz, 4 soniya ko'rinadi.
+        <br><br>
+        <strong>Qisqa xabarlar uchun:</strong> Duration(seconds: 1) yoki Duration(seconds: 2) yetarli.
+        <br><br>
+        <strong>Muhim xabarlar uchun:</strong> Duration(seconds: 6) yoki Duration(seconds: 8) qo'yish yaxshi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">Vaqt bilan tajriba qilish</div>
+    <div class="slide-description">Turli davomiylik bilan SnackBar'lar</div>
+    <div class="progress-note">
+        Duration(seconds: 1) deganda 1 soniya, Duration(seconds: 8) deganda 8 soniya ko'rinadi. Xabar muhimligiga qarab vaqtni tanlaymiz.
+    </div>
+    <div class="code-block">Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Tez yo\'qoladi'),
+            duration: Duration(seconds: 1),
+            backgroundColor: Colors.orange,
+          ),
+        );
+      },
+      child: Text('1 soniya'),
+    ),
+    ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Uzoq ko\'rinadi'),
+            duration: Duration(seconds: 8),
+            backgroundColor: Colors.purple,
+          ),
+        );
+      },
+      child: Text('8 soniya'),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">SnackBar'ga action tugmasi qo'shish</div>
+    <div class="theory-content">
+        <strong>Action tugmasi nima:</strong> Bu SnackBar ichidagi bosiladigan tugma. Foydalanuvchi qo'shimcha amal qila oladi.
+        <br><br>
+        <strong>Qachon kerak:</strong> Agar foydalanuvchi amalni bekor qilishi yoki qaytadan urinishi kerak bo'lsa.
+        <br><br>
+        <strong>Mashhur misollar:</strong> "BEKOR QILISH", "QAYTA URINISH", "KO'RISH", "OK" kabi tugmalar.
+        <br><br>
+        <strong>SnackBarAction:</strong> Action tugmasini yaratish uchun ishlatiladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Action tugmasi bilan SnackBar</div>
+    <div class="slide-description">Bekor qilish imkoniyati qo'shish</div>
+    <div class="progress-note">
+        Action tugmasi bosilganda onPressed funksiyasi ishga tushadi. Bu yerda boshqa SnackBar ko'rsatish yoki boshqa amal bajarish mumkin.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Fayl o\'chirildi'),
+        backgroundColor: Colors.red,
+        action: SnackBarAction(
+          label: 'BEKOR QILISH',
+          textColor: Colors.white,
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('O\'chirish bekor qilindi'),
+                backgroundColor: Colors.green,
+                duration: Duration(seconds: 2),
+              ),
+            );
+          },
+        ),
+        duration: Duration(seconds: 5),
+      ),
+    );
+  },
+  child: Text('Faylni o\'chirish'),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">SnackBar'ga icon qo'shib chiroyliroq qilish</div>
+    <div class="slide-description">Icon va matn yonma-yon</div>
+    <div class="progress-note">
+        SnackBar content qismiga Row widget qo'yib, icon va matnni yonma-yon joylashtirish mumkin. Bu vizual jihatdan yaxshiroq ko'rinadi.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(Icons.check_circle, color: Colors.white),
+            SizedBox(width: 8),
+            Text('Muvaffaqiyatli saqlandi!'),
+          ],
+        ),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  },
+  child: Text('Saqlash'),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Professional SnackBar dizayni</div>
+    <div class="slide-description">Floating va yumaloq burchaklar bilan</div>
+    <div class="progress-note">
+        behavior: SnackBarBehavior.floating qo'yib, margin va shape qo'shsak, SnackBar zamonaviy ko'rinishga ega bo'ladi.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(Icons.info, color: Colors.white),
+            SizedBox(width: 8),
+            Text('Professional xabar'),
+          ],
+        ),
+        backgroundColor: Colors.blue,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        margin: EdgeInsets.all(16),
+        duration: Duration(seconds: 3),
+      ),
+    );
+  },
+  child: Text('Professional SnackBar'),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="section-divider">UCHINCHI QISM: DRAWER VA SNACKBAR'NI BIRLASHTIRISH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Drawer va SnackBar'ni birga ishlatish</div>
+    <div class="slide-description">To'liq funksional ilova yaratish</div>
+    <div class="progress-note">
+        Endi ikki bilimimizni birlashtirish vaqti keldi. Drawer menyu elementlariga bosilganda mos SnackBar xabarlari ko'rsatamiz.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('To\'liq ilova')),
+  drawer: Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Colors.blue),
+          child: Text('Asosiy Menyu', style: TextStyle(color: Colors.white, fontSize: 24)),
+        ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Bosh sahifa'),
+          onTap: () {
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  children: [
+                    Icon(Icons.home, color: Colors.white),
+                    SizedBox(width: 8),
+                    Text('Bosh sahifaga o\'tildi'),
+                  ],
+                ),
+                backgroundColor: Colors.blue,
+              ),
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.person),
+          title: Text('Profil'),
+          onTap: () {
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  children: [
+                    Icon(Icons.person, color: Colors.white),
+                    SizedBox(width: 8),
+                    Text('Profil ochildi'),
+                  ],
+                ),
+                backgroundColor: Colors.green,
+              ),
+            );
+          },
+        ),
+      ],
+    ),
+  ),
+  body: Center(child: Text('Asosiy sahifa')),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Birinchi amaliy loyiha</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Maktab ilovasi uchun drawer yarating. Header'da maktab nomi bo'lsin. Menyu: Darslar, Baholar, Vazifalar, Xabarlar, Sozlamalar. Har biriga bosilganda mos SnackBar ko'rsating.
+    </div>
+    <div class="code-block">Drawer(
+  child: ListView(
+    padding: EdgeInsets.zero,
+    children: [
+      DrawerHeader(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [Colors.indigo, Colors.blue]),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.school, size: 50, color: Colors.white),
+            Text('Mening Maktabim', style: TextStyle(color: Colors.white, fontSize: 20)),
+          ],
+        ),
+      ),
+      ListTile(
+        leading: Icon(Icons.book),
+        title: Text('Darslar'),
+        onTap: () {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Darslar jadvali ochildi'), backgroundColor: Colors.blue),
+          );
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.grade),
+        title: Text('Baholar'),
+        onTap: () {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Baholaringiz'), backgroundColor: Colors.green),
+          );
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.assignment),
+        title: Text('Vazifalar'),
+        onTap: () {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Uy vazifalari'), backgroundColor: Colors.orange),
+          );
+        },
+      ),
+    ],
+  ),
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Ikkinchi amaliy loyiha</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Turli xabar turlari uchun SnackBar'lar yarating. 4 ta tugma: Muvaffaqiyat, Xatolik, Ogohlantirish, Ma'lumot. Har birida icon, rang, action tugmasi bo'lsin.
+    </div>
+    <div class="code-block">Column(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [Icon(Icons.check, color: Colors.white), SizedBox(width: 8), Text('Saqlandi')],
+            ),
+            backgroundColor: Colors.green,
+            action: SnackBarAction(label: 'OK', textColor: Colors.white, onPressed: () {}),
+          ),
+        );
+      },
+      child: Text('Muvaffaqiyat'),
+    ),
+    ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [Icon(Icons.error, color: Colors.white), SizedBox(width: 8), Text('Xatolik!')],
+            ),
+            backgroundColor: Colors.red,
+            action: SnackBarAction(label: 'QAYTA', textColor: Colors.white, onPressed: () {}),
+            duration: Duration(seconds: 6),
+          ),
+        );
+      },
+      child: Text('Xatolik'),
+    ),
+    ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [Icon(Icons.warning, color: Colors.white), SizedBox(width: 8), Text('Diqqat!')],
+            ),
+            backgroundColor: Colors.orange,
+            behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.all(16),
+          ),
+        );
+      },
+      child: Text('Ogohlantirish'),
+    ),
+  ],
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Uchinchi amaliy loyiha</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> To'liq bank ilovasi interfeysi yarating. Chap drawer: Hisoblar, Pul o'tkazish, Tarix, Sozlamalar. O'ng drawer: Kalkulyator, Valyuta, Yordam. Har biriga bosilganda professional SnackBar ko'rsating.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('Bank Ilovasi'), backgroundColor: Colors.teal),
+  drawer: Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Colors.teal),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(radius: 25, child: Text('B')),
+              SizedBox(height: 8),
+              Text('Botir Rahimov', style: TextStyle(color: Colors.white, fontSize: 16)),
+              Text('1234 **** **** 5678', style: TextStyle(color: Colors.white70, fontSize: 12)),
+            ],
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.account_balance), title: Text('Hisoblar'),
+          onTap: () {
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Hisoblaringiz ro\'yxati'),
+                backgroundColor: Colors.teal,
+                behavior: SnackBarBehavior.floating,
+                margin: EdgeInsets.all(16),
+              ),
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.send), title: Text('Pul o\'tkazish'),
+          onTap: () {
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Pul o\'tkazish sahifasi'),
+                backgroundColor: Colors.blue,
+                action: SnackBarAction(label: 'BOSHLASH', textColor: Colors.white, onPressed: () {}),
+              ),
+            );
+          },
+        ),
+      ],
+    ),
+  ),
+  endDrawer: Drawer(
+    child: ListView(
+      children: [
+        DrawerHeader(child: Text('Asboblar'), decoration: BoxDecoration(color: Colors.orange)),
+        ListTile(title: Text('Kalkulyator'), leading: Icon(Icons.calculate)),
+        ListTile(title: Text('Valyuta'), leading: Icon(Icons.currency_exchange)),
+      ],
+    ),
+  ),
+  body: Center(child: Text('Bank Hisobingiz', style: TextStyle(fontSize: 20))),
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Dars xulosas va keyingi qadamlar</div>
+    <div class="theory-content">
+        <strong>Bugun o'rgandik:</strong> Biz mobile ilovaning ikkita asosiy elementi - Drawer va SnackBar bilan to'liq tanishdik. Oddiy elementdan boshlab, professional darajadagi interfeysgacha yo'l bosib o'tdik.
+        <br><br>
+        <strong>Drawer bo'yicha bilimlar:</strong> Drawer yaratish, ListView va ListTile ishlatish, DrawerHeader qo'shish va bezash, onTap hodisalari, Navigator.pop() bilan to'g'ri yopish, endDrawer qo'shish.
+        <br><br>
+        <strong>SnackBar bo'yicha bilimlar:</strong> SnackBar ko'rsatish, rang va davomiylik sozlash, action tugmalari qo'shish, icon qo'shish, floating dizayn yaratish, ScaffoldMessenger ishlatish.
+        <br><br>
+        <strong>Amaliy natija:</strong> Endi siz har qanday professional mobile ilova uchun to'liq navigatsiya va xabar tizimini yarata olasiz.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Professional maslahatlar va best practices</div>
+    <div class="theory-content">
+        <strong>Drawer uchun eng yaxshi amaliyotlar:</strong>
+        <br>• Har doim DrawerHeader qo'shing - bu professional ko'rinish beradi
+        <br>• onTap da Navigator.pop() ni birinchi yozing, keyin boshqa amallar
+        <br>• 7 tadan ko'p menyu elementi qo'ymang - foydalanuvchi chalkashadi
+        <br>• Divider widget bilan bo'limlarni ajrating
+        <br>• padding: EdgeInsets.zero ni unutmang
+        <br><br>
+        <strong>SnackBar uchun eng yaxshi amaliyotlar:</strong>
+        <br>• Qisqa va aniq matn yozing - 1-2 so'z yetarli
+        <br>• Ranglar bilan ma'no bering: yashil=muvaffaqiyat, qizil=xato
+        <br>• Muhim xabarlar uchun action tugma qo'shing
+        <br>• Duration ni ahamiyatiga qarab sozlang
+        <br>• Icon qo'shib vizual qiling
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 31</div>
+    <div class="slide-title">Tez-tez uchraydigan xatolar va ularning yechimlari</div>
+    <div class="theory-content">
+        <strong>Drawer xatolari:</strong>
+        <br>• Navigator.pop() yozmaslik ➜ Drawer yopilmaydi
+        <br>• DrawerHeader qo'ymaslik ➜ Noprofessional ko'rinish
+        <br>• padding: EdgeInsets.zero yozmaslik ➜ Keraksiz bo'shliqlar
+        <br>• Juda ko'p menyu elementi ➜ Foydalanuvchi chalkashadi
+        <br><br>
+        <strong>SnackBar xatolari:</strong>
+        <br>• Juda uzun matn ➜ Ekranga sig'maydi
+        <br>• Noto'g'ri ranglar ➜ Foydalanuvchi tushunmaydi
+        <br>• Duration juda qisqa ➜ O'qib ulgurmaslik
+        <br>• ScaffoldMessenger ishlatmaslik ➜ Xatolar chiqadi
+        <br>• Bir vaqtda ko'p SnackBar ➜ Ekran aralashadi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 32</div>
+    <div class="slide-title">Keyingi bosqichlar va rivojlantirish yo'llari</div>
+    <div class="theory-content">
+        <strong>Drawer ni rivojlantirish:</strong>
+        <br>• Custom Drawer width sozlash
+        <br>• Drawer Controller bilan dasturiy boshqarish
+        <br>• Drawer ochilish/yopilish animatsiyalarini sozlash
+        <br>• Drawer callback funksiyalari qo'shish
+        <br><br>
+        <strong>SnackBar ni rivojlantirish:</strong>
+        <br>• Custom shape va elevation qo'shish
+        <br>• SnackBar queue (navbat) boshqarish
+        <br>• Persistent SnackBar yaratish
+        <br>• Custom SnackBar widget yaratish
+        <br><br>
+        <strong>Keyingi darslar:</strong>
+        <br>• Navigation va Routing
+        <br>• State Management
+        <br>• Animations va Transitions
+    </div>
+</div>
+
+</body>
+</html>

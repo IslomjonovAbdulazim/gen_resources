@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GridView Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #E3F2FD;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">GridView nima?</div>
+    <div class="theory-content">
+        <strong>GridView:</strong> Ma'lumotlarni katakcha (grid) shaklida ko'rsatish uchun widget.
+        <br><br>
+        <strong>Misollar:</strong> Rasmlar galereyasi, mahsulotlar do'koni, o'yinlar menyusi.
+        <br><br>
+        <strong>Afzalligi:</strong> Bir vaqtda ko'p ma'lumotni chiroyli ko'rsatish.
+        <br><br>
+        <strong>Qachon kerak:</strong> Katalog, galereya, dastur menyusi uchun.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>GridView.count asoslari</li>
+            <li>crossAxisCount parametri</li>
+            <li>GridView.builder nima?</li>
+            <li>crossAxisSpacing va mainAxisSpacing</li>
+            <li>childAspectRatio sozlash</li>
+            <li>GridView.extent ishlatish</li>
+            <li>Scroll yo'nalishi</li>
+            <li>GridTile widget</li>
+            <li>GridTile header/footer</li>
+            <li>Slivers bilan GridView</li>
+            <li>StaggeredGridView tanishish</li>
+            <li>GridView animatsiyalari</li>
+            <li>Performance yaxshilash</li>
+            <li>3 ta amaliy vazifa</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Eng oddiy GridView</div>
+    <div class="slide-description">GridView.count bilan tanishish</div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 2,
+  children: [
+    Container(color: Colors.red),
+    Container(color: Colors.blue),
+    Container(color: Colors.green),
+    Container(color: Colors.yellow),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">crossAxisCount nima?</div>
+    <div class="theory-content">
+        <strong>crossAxisCount:</strong> Gorizontal yo'nalishda nechta katakcha bo'lishini belgilaydi.
+        <br><br>
+        <strong>2:</strong> Ikki ustunli grid
+        <br><strong>3:</strong> Uch ustunli grid
+        <br><strong>4:</strong> To'rt ustunli grid
+        <br><br>
+        <strong>Maslahat:</strong> Telefon uchun 2-3, planshet uchun 4-6 yaxshi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Uch ustunli grid</div>
+    <div class="slide-description">crossAxisCount: 3</div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 3,
+  children: [
+    Container(
+      color: Colors.red,
+      child: Center(child: Text('1')),
+    ),
+    Container(
+      color: Colors.blue,
+      child: Center(child: Text('2')),
+    ),
+    Container(
+      color: Colors.green,
+      child: Center(child: Text('3')),
+    ),
+    Container(
+      color: Colors.orange,
+      child: Center(child: Text('4')),
+    ),
+    Container(
+      color: Colors.purple,
+      child: Center(child: Text('5')),
+    ),
+    Container(
+      color: Colors.pink,
+      child: Center(child: Text('6')),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">GridView.builder nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>Ko'p elementlar uchun:</strong> GridView.builder tezroq ishlaydi.
+        <br><br>
+        <strong>Lazy loading:</strong> Faqat ko'rinadigan elementlar yasaladi.
+        <br><br>
+        <strong>Xotira tejash:</strong> 1000 ta element bo'lsa ham muammo yo'q.
+        <br><br>
+        <strong>Dynamic ma'lumotlar:</strong> API dan kelgan ma'lumotlar uchun ideal.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">GridView.builder misoli</div>
+    <div class="slide-description">Ko'p elementlar uchun</div>
+    <div class="code-block">GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+  ),
+  itemCount: 20,
+  itemBuilder: (context, index) {
+    return Container(
+      color: Colors.blue[100 * (index % 9 + 1)],
+      child: Center(
+        child: Text(
+          '${index + 1}',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">Spacing nima?</div>
+    <div class="theory-content">
+        <strong>crossAxisSpacing:</strong> Gorizontal oraliq (o'ng-chap).
+        <br><br>
+        <strong>mainAxisSpacing:</strong> Vertikal oraliq (yuqori-past).
+        <br><br>
+        <strong>Default:</strong> 0.0 - hech qanday oraliq yo'q.
+        <br><br>
+        <strong>Tavsiya:</strong> 8.0 dan 16.0 gacha yaxshi ko'rinadi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Spacing bilan misol</div>
+    <div class="slide-description">Oraliqlar qo'shish</div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 2,
+  crossAxisSpacing: 10,
+  mainAxisSpacing: 10,
+  padding: EdgeInsets.all(16),
+  children: [
+    Container(
+      color: Colors.red,
+      child: Center(child: Text('A')),
+    ),
+    Container(
+      color: Colors.blue,
+      child: Center(child: Text('B')),
+    ),
+    Container(
+      color: Colors.green,
+      child: Center(child: Text('C')),
+    ),
+    Container(
+      color: Colors.yellow,
+      child: Center(child: Text('D')),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">childAspectRatio nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Katakchaning kengligi va balandligi nisbati.
+        <br><br>
+        <strong>1.0:</strong> Kvadrat (teng tomonli)
+        <br><strong>2.0:</strong> Keng to'rtburchak
+        <br><strong>0.5:</strong> Uzun to'rtburchak
+        <br><br>
+        <strong>Default:</strong> 1.0 - kvadrat shakl.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">childAspectRatio misoli</div>
+    <div class="slide-description">Keng kartalar</div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 1,
+  childAspectRatio: 3.0,
+  children: [
+    Container(
+      color: Colors.red,
+      child: Center(
+        child: Text('Keng karta 1'),
+      ),
+    ),
+    Container(
+      color: Colors.blue,
+      child: Center(
+        child: Text('Keng karta 2'),
+      ),
+    ),
+    Container(
+      color: Colors.green,
+      child: Center(
+        child: Text('Keng karta 3'),
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">GridView.extent nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Har bir katakchaning maksimal kengligi.
+        <br><br>
+        <strong>Afzallik:</strong> Turli ekran o'lchamlarga moslashadi.
+        <br><br>
+        <strong>Misol:</strong> maxCrossAxisExtent: 150 - har bir katakcha 150px dan katta bo'lmaydi.
+        <br><br>
+        <strong>Responsive:</strong> Avtomatik ustun soni.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">GridView.extent misoli</div>
+    <div class="slide-description">Responsive grid</div>
+    <div class="code-block">GridView.extent(
+  maxCrossAxisExtent: 120,
+  crossAxisSpacing: 8,
+  mainAxisSpacing: 8,
+  padding: EdgeInsets.all(8),
+  children: List.generate(12, (index) {
+    return Container(
+      color: Colors.teal[100 * (index % 9 + 1)],
+      child: Center(
+        child: Icon(
+          Icons.star,
+          size: 40,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Scroll yo'nalishi</div>
+    <div class="theory-content">
+        <strong>scrollDirection:</strong> Aylantirish yo'nalishi.
+        <br><br>
+        <strong>Axis.vertical:</strong> Yuqoridan pastga (default).
+        <br><strong>Axis.horizontal:</strong> Chapdan o'ngga.
+        <br><br>
+        <strong>Qachon kerak:</strong> Gorizontal galereya, menyu uchun.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Gorizontal GridView</div>
+    <div class="slide-description">Yon tomonga aylantirish</div>
+    <div class="code-block">Container(
+  height: 200,
+  child: GridView.count(
+    scrollDirection: Axis.horizontal,
+    crossAxisCount: 2,
+    children: [
+      Container(color: Colors.red, child: Center(child: Text('1'))),
+      Container(color: Colors.blue, child: Center(child: Text('2'))),
+      Container(color: Colors.green, child: Center(child: Text('3'))),
+      Container(color: Colors.yellow, child: Center(child: Text('4'))),
+      Container(color: Colors.purple, child: Center(child: Text('5'))),
+      Container(color: Colors.orange, child: Center(child: Text('6'))),
+      Container(color: Colors.pink, child: Center(child: Text('7'))),
+      Container(color: Colors.cyan, child: Center(child: Text('8'))),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">GridTile nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Grid elementlariga header va footer qo'shish uchun widget.
+        <br><br>
+        <strong>child:</strong> Asosiy kontent.
+        <br><strong>header:</strong> Yuqori qism.
+        <br><strong>footer:</strong> Pastki qism.
+        <br><br>
+        <strong>Ishlatilishi:</strong> Rasm galereyasi, mahsulot katalogi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">GridTile misoli</div>
+    <div class="slide-description">Header va footer bilan</div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 2,
+  children: List.generate(4, (index) {
+    return GridTile(
+      header: GridTileBar(
+        backgroundColor: Colors.black54,
+        title: Text('Sarlavha ${index + 1}'),
+        trailing: Icon(Icons.star),
+      ),
+      footer: GridTileBar(
+        backgroundColor: Colors.black54,
+        title: Text('Tavsif ${index + 1}'),
+        trailing: Icon(Icons.favorite),
+      ),
+      child: Container(
+        color: Colors.blue[100 * (index + 1)],
+        child: Center(
+          child: Icon(Icons.image, size: 50),
+        ),
+      ),
+    );
+  }),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Rasmlar galereyasi</div>
+    <div class="slide-description">Real misol - foto galereya</div>
+    <div class="code-block">GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 3,
+    crossAxisSpacing: 4,
+    mainAxisSpacing: 4,
+  ),
+  itemCount: 9,
+  itemBuilder: (context, index) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.photo, size: 40, color: Colors.grey[600]),
+          SizedBox(height: 4),
+          Text('Rasm ${index + 1}', style: TextStyle(fontSize: 12)),
+        ],
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">Bosiladigan GridView</div>
+    <div class="slide-description">GestureDetector bilan</div>
+    <div class="code-block">GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    crossAxisSpacing: 8,
+    mainAxisSpacing: 8,
+  ),
+  itemCount: 6,
+  itemBuilder: (context, index) {
+    return GestureDetector(
+      onTap: () {
+        print('${index + 1}-element bosildi');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue[100 * (index % 9 + 1)],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.apps, size: 40),
+              Text('Dastur ${index + 1}'),
+            ],
+          ),
+        ),
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">SliverGridView nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> CustomScrollView ichida ishlaydigan GridView.
+        <br><br>
+        <strong>Afzallik:</strong> Boshqa Sliver widget'lar bilan birga ishlaydi.
+        <br><br>
+        <strong>Misol:</strong> SliverAppBar + SliverGrid.
+        <br><br>
+        <strong>Foydalanish:</strong> Murakkab scroll interfeyslari uchun.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">CustomScrollView misoli</div>
+    <div class="slide-description">SliverGrid bilan</div>
+    <div class="code-block">CustomScrollView(
+  slivers: [
+    SliverAppBar(
+      title: Text('Mening Gallereyam'),
+      floating: true,
+    ),
+    SliverPadding(
+      padding: EdgeInsets.all(8),
+      sliver: SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
+        ),
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return Container(
+              color: Colors.teal[100 * (index % 9 + 1)],
+              child: Center(child: Text('${index + 1}')),
+            );
+          },
+          childCount: 30,
+        ),
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Performance maslahatlar</div>
+    <div class="theory-content">
+        <strong>1. Builder foydalaning:</strong> Ko'p elementlar uchun GridView.builder.
+        <br><br>
+        <strong>2. itemExtent qo'ying:</strong> Agar balandlik bir xil bo'lsa.
+        <br><br>
+        <strong>3. RepaintBoundary:</strong> Animatsiyalar uchun.
+        <br><br>
+        <strong>4. cacheExtent:</strong> Kesh hajmini sozlang.
+        <br><br>
+        <strong>5. Rasm optimizatsiyasi:</strong> AssetImage dan NetworkImage gacha.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Vazifa 1: Ranglar palitesi</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> 4x4 grid yarating. Har bir katakchada turli ranglar bo'lsin. Bosilganda rang nomi chop etilsin.
+    </div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 4,
+  crossAxisSpacing: 4,
+  mainAxisSpacing: 4,
+  padding: EdgeInsets.all(8),
+  children: [
+    Colors.red, Colors.blue, Colors.green, Colors.yellow,
+    Colors.purple, Colors.orange, Colors.pink, Colors.cyan,
+    Colors.teal, Colors.indigo, Colors.brown, Colors.grey,
+    Colors.lime, Colors.amber, Colors.deepOrange, Colors.lightBlue,
+  ].map((color) {
+    return GestureDetector(
+      onTap: () {
+        print('Rang tanlandi: ${color.toString()}');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }).toList(),
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Vazifa 2: O'yinlar menyusi</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> 2x3 grid yarating. Har birida o'yin nomi va icon bo'lsin. Bosilganda "O'yin boshlandi" xabari chiqsin.
+    </div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 2,
+  crossAxisSpacing: 16,
+  mainAxisSpacing: 16,
+  padding: EdgeInsets.all(16),
+  children: [
+    {'name': 'Puzzle', 'icon': Icons.extension},
+    {'name': 'Racing', 'icon': Icons.directions_car},
+    {'name': 'Music', 'icon': Icons.music_note},
+    {'name': 'Quiz', 'icon': Icons.quiz},
+    {'name': 'Chess', 'icon': Icons.casino},
+    {'name': 'Cards', 'icon': Icons.style},
+  ].map((game) {
+    return GestureDetector(
+      onTap: () {
+        print('${game['name']} o\'yini boshlandi');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(game['icon'] as IconData, size: 50, color: Colors.white),
+            SizedBox(height: 8),
+            Text(game['name'] as String, style: TextStyle(color: Colors.white, fontSize: 18)),
+          ],
+        ),
+      ),
+    );
+  }).toList(),
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Vazifa 3: Mahsulotlar katalogi</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> GridView.builder bilan 12 ta mahsulot ko'rsating. Har birida mahsulot rasmi, nomi va narxi bo'lsin. GridTile ishlatib header qo'shing.
+    </div>
+    <div class="code-block">GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    crossAxisSpacing: 8,
+    mainAxisSpacing: 8,
+    childAspectRatio: 0.8,
+  ),
+  itemCount: 12,
+  itemBuilder: (context, index) {
+    return GridTile(
+      header: GridTileBar(
+        backgroundColor: Colors.black54,
+        title: Text('Mahsulot ${index + 1}'),
+        trailing: Icon(Icons.shopping_cart),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.shopping_bag, size: 60, color: Colors.grey[600]),
+            SizedBox(height: 8),
+            Text('${(index + 1) * 50000} so\'m', 
+                 style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  },
+)</div>
+</div>
+
+</body>
+</html>

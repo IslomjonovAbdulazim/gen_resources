@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SnackBar va BottomSheet - Bolalar uchun dars</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #9C27B0;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #9C27B0;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #F3E5F5;
+            border-left: 4px solid #9C27B0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #F3E5F5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #9C27B0;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #4CAF50;
+            margin: 15px 0;
+            font-style: italic;
+            color: #2E7D32;
+        }
+
+        .homework-section {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            background: #9C27B0;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .progress-note {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            color: #e65100;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">SnackBar va BottomSheet dunyosi!</div>
+    <div class="theory-content">
+        <strong>Salom bolalar!</strong> Bugun biz Flutter'da ikki muhim narsani o'rganamiz: SnackBar va BottomSheet. Bu ikkalasi ham foydalanuvchi bilan muloqot qilish uchun juda muhim!
+        <br><br>
+        <strong>SnackBar nima?</strong> Bu telefon ekranining pastidan chiqib keladigan qisqa xabar. Xuddi SMS kelganda pastda chiqadigan bildirishnoma kabi!
+        <br><br>
+        <strong>BottomSheet nima?</strong> Bu ekranning pastidan yuqoriga ko'tariladigan katta oyna. WhatsApp'da rasm yuborishda pastdan chiqadigan menyu kabi!
+        <br><br>
+        <strong>Bugun nimani o'rganamiz:</strong> Bu ikki narsani qanday yaratish va ishlatishni o'rganamiz.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Bugungi dars rejamiz</div>
+    <div class="plan-list">
+        <strong>BIRINCHI SOAT: SNACKBAR BILAN TANISHISH</strong>
+        <ul>
+            <li>1. SnackBar nima va qachon ishlatiladi?</li>
+            <li>2. Eng oddiy SnackBar yaratish</li>
+            <li>3. SnackBar'ga ranglar berish</li>
+            <li>4. Matn va ikonlarni qo'shish</li>
+            <li>5. SnackBar davomiyligini sozlash</li>
+            <li>6. Action tugmasini qo'shish</li>
+            <li>7. Floating SnackBar yaratish</li>
+            <li>8. Professional ko'rinishli SnackBar</li>
+        </ul>
+        <strong>IKKINCHI SOAT: BOTTOMSHEET BILAN ISHLASH</strong>
+        <ul>
+            <li>9. BottomSheet nima va qachon kerak?</li>
+            <li>10. Oddiy BottomSheet yaratish</li>
+            <li>11. BottomSheet ichiga widgetlar qo'shish</li>
+            <li>12. Listlar bilan BottomSheet</li>
+            <li>13. Chiroyli dizayn qo'shish</li>
+            <li>14. whenComplete funksiyasi</li>
+            <li>15. Modal BottomSheet</li>
+            <li>16. Persistent BottomSheet</li>
+        </ul>
+        <strong>BIRLASHTIRIB ISHLASH</strong>
+        <ul>
+            <li>17. SnackBar va BottomSheet birga</li>
+            <li>18. Amaliy loyiha yaratish</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-divider">BIRINCHI QISM: SNACKBAR BILAN TANISHISH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">SnackBar nima va qachon ishlatiladi?</div>
+    <div class="theory-content">
+        <strong>SnackBar haqida:</strong> Bu qisqa xabarlar ko'rsatish uchun ishlatiladi. Xuddi WhatsApp'da "Xabar yuborildi" yoki "Internet yo'q" kabi xabarlar.
+        <br><br>
+        <strong>Qanday ishlaydi:</strong> Ekranning pastidan chiqib keladi, bir necha soniyadan keyin avtomatik yo'qoladi.
+        <br><br>
+        <strong>Qachon ishlatamiz:</strong>
+        <br>✅ "Saqlandi" xabari uchun
+        <br>✅ "Xatolik yuz berdi" uchun
+        <br>✅ "Internet bilan aloqa yo'q" uchun
+        <br>✅ "Muvaffaqiyatli yuborildi" uchun
+        <br><br>
+        <strong>Afzalliklari:</strong> Oddiy, tez va foydalanuvchini bezovta qilmaydi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Eng oddiy SnackBar yaratish</div>
+    <div class="slide-description">ScaffoldMessenger bilan birinchi xabar</div>
+    <div class="progress-note">
+        SnackBar ko'rsatish uchun ScaffoldMessenger.of(context).showSnackBar() funksiyasini ishlatamiz. Bu eng oddiy usuli.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('SnackBar dasturim')),
+  body: Center(
+    child: ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Salom! Bu mening birinchi SnackBar!')),
+        );
+      },
+      child: Text('SnackBar ko\'rsatish'),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Tugma bosilganda pastdan xabar chiqadi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">SnackBar'ga yashil rang berish</div>
+    <div class="slide-description">Muvaffaqiyatli amallar uchun</div>
+    <div class="progress-note">
+        backgroundColor parametri bilan SnackBar'ning rangini o'zgartiramiz. Yashil rang odatda muvaffaqiyatni bildiradi.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Muvaffaqiyatli saqlandi!'),
+        backgroundColor: Colors.green,
+      ),
+    );
+  },
+  child: Text('Saqlash'),
+)</div>
+    <div class="result-placeholder">[Yashil rangli SnackBar paydo bo'ladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Qizil rang bilan xatolik xabari</div>
+    <div class="slide-description">Xatoliklar uchun qizil rang</div>
+    <div class="progress-note">
+        Qizil rang xatoliklarni ko'rsatish uchun ishlatiladi. Foydalanuvchi darhol tushunadi biror narsa noto'g'ri ekanligini.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Xatolik yuz berdi!'),
+        backgroundColor: Colors.red,
+      ),
+    );
+  },
+  child: Text('Xatolik simulyatsiyasi'),
+)</div>
+    <div class="result-placeholder">[Qizil rangli xatolik xabari]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">SnackBar'ga ikon qo'shish</div>
+    <div class="slide-description">Matn va ikon birga</div>
+    <div class="progress-note">
+        Row widget ishlatib, ikon va matnni yonma-yon joylashtirish mumkin. Bu vizual jihatdan yaxshiroq ko'rinadi.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(Icons.check_circle, color: Colors.white),
+            SizedBox(width: 8),
+            Text('Yuklash tugallandi!'),
+          ],
+        ),
+        backgroundColor: Colors.blue,
+      ),
+    );
+  },
+  child: Text('Yuklab olish'),
+)</div>
+    <div class="result-placeholder">[Ikon va matn bilan SnackBar]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">SnackBar davomiyligini sozlash</div>
+    <div class="slide-description">Qancha vaqt ko'rinishi</div>
+    <div class="progress-note">
+        Duration parametri bilan SnackBar qancha vaqt ko'rinishini belgilaymiz. Muhim xabarlar uchun ko'proq vaqt beramiz.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Bu xabar 8 soniya ko\'rinadi'),
+        backgroundColor: Colors.orange,
+        duration: Duration(seconds: 8),
+      ),
+    );
+  },
+  child: Text('Uzoq xabar'),
+)</div>
+    <div class="result-placeholder">[8 soniya davom etadigan xabar]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Action tugmasi qo'shish</div>
+    <div class="slide-description">Foydalanuvchi amal qila oladi</div>
+    <div class="progress-note">
+        SnackBarAction qo'shib, foydalanuvchiga qo'shimcha imkoniyat beramiz. Masalan, bekor qilish yoki qayta urinish.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Fayl o\'chirildi'),
+        backgroundColor: Colors.red,
+        action: SnackBarAction(
+          label: 'BEKOR QILISH',
+          textColor: Colors.white,
+          onPressed: () {
+            print('Bekor qilindi!');
+          },
+        ),
+      ),
+    );
+  },
+  child: Text('Faylni o\'chirish'),
+)</div>
+    <div class="result-placeholder">[Action tugmasi bilan SnackBar]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">Floating SnackBar yaratish</div>
+    <div class="slide-description">Zamonaviy ko'rinish</div>
+    <div class="progress-note">
+        behavior: SnackBarBehavior.floating qo'shib, zamonaviy ko'rinishli SnackBar yaratamiz. Bu pastki qismdan biroz yuqorida "suzadi".
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Zamonaviy SnackBar'),
+        backgroundColor: Colors.purple,
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.all(16),
+      ),
+    );
+  },
+  child: Text('Floating SnackBar'),
+)</div>
+    <div class="result-placeholder">[Suzuvchi SnackBar ko'rinadi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Yumaloq burchakli professional SnackBar</div>
+    <div class="slide-description">Shape qo'shib chiroyliroq qilish</div>
+    <div class="progress-note">
+        shape parametri bilan SnackBar'ning shakli va burchaklarini o'zgartiramiz. Bu professional ko'rinish beradi.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(Icons.star, color: Colors.white),
+            SizedBox(width: 8),
+            Text('Professional xabar'),
+          ],
+        ),
+        backgroundColor: Colors.indigo,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: EdgeInsets.all(16),
+      ),
+    );
+  },
+  child: Text('Professional'),
+)</div>
+    <div class="result-placeholder">[Yumaloq burchakli chiroyli SnackBar]</div>
+</div>
+
+<div class="section-divider">IKKINCHI QISM: BOTTOMSHEET BILAN ISHLASH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">BottomSheet nima va qachon kerak?</div>
+    <div class="theory-content">
+        <strong>BottomSheet haqida:</strong> Bu ekranning pastidan yuqoriga chiqadigan katta oyna. Ichiga ko'p narsalar qo'yish mumkin: tugmalar, ro'yxatlar, formalar.
+        <br><br>
+        <strong>Qanday ishlaydi:</strong> Foydalanuvchi tugma bossa, pastdan yuqoriga ko'tariladi. Tashqariga bosilsa yoki pastga tortilsa yopiladi.
+        <br><br>
+        <strong>Qachon ishlatamiz:</strong>
+        <br>📋 Menyular uchun (WhatsApp'da "Rasm yuborish" menyu)
+        <br>⚙️ Sozlamalar uchun
+        <br>📝 Formalar uchun
+        <br>📊 Ma'lumotlar ro'yxati uchun
+        <br><br>
+        <strong>Ikki turi bor:</strong> Modal (butun ekranni qoplaydi) va Persistent (qisman qoplaydi)
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Eng oddiy BottomSheet yaratish</div>
+    <div class="slide-description">showModalBottomSheet bilan</div>
+    <div class="progress-note">
+        showModalBottomSheet funksiyasi eng oddiy Modal BottomSheet yaratadi. context va builder kerak bo'ladi.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('BottomSheet dasturim')),
+  body: Center(
+    child: ElevatedButton(
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              height: 200,
+              child: Center(
+                child: Text('Bu mening birinchi BottomSheet!'),
+              ),
+            );
+          },
+        );
+      },
+      child: Text('BottomSheet ochish'),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Pastdan oyna ko'tariladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">BottomSheet ichiga tugmalar qo'shish</div>
+    <div class="slide-description">Column va tugmalar bilan</div>
+    <div class="progress-note">
+        BottomSheet ichiga Column qo'yib, bir nechta tugmalar joylashtirish mumkin. Har bir tugma alohida vazifa bajaradi.
+    </div>
+    <div class="code-block">showModalBottomSheet(
+  context: context,
+  builder: (context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('Tanlovlar', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('Birinchi tanlov'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('Ikkinchi tanlov'),
+          ),
+        ],
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Tugmalar bilan BottomSheet]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">ListTile bilan chiroyli menyu</div>
+    <div class="slide-description">Professional ko'rinish</div>
+    <div class="progress-note">
+        ListTile widgetlar ishlatib, professional ko'rinishli menyu yaratish mumkin. Har birida ikon va matn bo'ladi.
+    </div>
+    <div class="code-block">showModalBottomSheet(
+  context: context,
+  builder: (context) {
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            leading: Icon(Icons.photo),
+            title: Text('Galereya'),
+            onTap: () => Navigator.pop(context),
+          ),
+          ListTile(
+            leading: Icon(Icons.camera),
+            title: Text('Kamera'),
+            onTap: () => Navigator.pop(context),
+          ),
+          ListTile(
+            leading: Icon(Icons.file_copy),
+            title: Text('Fayl'),
+            onTap: () => Navigator.pop(context),
+          ),
+        ],
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Ikonli menyu BottomSheet]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">BottomSheet ga sarlavha qo'shish</div>
+    <div class="slide-description">Container bilan bezash</div>
+    <div class="progress-note">
+        BottomSheet yuqori qismiga sarlavha va bezak qo'shib, yanada chiroyli qilamiz. Container bilan fon rangi ham beramiz.
+    </div>
+    <div class="code-block">showModalBottomSheet(
+  context: context,
+  builder: (context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            child: Center(child: Text('Tanlovlar', style: TextStyle(color: Colors.white, fontSize: 18))),
+          ),
+          ListTile(title: Text('Birinchi tanlov'), leading: Icon(Icons.star)),
+          ListTile(title: Text('Ikkinchi tanlov'), leading: Icon(Icons.favorite)),
+        ],
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Sarlavhali chiroyli BottomSheet]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">whenComplete funksiyasi</div>
+    <div class="slide-description">BottomSheet yopilganda amal bajarish</div>
+    <div class="progress-note">
+        whenComplete BottomSheet yopilgandan keyin biror amal bajarish uchun ishlatiladi. Masalan, ma'lumotni yangilash yoki xabar ko'rsatish.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: 200,
+          child: Center(child: Text('Bu BottomSheet')),
+        );
+      },
+    ).whenComplete(() {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('BottomSheet yopildi!')),
+      );
+    });
+  },
+  child: Text('BottomSheet ochish'),
+)</div>
+    <div class="result-placeholder">[BottomSheet yopilganda SnackBar chiqadi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Ranglar bilan ishlash</div>
+    <div class="slide-description">Har xil rangdagi BottomSheet</div>
+    <div class="progress-note">
+        Har xil vazifa uchun har xil rangdagi BottomSheet yaratish mumkin. Bu foydalanuvchiga vizual signal beradi.
+    </div>
+    <div class="code-block">Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => Container(
+            height: 150,
+            color: Colors.green[50],
+            child: Center(child: Text('Muvaffaqiyat!', style: TextStyle(color: Colors.green))),
+          ),
+        );
+      },
+      child: Text('Yashil'),
+    ),
+    ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => Container(
+            height: 150,
+            color: Colors.red[50],
+            child: Center(child: Text('Xatolik!', style: TextStyle(color: Colors.red))),
+          ),
+        );
+      },
+      child: Text('Qizil'),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Har xil rangli BottomSheet'lar]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">Persistent BottomSheet</div>
+    <div class="slide-description">Scaffold bilan bog'langan</div>
+    <div class="progress-note">
+        Scaffold.of(context).showBottomSheet persistent BottomSheet yaratadi. Bu modal emas, fon bilan o'zaro aloqada bo'lish mumkin.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('Persistent BottomSheet')),
+  body: Center(
+    child: ElevatedButton(
+      onPressed: () {
+        Scaffold.of(context).showBottomSheet(
+          (context) => Container(
+            height: 150,
+            color: Colors.orange[100],
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Persistent BottomSheet'),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('Yopish'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      child: Text('Persistent ochish'),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Fon bilan aloqada bo'ladigan BottomSheet]</div>
+</div>
+
+<div class="section-divider">UCHINCHI QISM: BIRLASHTIRIB ISHLASH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">SnackBar va BottomSheet birga</div>
+    <div class="slide-description">Ikkalasini birgalikda ishlatish</div>
+    <div class="progress-note">
+        BottomSheet ichidagi tugmalar bosilganda SnackBar ko'rsatish mumkin. Bu foydalanuvchiga feedback beradi.
+    </div>
+    <div class="code-block">showModalBottomSheet(
+  context: context,
+  builder: (context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('Amallar', style: TextStyle(fontSize: 18)),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Saqlandi!'), backgroundColor: Colors.green),
+              );
+            },
+            child: Text('Saqlash'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('O\'chirildi!'), backgroundColor: Colors.red),
+              );
+            },
+            child: Text('O\'chirish'),
+          ),
+        ],
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[BottomSheet yopilganda SnackBar chiqadi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">Amaliy loyiha - Musiqa ijodchisi</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Musiqa ijodchisi ilovasi yarating. BottomSheet da musiqa turlari (Pop, Rock, Jazz, Klassik) bo'lsin. Har birini tanlaganda SnackBar da "X musiqa turi tanlandi" ko'rsatilsin.
+    </div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.all(16),
+                child: Text('Musiqa turini tanlang', style: TextStyle(fontSize: 18)),
+              ),
+              ListTile(
+                leading: Icon(Icons.music_note, color: Colors.pink),
+                title: Text('Pop musiqa'),
+                onTap: () {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Pop musiqa tanlandi!'), backgroundColor: Colors.pink),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.music_note, color: Colors.red),
+                title: Text('Rock musiqa'),
+                onTap: () {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Rock musiqa tanlandi!'), backgroundColor: Colors.red),
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  },
+  child: Text('Musiqa turini tanlash'),
+)</div>
+    <div class="result-placeholder">[Musiqa tanlash interfeysi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Rang tanlash loyihasi</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Rang tanlash ilovasi yarating. BottomSheet da ranglar ro'yxati bo'lsin. Har bir rangni tanlaganda Scaffold ning fon rangi o'zgarsin va SnackBar da rang nomi ko'rsatilsin.
+    </div>
+    <div class="code-block">Color selectedColor = Colors.white;
+
+showModalBottomSheet(
+  context: context,
+  builder: (context) {
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('Rangni tanlang', style: TextStyle(fontSize: 18)),
+          ListTile(
+            leading: Container(width: 30, height: 30, color: Colors.blue),
+            title: Text('Ko\'k rang'),
+            onTap: () {
+              Navigator.pop(context);
+              setState(() => selectedColor = Colors.blue);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Ko\'k rang tanlandi!'), backgroundColor: Colors.blue),
+              );
+            },
+          ),
+          ListTile(
+            leading: Container(width: 30, height: 30, color: Colors.green),
+            title: Text('Yashil rang'),
+            onTap: () {
+              Navigator.pop(context);
+              setState(() => selectedColor = Colors.green);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Yashil rang tanlandi!'), backgroundColor: Colors.green),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Rang tanlash va fon o'zgarishi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Dars xulosas va keyingi qadamlar</div>
+    <div class="theory-content">
+        <strong>Bugun o'rgandik:</strong>
+        <br>📨 SnackBar yaratish va turli xil ko'rinishlar berish
+        <br>🎨 Ranglar, ikonlar va action tugmalari qo'shish
+        <br>📋 BottomSheet yaratish va ichiga widgetlar joylashtirish
+        <br>🔄 whenComplete funksiyasi bilan hodisalarni boshqarish
+        <br>🎭 Modal va Persistent BottomSheet farqi
+        <br>⭐ SnackBar va BottomSheet ni birgalikda ishlatish
+        <br><br>
+        <strong>Amaliy natija:</strong> Endi siz professional darajadagi foydalanuvchi interfeyslari yarata olasiz. SnackBar bilan xabarlar va BottomSheet bilan menyular - bu har qanday zamonaviy ilovaning asosi!
+        <br><br>
+        <strong>Keyingi darsda:</strong> Navigation va sahifalar orasida o'tishni o'rganamiz
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Eng yaxshi amaliyotlar</div>
+    <div class="theory-content">
+        <strong>SnackBar uchun:</strong>
+        <br>✅ Qisqa va aniq matn yozing
+        <br>✅ Ranglar bilan ma'no bering (yashil=muvaffaqiyat, qizil=xato)
+        <br>✅ Muhim xabarlar uchun action tugma qo'shing
+        <br>✅ Duration ni ahamiyatiga qarab sozlang
+        <br><br>
+        <strong>BottomSheet uchun:</strong>
+        <br>✅ Yumaloq burchaklar qo'shing
+        <br>✅ Sarlavha qo'yib, nima uchun ekanligini ayting
+        <br>✅ 7 tadan ko'p element qo'ymang
+        <br>✅ whenComplete ishlatib, feedback bering
+        <br><br>
+        <strong>Ikkalasi uchun:</strong>
+        <br>✅ Navigator.pop() ni unutmang
+        <br>✅ Context ni to'g'ri ishlating
+    </div>
+</div>
+
+</body>
+</html>

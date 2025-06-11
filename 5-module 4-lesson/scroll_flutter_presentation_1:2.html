@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Scroll Widgets Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #9C27B0;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #9C27B0;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #f3e5f5;
+            border-left: 4px solid #9C27B0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #F3E5F5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #9C27B0;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Scroll nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ekrandan katta bo'lgan kontentni ko'rish uchun sirpantirish imkoniyati.
+        <br><br>
+        <strong>Asosiy vazifa:</strong> Cheklangan ekran joyida ko'p ma'lumotni ko'rsatish.
+        <br><br>
+        <strong>Flutter da:</strong> SingleChildScrollView, ListView, GridView va boshqa scroll widget'lar.
+        <br><br>
+        <strong>Har qanday mobil ilovaning asosi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Scroll nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>1. Cheklangan ekran joyi:</strong> Telefon ekrani kichik, ma'lumot ko'p.
+        <br><br>
+        <strong>2. Foydalanuvchi tajribasi:</strong> Barcha ma'lumotni bir vaqtda ko'rsatib bo'lmaydi.
+        <br><br>
+        <strong>3. Performance:</strong> Faqat ko'rinadigan qismni render qilish.
+        <br><br>
+        <strong>4. Navigatsiya:</strong> Ro'yxatlar, maqolalar, sozlamalar orqali harakatlanish.
+        <br><br>
+        <strong>Scroll bo'lmasa - ilova yaroqsiz!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>SingleChildScrollView asoslari</li>
+            <li>Scroll direction va physics</li>
+            <li>SingleChildScrollView + Column</li>
+            <li>SingleChildScrollView + ListTile</li>
+            <li>ListView vs SingleChildScrollView</li>
+            <li>ListView.builder performance</li>
+            <li>ListView.separated</li>
+            <li>GridView asoslari</li>
+            <li>ScrollController bilan boshqarish</li>
+            <li>Scroll animations</li>
+            <li>CustomScrollView</li>
+            <li>SliverList va SliverGrid</li>
+            <li>NestedScrollView</li>
+            <li>Performance optimization</li>
+            <li>3 ta uy vazifasi</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">SingleChildScrollView nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Bitta widget'ni scroll qilish imkonini beradigan container.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong>
+        <br>• Kichik ro'yxatlar (20 ta gacha element)
+        <br>• Form'lar
+        <br>• Sahifa kontenti
+        <br><br>
+        <strong>Farqi ListView dan:</strong> Barcha widget'lar bir vaqtda yaratiladi.
+        <br><br>
+        <strong>Ehtiyot bo'ling:</strong> Ko'p elementda sekin ishlaydi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Eng oddiy SingleChildScrollView</div>
+    <div class="slide-description">Asosiy tuzilish</div>
+    <div class="code-block">SingleChildScrollView(
+  child: Column(
+    children: [
+      Container(height: 200, color: Colors.red),
+      Container(height: 200, color: Colors.green),
+      Container(height: 200, color: Colors.blue),
+      Container(height: 200, color: Colors.yellow),
+      Container(height: 200, color: Colors.purple),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Scroll Direction nima?</div>
+    <div class="theory-content">
+        <strong>scrollDirection:</strong> Qaysi yo'nalishda scroll qilish.
+        <br><br>
+        <strong>Axis.vertical:</strong> Yuqori-pastga (default).
+        <br><br>
+        <strong>Axis.horizontal:</strong> Chap-o'ngga.
+        <br><br>
+        <strong>Eslatma:</strong> Horizontal scroll uchun width belgilash kerak.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Horizontal Scroll</div>
+    <div class="slide-description">Chap-o'ngga sirpantirish</div>
+    <div class="code-block">SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Row(
+    children: [
+      Container(width: 150, height: 100, color: Colors.red),
+      Container(width: 150, height: 100, color: Colors.green),
+      Container(width: 150, height: 100, color: Colors.blue),
+      Container(width: 150, height: 100, color: Colors.yellow),
+      Container(width: 150, height: 100, color: Colors.purple),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">Physics nima?</div>
+    <div class="theory-content">
+        <strong>physics:</strong> Scroll harakatining xususiyatlari.
+        <br><br>
+        <strong>BouncingScrollPhysics():</strong> iOS kabi bouncing effekt.
+        <br><br>
+        <strong>ClampingScrollPhysics():</strong> Android kabi glow effekt.
+        <br><br>
+        <strong>NeverScrollableScrollPhysics():</strong> Scroll qilish mumkin emas.
+        <br><br>
+        <strong>Default:</strong> Platform'ga bog'liq.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Physics misoli</div>
+    <div class="slide-description">Scroll physics o'zgartirish</div>
+    <div class="code-block">SingleChildScrollView(
+  physics: BouncingScrollPhysics(),
+  padding: EdgeInsets.all(16),
+  child: Column(
+    children: [
+      for (int i = 0; i < 10; i++)
+        Container(
+          height: 80,
+          margin: EdgeInsets.only(bottom: 10),
+          color: Colors.blue[100 * (i % 9 + 1)],
+          child: Center(child: Text('Element ${i + 1}')),
+        ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">SingleChildScrollView + Column</div>
+    <div class="theory-content">
+        <strong>Eng ko'p ishlatiladigan kombinatsiya.</strong>
+        <br><br>
+        <strong>Column:</strong> Elementlarni vertikal joylashtiradi.
+        <br><br>
+        <strong>SingleChildScrollView:</strong> Column'ni scroll qilish imkonini beradi.
+        <br><br>
+        <strong>Muhim:</strong> Column'ning mainAxisSize: MainAxisSize.min qo'ying.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Column bilan scroll</div>
+    <div class="slide-description">Vertikal elementlar ro'yxati</div>
+    <div class="code-block">SingleChildScrollView(
+  child: Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Text('Sarlavha', style: TextStyle(fontSize: 24)),
+      SizedBox(height: 20),
+      for (int i = 0; i < 15; i++)
+        Card(
+          margin: EdgeInsets.all(8),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('Bu ${i + 1}-card kontenti'),
+          ),
+        ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">SingleChildScrollView + ListTile</div>
+    <div class="theory-content">
+        <strong>Kichik ro'yxatlar uchun:</strong> 10-20 ta element.
+        <br><br>
+        <strong>Afzalliklari:</strong>
+        <br>• Oddiy implementatsiya
+        <br>• Barcha widget'lar bir vaqtda render
+        <br>• Animatsiya qilish oson
+        <br><br>
+        <strong>Kamchiliklari:</strong>
+        <br>• Ko'p elementda sekin
+        <br>• Xotira ko'p sarflaydi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">ListTile bilan scroll</div>
+    <div class="slide-description">Oddiy ro'yxat</div>
+    <div class="code-block">SingleChildScrollView(
+  child: Column(
+    children: [
+      for (int i = 0; i < 12; i++)
+        Card(
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: ListTile(
+            leading: CircleAvatar(
+              child: Text('${i + 1}'),
+            ),
+            title: Text('Element ${i + 1}'),
+            subtitle: Text('Bu element haqida qisqacha ma\'lumot'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              print('${i + 1}-element bosildi');
+            },
+          ),
+        ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">ListView vs SingleChildScrollView</div>
+    <div class="theory-content">
+        <strong>SingleChildScrollView:</strong>
+        <br>• Kichik ro'yxatlar uchun (20 gacha)
+        <br>• Barcha widget'lar bir vaqtda yaratiladi
+        <br>• Form'lar va sahifa kontenti uchun
+        <br><br>
+        <strong>ListView:</strong>
+        <br>• Katta ro'yxatlar uchun (20 dan ko'p)
+        <br>• Lazy loading - faqat ko'ringan qism
+        <br>• Performance yaxshi
+        <br><br>
+        <strong>Qoida:</strong> 20+ element = ListView ishlatting!
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">ListView.builder nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ko'p elementli ro'yxatlar uchun eng yaxshi yechim.
+        <br><br>
+        <strong>Lazy loading:</strong> Faqat ko'rinadigan elementlar yaratiladi.
+        <br><br>
+        <strong>itemCount:</strong> Jami elementlar soni.
+        <br><br>
+        <strong>itemBuilder:</strong> Har bir element uchun widget yasaydigan funksiya.
+        <br><br>
+        <strong>Performance:</strong> Minglab element bilan ham tez ishlaydi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">ListView.builder misoli</div>
+    <div class="slide-description">Ko'p elementli ro'yxat</div>
+    <div class="code-block">ListView.builder(
+  itemCount: 1000,
+  itemBuilder: (context, index) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.purple,
+          child: Text('${index + 1}'),
+        ),
+        title: Text('Element ${index + 1}'),
+        subtitle: Text('Bu ${index + 1}-element tavsifi'),
+        trailing: Icon(Icons.star),
+        onTap: () {
+          print('${index + 1}-element tanlandi');
+        },
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">ListView.separated nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Elementlar orasida separator bo'lgan ListView.
+        <br><br>
+        <strong>separatorBuilder:</strong> Har bir element orasidagi widget.
+        <br><br>
+        <strong>Afzalligi:</strong> Divider qo'shish uchun qulay.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Elementlarni vizual ajratish kerak bo'lganda.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">ListView.separated misoli</div>
+    <div class="slide-description">Separator bilan ro'yxat</div>
+    <div class="code-block">ListView.separated(
+  itemCount: 20,
+  separatorBuilder: (context, index) => Divider(
+    thickness: 1,
+    color: Colors.grey[300],
+    indent: 16,
+    endIndent: 16,
+  ),
+  itemBuilder: (context, index) {
+    return ListTile(
+      leading: Icon(Icons.person),
+      title: Text('Foydalanuvchi ${index + 1}'),
+      subtitle: Text('user${index + 1}@email.com'),
+      trailing: Icon(Icons.chevron_right),
+      onTap: () {
+        print('Foydalanuvchi ${index + 1} tanlandi');
+      },
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">GridView asoslari</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Elementlarni grid (to'r) ko'rinishida joylashtirish.
+        <br><br>
+        <strong>GridView.count:</strong> Belgilangan ustunlar soni bilan.
+        <br><br>
+        <strong>GridView.builder:</strong> Ko'p elementlar uchun lazy loading.
+        <br><br>
+        <strong>crossAxisCount:</strong> Ustunlar soni.
+        <br><br>
+        <strong>Qachon kerak:</strong> Rasmlar, katalog, kartochkalar uchun.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">GridView misoli</div>
+    <div class="slide-description">2 ustunli grid</div>
+    <div class="code-block">GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    crossAxisSpacing: 10,
+    mainAxisSpacing: 10,
+    childAspectRatio: 1,
+  ),
+  padding: EdgeInsets.all(16),
+  itemCount: 20,
+  itemBuilder: (context, index) {
+    return Card(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.image, size: 50, color: Colors.purple),
+          SizedBox(height: 8),
+          Text('Element ${index + 1}'),
+        ],
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">ScrollController nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Scroll ni dastur orqali boshqarish imkonini beradi.
+        <br><br>
+        <strong>Imkoniyatlari:</strong>
+        <br>• Scroll position olish
+        <br>• Belgi joyga scroll qilish
+        <br>• Scroll hodisalarini tinglash
+        <br>• Animatsiya bilan scroll
+        <br><br>
+        <strong>Dispose qilishni unutmang!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">ScrollController misoli</div>
+    <div class="slide-description">Dastur orqali scroll boshqarish</div>
+    <div class="code-block">class ScrollExample extends StatefulWidget {
+  @override
+  _ScrollExampleState createState() => _ScrollExampleState();
+}
+
+class _ScrollExampleState extends State<ScrollExample> {
+  ScrollController _controller = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                _controller.animateTo(
+                  0,
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: Text('Yuqoriga'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _controller.animateTo(
+                  _controller.position.maxScrollExtent,
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: Text('Pastga'),
+            ),
+          ],
+        ),
+        Expanded(
+          child: ListView.builder(
+            controller: _controller,
+            itemCount: 50,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text('Element ${index + 1}'),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">CustomScrollView nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Turli xil scroll widget'larni birlashtiradigan advanced widget.
+        <br><br>
+        <strong>Sliver widget'lar bilan ishlaydi:</strong>
+        <br>• SliverList
+        <br>• SliverGrid
+        <br>• SliverAppBar
+        <br>• SliverToBoxAdapter
+        <br><br>
+        <strong>Murakkab scroll interfeyslar uchun.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">CustomScrollView misoli</div>
+    <div class="slide-description">SliverList bilan</div>
+    <div class="code-block">CustomScrollView(
+  slivers: [
+    SliverToBoxAdapter(
+      child: Container(
+        height: 100,
+        color: Colors.purple,
+        child: Center(
+          child: Text(
+            'Header',
+            style: TextStyle(color: Colors.white, fontSize: 24),
+          ),
+        ),
+      ),
+    ),
+    SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          return Card(
+            margin: EdgeInsets.all(8),
+            child: ListTile(
+              leading: Icon(Icons.star),
+              title: Text('Sliver Element ${index + 1}'),
+              subtitle: Text('CustomScrollView ichida'),
+            ),
+          );
+        },
+        childCount: 30,
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">NestedScrollView nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ichma-ich scroll widget'lar uchun maxsus widget.
+        <br><br>
+        <strong>Qachon kerak:</strong>
+        <br>• AppBar + TabBar + ListView
+        <br>• Header + scrollable content
+        <br>• Murakkab scroll kombinatsiyalar
+        <br><br>
+        <strong>headerSliverBuilder:</strong> Yuqori qismi.
+        <br><strong>body:</strong> Asosiy scroll qismi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Performance Optimization</div>
+    <div class="theory-content">
+        <strong>1. ListView.builder ishlatting</strong> - 20+ element uchun
+        <br><br>
+        <strong>2. itemExtent ni belgilang</strong> - agar elementlar bir xil bo'lsa
+        <br><br>
+        <strong>3. cacheExtent ni sozlang</strong> - default yetarli
+        <br><br>
+        <strong>4. addAutomaticKeepAlives: false</strong> - xotira tejash uchun
+        <br><br>
+        <strong>5. ScrollController ni dispose qiling</strong>
+        <br><br>
+        <strong>6. SingleChildScrollView 20 dan ko'p element uchun ishlatmang</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Uy vazifasi 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Maqolalar ro'yxatini yarating. SingleChildScrollView ishlatib, 8 ta maqola card'ini qo'shing. Har birida sarlavha, qisqacha tavsif va o'qish tugmasi bo'lsin.
+    </div>
+    <div class="code-block">SingleChildScrollView(
+  padding: EdgeInsets.all(16),
+  child: Column(
+    children: [
+      Text(
+        'So\'ngi maqolalar',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(height: 20),
+      for (int i = 0; i < 8; i++)
+        Card(
+          margin: EdgeInsets.only(bottom: 16),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Maqola ${i + 1}: Flutter dasturlash',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Bu maqolada Flutter ning asosiy konsepsiyalari haqida batafsil ma\'lumot berilgan. Dasturlash jarayoni va eng yaxshi amaliyotlar.',
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
+                SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: () {
+                    print('Maqola ${i + 1} o\'qilmoqda');
+                  },
+                  child: Text('O\'qish'),
+                ),
+              ],
+            ),
+          ),
+        ),
+    ],
+  ),
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">

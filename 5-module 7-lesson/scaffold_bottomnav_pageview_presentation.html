@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Scaffold II, BottomNavigationBar, PageView I</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #FF5722;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF5722;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #fff3e0;
+            border-left: 4px solid #FF5722;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FF5722;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #4CAF50;
+            margin: 15px 0;
+            font-style: italic;
+            color: #2E7D32;
+        }
+
+        .homework-section {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Scaffold II - Advanced Xususiyatlar</div>
+    <div class="theory-content">
+        <strong>Scaffold II nima?</strong> Scaffold'ning advanced xususiyatlari va chuqur imkoniyatlari.
+        <br><br>
+        <strong>Yangi mavzular:</strong>
+        <br>• FloatingActionButton advanced
+        <br>• Drawer va endDrawer
+        <br>• BottomSheet boshqaruv
+        <br>• SnackBar ko'rsatish
+        <br>• Scaffold.of(context) ishlatish
+        <br><br>
+        <strong>Professional Flutter development uchun zarur.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>Scaffold ning barcha parametrlari</li>
+            <li>FloatingActionButton advanced</li>
+            <li>FloatingActionButtonLocation</li>
+            <li>Drawer va endDrawer</li>
+            <li>BottomSheet boshqaruv</li>
+            <li>SnackBar ko'rsatish</li>
+            <li>BottomNavigationBar asoslari</li>
+            <li>BottomNavigationBar customization</li>
+            <li>BottomNavigationBar types</li>
+            <li>PageView asoslari</li>
+            <li>PageView.builder</li>
+            <li>PageController</li>
+            <li>PageView + BottomNavigationBar</li>
+            <li>3 ta uy vazifasi</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Scaffold ning barcha parametrlari</div>
+    <div class="theory-content">
+        <strong>Asosiy parametrlar:</strong>
+        <br>• appBar, body, bottomNavigationBar
+        <br>• floatingActionButton, drawer, endDrawer
+        <br><br>
+        <strong>Advanced parametrlar:</strong>
+        <br>• floatingActionButtonLocation
+        <br>• floatingActionButtonAnimator
+        <br>• persistentFooterButtons
+        <br>• bottomSheet
+        <br>• backgroundColor
+        <br>• resizeToAvoidBottomInset
+        <br>• primary
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">FloatingActionButton Advanced</div>
+    <div class="theory-content">
+        <strong>Turli xil FAB turlari:</strong>
+        <br>• FloatingActionButton() - oddiy
+        <br>• FloatingActionButton.extended() - matn bilan
+        <br>• FloatingActionButton.small() - kichik
+        <br>• FloatingActionButton.large() - katta
+        <br><br>
+        <strong>Parametrlar:</strong>
+        <br>• onPressed, child, tooltip
+        <br>• backgroundColor, foregroundColor
+        <br>• elevation, shape, heroTag
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">FloatingActionButton misollari</div>
+    <div class="slide-description">Turli xil FAB turlari</div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('FAB Misollari')),
+  body: Center(child: Text('Asosiy kontent')),
+  floatingActionButton: Column(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      FloatingActionButton.small(
+        onPressed: () => print('Kichik FAB'),
+        child: Icon(Icons.add),
+        heroTag: 'small',
+      ),
+      SizedBox(height: 10),
+      FloatingActionButton.extended(
+        onPressed: () => print('Extended FAB'),
+        label: Text('Yangi qo\'shish'),
+        icon: Icon(Icons.add),
+        heroTag: 'extended',
+      ),
+      SizedBox(height: 10),
+      FloatingActionButton.large(
+        onPressed: () => print('Katta FAB'),
+        child: Icon(Icons.camera),
+        heroTag: 'large',
+      ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">FloatingActionButtonLocation</div>
+    <div class="theory-content">
+        <strong>FAB joylashuvini belgilaydi:</strong>
+        <br><br>
+        <strong>Asosiy pozitsiyalar:</strong>
+        <br>• FloatingActionButtonLocation.endFloat
+        <br>• FloatingActionButtonLocation.centerFloat
+        <br>• FloatingActionButtonLocation.endDocked
+        <br>• FloatingActionButtonLocation.centerDocked
+        <br>• FloatingActionButtonLocation.startFloat
+        <br>• FloatingActionButtonLocation.miniStartTop
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">FAB Location misoli</div>
+    <div class="slide-description">Turli joylashuvlar</div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('FAB Location')),
+  body: Center(child: Text('FAB joylashuvi')),
+  bottomNavigationBar: BottomNavigationBar(
+    items: [
+      BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Uy'),
+      BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Qidiruv'),
+      BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+    ],
+  ),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () => print('FAB bosildi'),
+    child: Icon(Icons.add),
+  ),
+  floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">Drawer va endDrawer</div>
+    <div class="theory-content">
+        <strong>Drawer:</strong> Chap tomondan chiqqan slide menu.
+        <br><br>
+        <strong>endDrawer:</strong> O'ng tomondan chiqqan slide menu.
+        <br><br>
+        <strong>Tarkibi:</strong>
+        <br>• DrawerHeader - yuqori qism
+        <br>• ListTile'lar - menu elementlari
+        <br>• Divider - ajratuvchi chiziq
+        <br><br>
+        <strong>Navigator.pop(context) - drawer yopish uchun.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Drawer misoli</div>
+    <div class="slide-description">Slide menu</div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('Drawer Menu')),
+  drawer: Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Colors.orange),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 30,
+                child: Icon(Icons.person, size: 40),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Foydalanuvchi',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              Text(
+                'user@email.com',
+                style: TextStyle(color: Colors.white70, fontSize: 14),
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Bosh sahifa'),
+          onTap: () => Navigator.pop(context),
+        ),
+        ListTile(
+          leading: Icon(Icons.settings),
+          title: Text('Sozlamalar'),
+          onTap: () => Navigator.pop(context),
+        ),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.logout),
+          title: Text('Chiqish'),
+          onTap: () => Navigator.pop(context),
+        ),
+      ],
+    ),
+  ),
+  body: Center(child: Text('Drawer ni ochish uchun chap tomondagi tugmani bosing')),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">SnackBar ko'rsatish</div>
+    <div class="theory-content">
+        <strong>SnackBar:</strong> Pastki qismdan chiqqan qisqa xabar.
+        <br><br>
+        <strong>Ko'rsatish:</strong>
+        <br>• ScaffoldMessenger.of(context).showSnackBar()
+        <br><br>
+        <strong>Parametrlar:</strong>
+        <br>• content - asosiy matn
+        <br>• duration - ko'rsatish vaqti
+        <br>• action - amal tugmasi
+        <br>• backgroundColor, behavior
+        <br><br>
+        <strong>Foydalanuvchiga tezkor xabar berish uchun.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">SnackBar misoli</div>
+    <div class="slide-description">Tezkor xabarlar</div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('SnackBar Demo')),
+  body: Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Oddiy SnackBar'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+          },
+          child: Text('Oddiy SnackBar'),
+        ),
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Amal bilan SnackBar'),
+                action: SnackBarAction(
+                  label: 'BEKOR QILISH',
+                  onPressed: () => print('Bekor qilindi'),
+                ),
+                backgroundColor: Colors.orange,
+              ),
+            );
+          },
+          child: Text('Amal bilan SnackBar'),
+        ),
+      ],
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">BottomNavigationBar nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ekranning pastki qismidagi navigatsiya paneli.
+        <br><br>
+        <strong>Asosiy vazifa:</strong> Ilovaning asosiy bo'limlari orasida navigatsiya.
+        <br><br>
+        <strong>Xususiyatlari:</strong>
+        <br>• 2-5 ta item bo'lishi mumkin
+        <br>• Icon va label
+        <br>• currentIndex va onTap
+        <br>• Turli xil tiplar
+        <br><br>
+        <strong>Mobil ilovalarning standart elementi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">BottomNavigationBar items</div>
+    <div class="theory-content">
+        <strong>BottomNavigationBarItem tarkibi:</strong>
+        <br><br>
+        <strong>Majburiy parametrlar:</strong>
+        <br>• icon - asosiy icon
+        <br>• label - matn
+        <br><br>
+        <strong>Ixtiyoriy parametrlar:</strong>
+        <br>• activeIcon - tanlangan holatdagi icon
+        <br>• backgroundColor - fon rangi
+        <br>• tooltip - tooltip matni
+        <br><br>
+        <strong>Har bir item alohida sahifani ifodalaydi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Oddiy BottomNavigationBar</div>
+    <div class="slide-description">4 ta item bilan</div>
+    <div class="code-block">class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Bottom Navigation')),
+      body: Center(
+        child: Text(
+          'Sahifa ${currentIndex + 1}',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Uy',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Qidiruv',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Sevimli',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+        ],
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">BottomNavigationBar types</div>
+    <div class="theory-content">
+        <strong>BottomNavigationBarType.fixed:</strong>
+        <br>• Barcha item'lar doimo ko'rinadi
+        <br>• 4 ta yoki undan kam item uchun
+        <br><br>
+        <strong>BottomNavigationBarType.shifting:</strong>
+        <br>• Tanlangan item kattaroq ko'rinadi
+        <br>• 3 ta yoki undan ko'p item uchun
+        <br>• Har bir item'ning backgroundColor'i bor
+        <br><br>
+        <strong>Default: 3 ta item'dan kam bo'lsa - fixed, ko'p bo'lsa - shifting.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">BottomNavigationBar ranglari</div>
+    <div class="theory-content">
+        <strong>Rang parametrlari:</strong>
+        <br><br>
+        <strong>selectedItemColor:</strong> Tanlangan item rangi
+        <br><br>
+        <strong>unselectedItemColor:</strong> Tanlanmagan item rangi
+        <br><br>
+        <strong>backgroundColor:</strong> Asosiy fon rangi
+        <br><br>
+        <strong>selectedFontSize:</strong> Tanlangan matn o'lchami
+        <br><br>
+        <strong>unselectedFontSize:</strong> Tanlanmagan matn o'lchami
+        <br><br>
+        <strong>Brand ranglariga mos qiling.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Rangli BottomNavigationBar</div>
+    <div class="slide-description">Custom ranglar bilan</div>
+    <div class="code-block">BottomNavigationBar(
+  currentIndex: currentIndex,
+  onTap: (index) {
+    setState(() {
+      currentIndex = index;
+    });
+  },
+  type: BottomNavigationBarType.fixed,
+  backgroundColor: Colors.white,
+  selectedItemColor: Colors.orange,
+  unselectedItemColor: Colors.grey,
+  selectedFontSize: 14,
+  unselectedFontSize: 12,
+  elevation: 8,
+  items: [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      activeIcon: Icon(Icons.home_filled),
+      label: 'Bosh sahifa',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.explore),
+      activeIcon: Icon(Icons.explore_outlined),
+      label: 'Kashfiyot',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.bookmark_border),
+      activeIcon: Icon(Icons.bookmark),
+      label: 'Saqlangan',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.account_circle_outlined),
+      activeIcon: Icon(Icons.account_circle),
+      label: 'Akkaunt',
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">PageView nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Sahifalar orasida swipe qilish imkonini beradigan widget.
+        <br><br>
+        <strong>Xususiyatlari:</strong>
+        <br>• Horizontal yoki vertical scroll
+        <br>• Lazy loading
+        <br>• Page snapping
+        <br>• Controller bilan boshqaruv
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong>
+        <br>• Onboarding screen'lar
+        <br>• Image gallery
+        <br>• Tab content
+        <br>• Tutorial sahifalari
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">Oddiy PageView</div>
+    <div class="slide-description">3 ta sahifa bilan</div>
+    <div class="code-block">PageView(
+  children: [
+    Container(
+      color: Colors.red[300],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.home, size: 80, color: Colors.white),
+            SizedBox(height: 20),
+            Text(
+              'Birinchi sahifa',
+              style: TextStyle(fontSize: 24, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.green[300],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.search, size: 80, color: Colors.white),
+            SizedBox(height: 20),
+            Text(
+              'Ikkinchi sahifa',
+              style: TextStyle(fontSize: 24, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.blue[300],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.person, size: 80, color: Colors.white),
+            SizedBox(height: 20),
+            Text(
+              'Uchinchi sahifa',
+              style: TextStyle(fontSize: 24, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">PageView.builder</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ko'p sahifalar uchun optimallashtirilgan PageView.
+        <br><br>
+        <strong>Parametrlar:</strong>
+        <br>• itemCount - sahifalar soni
+        <br>• itemBuilder - sahifa yasaydigan funksiya
+        <br><br>
+        <strong>Afzalliklari:</strong>
+        <br>• Lazy loading
+        <br>• Memory efficient
+        <br>• Minglab sahifa uchun mos
+        <br><br>
+        <strong>ListView.builder kabi ishlaydi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">PageView.builder misoli</div>
+    <div class="slide-description">10 ta sahifa</div>
+    <div class="code-block">PageView.builder(
+  itemCount: 10,
+  itemBuilder: (context, index) {
+    List<Color> colors = [
+      Colors.red, Colors.green, Colors.blue, Colors.orange, Colors.purple,
+      Colors.teal, Colors.pink, Colors.amber, Colors.indigo, Colors.cyan
+    ];
+    
+    List<IconData> icons = [
+      Icons.home, Icons.search, Icons.favorite, Icons.person, Icons.settings,
+      Icons.camera, Icons.music_note, Icons.phone, Icons.email, Icons.location_on
+    ];
+    
+    return Container(
+      color: colors[index],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icons[index],
+              size: 100,
+              color: Colors.white,
+            ),
+            SizedBox(height: 30),
+            Text(
+              'Sahifa ${index + 1}',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 15),
+            Text(
+              'Bu ${index + 1}-sahifa kontenti',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white70,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">PageController</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> PageView'ni dasturiy ravishda boshqarish.
+        <br><br>
+        <strong>Imkoniyatlari:</strong>
+        <br>• Muayyan sahifaga o'tish
+        <br>• Joriy sahifa raqamini olish
+        <br>• Animatsiya bilan o'tish
+        <br>• initialPage belgilash
+        <br><br>
+        <strong>Muhim metodlar:</strong>
+        <br>• animateToPage()
+        <br>• jumpToPage()
+        <br>• nextPage(), previousPage()
+        <br><br>
+        <strong>Dispose qilishni unutmang!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">PageController misoli</div>
+    <div class="slide-description">Tugmalar bilan boshqaruv</div>
+    <div class="code-block">class PageViewDemo extends StatefulWidget {
+  @override
+  _PageViewDemoState createState() => _PageViewDemoState();
+}
+
+class _PageViewDemoState extends State<PageViewDemo> {
+  PageController _pageController = PageController(initialPage: 0);
+  int currentPage = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('PageController Demo'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              _pageController.previousPage(
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.arrow_forward),
+            onPressed: () {
+              _pageController.nextPage(
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(16),
+            child: Text(
+              'Sahifa ${currentPage + 1} / 5',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: 5,
+              onPageChanged: (index) {
+                setState(() {
+                  currentPage = index;
+                });
+              },
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.orange[100 * (index + 1)],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Sahifa ${index + 1}',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">PageView + BottomNavigationBar</div>
+    <div class="theory-content">
+        <strong>Kombinatsiya:</strong> PageView va BottomNavigationBar birgalikda.
+        <br><br>
+        <strong>Ishlash prinsipi:</strong>
+        <br>• BottomNavigationBar item bosilsa - PageView o'zgaradi
+        <br>• PageView swipe qilinsa - BottomNavigationBar yangilanadi
+        <br><br>
+        <strong>Muhim:</strong>
+        <br>• onPageChanged - PageView o'zgarganida
+        <br>• onTap - BottomNavigationBar bosilganida
+        <br>• currentIndex sinxronlash
+        <br><br>
+        <strong>Eng keng tarqalgan pattern.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">PageView + BottomNav misoli</div>
+    <div class="slide-description">To'liq navigatsiya</div>
+    <div class="code-block">class MainApp extends StatefulWidget {
+  @override
+  _MainAppState createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  PageController _pageController = PageController();
+  int currentIndex = 0;
+
+  List<Widget> pages = [
+    Container(color: Colors.red[200], child: Center(child: Text('Uy', style: TextStyle(fontSize: 24)))),
+    Container(color: Colors.green[200], child: Center(child: Text('Qidiruv', style: TextStyle(fontSize: 24)))),
+    Container(color: Colors.blue[200], child: Center(child: Text('Sevimli', style: TextStyle(fontSize: 24)))),
+    Container(color: Colors.orange[200], child: Center(child: Text('Profil', style: TextStyle(fontSize: 24)))),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('PageView + BottomNav')),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        children: pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+          _pageController.animateToPage(
+            index,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Uy'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Qidiruv'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Sevimli'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Uy vazifasi 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> E-commerce ilova yarating. BottomNavigationBar da 4 ta bo'lim: "Bosh sahifa", "Kategoriyalar", "Savatcha", "Profil". PageView ishlatib har bir bo'lim uchun alohida sahifa yarating. Drawer qo'shing va unda profil ma'lumotlari, sozlamalar va chiqish tugmasi bo'lsin.
+    </div>
+    <div class="code-block">class EcommerceApp extends StatefulWidget {
+  @override
+  _EcommerceAppState createState() => _EcommerceAppState();
+}
+
+class _EcommerceAppState extends State<EcommerceApp> {
+  PageController _pageController = PageController();
+  int currentIndex = 0;
+
+  List<Widget> pages = [
+    Container(
+      color: Colors.blue[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.home, size: 80, color: Colors.blue),
+            SizedBox(height: 20),
+            Text('Bosh sahifa', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Xush kelibsiz!', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.green[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.category, size: 80, color: Colors.green),
+            SizedBox(height: 20),
+            Text('Kategoriyalar', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Mahsulot turlari', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.orange[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.shopping_cart, size: 80, color: Colors.orange),
+            SizedBox(height: 20),
+            Text('Savatcha', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Tanlangan mahsulotlar', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.purple[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.person, size: 80, color: Colors.purple),
+            SizedBox(height: 20),
+            Text('Profil', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Shaxsiy kabinet', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('E-commerce'),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.person, size: 40, color: Colors.blue),
+                  ),
+                  SizedBox(height: 10),
+                  Text('Ali Valiyev', style: TextStyle(color: Colors.white, fontSize: 18)),
+                  Text('ali@email.com', style: TextStyle(color: Colors.white70, fontSize: 14)),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profil'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: Icon(Icons.history),
+              title: Text('Buyurtmalar tarixi'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Sozlamalar'),
+              onTap: () => Navigator.pop(context),
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Chiqish'),
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+      ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        children: pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+          _pageController.animateToPage(
+            index,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Bosh sahifa'),
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Kategoriyalar'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Savatcha'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+}</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Uy vazifasi 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Onboarding screen yarating. PageView.builder ishlatib, 4 ta onboarding sahifasi yarating. Har birida icon, sarlavha va tavsif bo'lsin. FloatingActionButton.extended qo'ying - oxirgi sahifada "Boshlash", boshqalarida "Keyingi". Page indicator dots ham qo'shing.
+    </div>
+    <div class="code-block">class OnboardingScreen extends StatefulWidget {
+  @override
+  _OnboardingScreenState createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  PageController _pageController = PageController();
+  int currentPage = 0;
+
+  List<Map<String, dynamic>> onboardingData = [
+    {
+      'icon': Icons.phone_android,
+      'title': 'Mobil ilova',
+      'description': 'Eng yaxshi mobil tajriba uchun yaratilgan ilova',
+      'color': Colors.blue,
+    },
+    {
+      'icon': Icons.security,
+      'title': 'Xavfsizlik',
+      'description': 'Ma\'lumotlaringiz to\'liq himoyalangan va xavfsiz',
+      'color': Colors.green,
+    },
+    {
+      'icon': Icons.speed,
+      'title': 'Tezlik',
+      'description': 'Lightning tezlikda ishlaydigan optimallashtirilgan ilova',
+      'color': Colors.orange,
+    },
+    {
+      'icon': Icons.favorite,
+      'title': 'Biz bilan qoling',
+      'description': 'Ajoyib tajriba va xizmatlardan bahramand bo\'ling',
+      'color': Colors.purple,
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  currentPage = index;
+                });
+              },
+              itemCount: onboardingData.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  padding: EdgeInsets.all(40),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        onboardingData[index]['icon'],
+                        size: 120,
+                        color: onboardingData[index]['color'],
+                      ),
+                      SizedBox(height: 40),
+                      Text(
+                        onboardingData[index]['title'],
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        onboardingData[index]['description'],
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[600],
+                          height: 1.5,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                onboardingData.length,
+                (index) => Container(
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: currentPage == index ? Colors.blue : Colors.grey[300],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 40),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          if (currentPage == onboardingData.length - 1) {
+            print('Ilovani boshlash');
+          } else {
+            _pageController.nextPage(
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          }
+        },
+        label: Text(currentPage == onboardingData.length - 1 ? 'Boshlash' : 'Keyingi'),
+        icon: Icon(currentPage == onboardingData.length - 1 ? Icons.check : Icons.arrow_forward),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+}</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Uy vazifasi 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Social media app yarating. BottomNavigationBar da 5 ta tab: "Feed", "Qidiruv", "Qo'shish", "Bildirishnomalar", "Profil". "Qo'shish" tab uchun FloatingActionButton.large ishlatib, uni centerDocked qiling. PageView bilan barcha sahifalarni bog'lang va har birida turli rangdagi kontentlar qo'ying.
+    </div>
+    <div class="code-block">class SocialMediaApp extends StatefulWidget {
+  @override
+  _SocialMediaAppState createState() => _SocialMediaAppState();
+}
+
+class _SocialMediaAppState extends State<SocialMediaApp> {
+  PageController _pageController = PageController();
+  int currentIndex = 0;
+
+  List<Widget> pages = [
+    Container(
+      color: Colors.blue[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.home, size: 80, color: Colors.blue),
+            SizedBox(height: 20),
+            Text('Feed', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Yangiliklar lentasi', style: TextStyle(color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.green[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.search, size: 80, color: Colors.green),
+            SizedBox(height: 20),
+            Text('Qidiruv', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Foydalanuvchi va kontent qidirish', style: TextStyle(color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.orange[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.add_circle, size: 80, color: Colors.orange),
+            SizedBox(height: 20),
+            Text('Yangi post', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Rasm yoki video yuklash', style: TextStyle(color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.red[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.notifications, size: 80, color: Colors.red),
+            SizedBox(height: 20),
+            Text('Bildirishnomalar', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Yangi xabarlar va bildirishnomalar', style: TextStyle(color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+    Container(
+      color: Colors.purple[50],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.person, size: 80, color: Colors.purple),
+            SizedBox(height: 20),
+            Text('Profil', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Shaxsiy profil va sozlamalar', style: TextStyle(color: Colors.grey[600])),
+          ],
+        ),
+      ),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Social Media'),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        children: pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+          _pageController.animateToPage(
+            index,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Feed'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Qidiruv'),
+          BottomNavigationBarItem(icon: Icon(Icons.add_box_outlined), label: 'Qo\'shish'),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Bildirishnomalar'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.large(
+        onPressed: () {
+          setState(() {
+            currentIndex = 2;
+          });
+          _pageController.animateToPage(
+            2,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Yangi post yaratish')),
+          );
+        },
+        child: Icon(Icons.add, size: 40),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+}</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Best Practices</div>
+    <div class="theory-content">
+        <strong>1. PageController dispose qiling:</strong> Xotira oqishini oldini olish
+        <br><br>
+        <strong>2. BottomNavigationBar 5 tadan ko'p item qo'ymang:</strong> UX uchun yomon
+        <br><br>
+        <strong>3. FloatingActionButton uchun heroTag qo'ying:</strong> Bir nechta FAB bo'lsa
+        <br><br>
+        <strong>4. currentIndex sinxronlash:</strong> PageView va BottomNav orasida
+        <br><br>
+        <strong>5. Drawer ichida Navigator.pop() qo'ying:</strong> Drawer yopish uchun
+        <br><br>
+        <strong>6. SnackBar uchun ScaffoldMessenger ishlatting:</strong> Context xatoligi oldini olish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. PageController dispose qilmaslik:</strong>
+        <br>• Xotira oqishi
+        <br>• Performance muammolari
+        <br><br>
+        <strong>2. currentIndex sinxronlash yo'q:</strong>
+        <br>• PageView va BottomNav mos kelmaydi
+        <br>• Foydalanuvchi chalkashib qoladi
+        <br><br>
+        <strong>3. heroTag belgilamaslik:</strong>
+        <br>• Bir nechta FloatingActionButton bo'lsa xato
+        <br><br>
+        <strong>4. SnackBar context muammosi:</strong>
+        <br>• Scaffold.of(context) o'rniga ScaffoldMessenger ishlatish kerak
+        <br><br>
+        <strong>5. BottomNavigationBar ko'p item:</strong>
+        <br>• 5 tadan ko'p item UI ni buzadi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 31</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>Scaffold II - </strong>professional Flutter development uchun muhim
+        <br><br>
+        <strong>BottomNavigationBar - </strong>eng ko'p ishlatiladigan navigatsiya
+        <br><br>
+        <strong>PageView - </strong>sahifalar orasida smooth o'tish
+        <br><br>
+        <strong>Asosiy komponentlar:</strong>
+        <br>• FloatingActionButton advanced
+        <br>• Drawer va SnackBar
+        <br>• BottomNavigationBar customization
+        <br>• PageView va PageController
+        <br><br>
+        <strong>Eslab qoling:</strong>
+        <br>• Controller'larni dispose qiling
+        <br>• UX ni hisobga oling
+        <br>• Performance optimization qiling
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Scaffold_BottomNav_PageView_Flutter_Darsi.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>

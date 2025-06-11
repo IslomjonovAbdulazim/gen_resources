@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ListView Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #673AB7;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #673AB7;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #ede7f6;
+            border-left: 4px solid #673AB7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #EDE7F6;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #673AB7;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">ListView nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Flutter'dagi eng muhim scroll widget'lardan biri.
+        <br><br>
+        <strong>Asosiy vazifa:</strong> Ko'p miqdordagi ma'lumotlarni vertikal yoki horizontal ro'yxat ko'rinishida ko'rsatish.
+        <br><br>
+        <strong>Xususiyatlari:</strong>
+        <br>• Lazy loading - faqat ko'rinadigan elementlar yaratiladi
+        <br>• Performance optimizatsiyasi
+        <br>• Turli xil konstruktorlar
+        <br><br>
+        <strong>Har qanday ilova uchun zarur widget.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Nima uchun ListView kerak?</div>
+    <div class="theory-content">
+        <strong>1. Performance:</strong> Minglab element bilan ham tez ishlaydi.
+        <br><br>
+        <strong>2. Xotira tejash:</strong> Faqat ko'rinadigan qism xotirada saqlanadi.
+        <br><br>
+        <strong>3. Moslashuvchanlik:</strong> Turli xil ma'lumotlar uchun mos.
+        <br><br>
+        <strong>4. Foydalanuvchi tajribasi:</strong> Silliq scroll va animatsiyalar.
+        <br><br>
+        <strong>5. Platformaga mos:</strong> iOS va Android uchun optimallashtirilgan.
+        <br><br>
+        <strong>ListView - mobil dasturlashning asosi!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>ListView vs boshqa widget'lar</li>
+            <li>ListView() asosiy konstruktor</li>
+            <li>ListView.builder() - performance champion</li>
+            <li>ListView.separated() - separator bilan</li>
+            <li>ListView.custom() - to'liq nazorat</li>
+            <li>itemBuilder va itemCount</li>
+            <li>scrollDirection - yo'nalish</li>
+            <li>reverse - teskari tartib</li>
+            <li>physics - scroll xatti-harakatlari</li>
+            <li>controller - dasturiy boshqaruv</li>
+            <li>padding va shrinkWrap</li>
+            <li>itemExtent - performance optimizatsiya</li>
+            <li>Advanced parametrlar</li>
+            <li>3 ta uy vazifasi</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">ListView vs boshqa widget'lar</div>
+    <div class="theory-content">
+        <strong>ListView vs Column:</strong>
+        <br>• Column - barcha elementlar bir vaqtda yaratiladi
+        <br>• ListView - lazy loading, yaxshi performance
+        <br><br>
+        <strong>ListView vs SingleChildScrollView:</strong>
+        <br>• SingleChildScrollView - kichik ro'yxatlar uchun
+        <br>• ListView - katta ro'yxatlar uchun optimallashtirilgan
+        <br><br>
+        <strong>ListView vs GridView:</strong>
+        <br>• ListView - bir ustunli ro'yxat
+        <br>• GridView - ko'p ustunli grid
+        <br><br>
+        <strong>Qoida: 20+ element = ListView ishlatting!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">ListView() konstruktor</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Oldindan ma'lum bo'lgan elementlar ro'yxati uchun.
+        <br><br>
+        <strong>children parametri:</strong> Widget'lar ro'yxati.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong>
+        <br>• Kichik, ma'lum ro'yxatlar uchun
+        <br>• Static ma'lumotlar
+        <br>• 10-20 gacha element
+        <br><br>
+        <strong>Ehtiyot bo'ling:</strong> Ko'p elementda sekin ishlaydi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">ListView() misoli</div>
+    <div class="slide-description">Oddiy ListView</div>
+    <div class="code-block">ListView(
+  children: [
+    ListTile(
+      leading: Icon(Icons.home),
+      title: Text('Uy'),
+      subtitle: Text('Bosh sahifa'),
+    ),
+    ListTile(
+      leading: Icon(Icons.person),
+      title: Text('Profil'),
+      subtitle: Text('Shaxsiy ma\'lumotlar'),
+    ),
+    ListTile(
+      leading: Icon(Icons.settings),
+      title: Text('Sozlamalar'),
+      subtitle: Text('Ilova sozlamalari'),
+    ),
+    ListTile(
+      leading: Icon(Icons.info),
+      title: Text('Ma\'lumot'),
+      subtitle: Text('Ilova haqida'),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">ListView.builder() nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ko'p elementli ro'yxatlar uchun eng yaxshi tanlov.
+        <br><br>
+        <strong>Lazy loading:</strong> Faqat ko'rinadigan elementlar yaratiladi.
+        <br><br>
+        <strong>Asosiy parametrlar:</strong>
+        <br>• itemCount - elementlar soni
+        <br>• itemBuilder - element yasaydigan funksiya
+        <br><br>
+        <strong>Performance:</strong> Minglab element bilan ham tez ishlaydi.
+        <br><br>
+        <strong>Eng ko'p ishlatiladigan ListView konstruktori.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">ListView.builder() misoli</div>
+    <div class="slide-description">Performance optimizatsiyalangan</div>
+    <div class="code-block">ListView.builder(
+  itemCount: 1000,
+  itemBuilder: (context, index) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.deepPurple,
+          child: Text('${index + 1}'),
+        ),
+        title: Text('Element ${index + 1}'),
+        subtitle: Text('Bu ${index + 1}-elementning tavsifi'),
+        trailing: Icon(Icons.arrow_forward_ios),
+        onTap: () {
+          print('${index + 1}-element bosildi');
+        },
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">ListView.separated() nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Elementlar orasida separator bo'lgan ListView.
+        <br><br>
+        <strong>Qo'shimcha parametr:</strong>
+        <br>• separatorBuilder - elementlar orasidagi widget
+        <br><br>
+        <strong>Afzalliklari:</strong>
+        <br>• Avtomatik separator qo'shish
+        <br>• Divider, bo'shliq yoki custom widget
+        <br>• Kod tozaligi
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Elementlarni vizual ajratish kerak bo'lsa.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">ListView.separated() misoli</div>
+    <div class="slide-description">Separator bilan</div>
+    <div class="code-block">ListView.separated(
+  itemCount: 25,
+  separatorBuilder: (context, index) => Divider(
+    color: Colors.grey[300],
+    thickness: 1,
+    indent: 20,
+    endIndent: 20,
+  ),
+  itemBuilder: (context, index) {
+    return ListTile(
+      leading: Icon(
+        Icons.star,
+        color: Colors.amber,
+      ),
+      title: Text('Yulduz ${index + 1}'),
+      subtitle: Text('${index + 1}-yulduz haqida ma\'lumot'),
+      trailing: Icon(Icons.favorite_border),
+      onTap: () {
+        print('${index + 1}-yulduz tanlandi');
+      },
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">ListView.custom() nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> To'liq custom nazorat uchun ListView.
+        <br><br>
+        <strong>childrenDelegate parametri:</strong> SliverChildDelegate ishlatadi.
+        <br><br>
+        <strong>Turlar:</strong>
+        <br>• SliverChildBuilderDelegate
+        <br>• SliverChildListDelegate
+        <br><br>
+        <strong>Qachon kerak:</strong> Murakkab, maxsus talablar uchun.
+        <br><br>
+        <strong>Advanced developers uchun.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">ListView.custom() misoli</div>
+    <div class="slide-description">SliverChildBuilderDelegate bilan</div>
+    <div class="code-block">ListView.custom(
+  childrenDelegate: SliverChildBuilderDelegate(
+    (context, index) {
+      return Container(
+        height: 80,
+        margin: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.deepPurple[100 * ((index % 9) + 1)],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Text(
+            'Custom Element ${index + 1}',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple[800],
+            ),
+          ),
+        ),
+      );
+    },
+    childCount: 30,
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">itemBuilder funksiyasi</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Har bir element uchun widget yasaydigan funksiya.
+        <br><br>
+        <strong>Parametrlar:</strong>
+        <br>• BuildContext context
+        <br>• int index - element indeksi
+        <br><br>
+        <strong>Qaytaradi:</strong> Widget
+        <br><br>
+        <strong>Muhim:</strong>
+        <br>• Index 0 dan boshlanadi
+        <br>• Faqat ko'rinadigan elementlar uchun chaqiriladi
+        <br>• Performance uchun optimallashtirilgan
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">itemCount parametri</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ro'yxatdagi jami elementlar soni.
+        <br><br>
+        <strong>Qiymatlar:</strong>
+        <br>• int - aniq son
+        <br>• null - cheksiz ro'yxat (ehtiyot bo'ling!)
+        <br><br>
+        <strong>Foydalanish:</strong>
+        <br>• list.length
+        <br>• Konstant son
+        <br>• Hisoblangan qiymat
+        <br><br>
+        <strong>Performance uchun muhim parametr.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">scrollDirection parametri</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Scroll yo'nalishini belgilaydi.
+        <br><br>
+        <strong>Qiymatlar:</strong>
+        <br>• Axis.vertical - vertikal (default)
+        <br>• Axis.horizontal - horizontal
+        <br><br>
+        <strong>Horizontal uchun eslatma:</strong>
+        <br>• Height belgilash kerak
+        <br>• Keng ekranlar uchun mos
+        <br><br>
+        <strong>Stories, banner'lar uchun horizontal ishlatiladi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Horizontal ListView</div>
+    <div class="slide-description">scrollDirection: Axis.horizontal</div>
+    <div class="code-block">Container(
+  height: 150,
+  child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    itemCount: 10,
+    itemBuilder: (context, index) {
+      return Container(
+        width: 120,
+        margin: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.deepPurple,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.star,
+              color: Colors.white,
+              size: 40,
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Item ${index + 1}',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">reverse parametri</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Elementlarni teskari tartibda ko'rsatadi.
+        <br><br>
+        <strong>Qiymatlar:</strong>
+        <br>• false - oddiy tartib (default)
+        <br>• true - teskari tartib
+        <br><br>
+        <strong>Qachon kerak:</strong>
+        <br>• Chat ilovalar uchun
+        <br>• Eng yangi elementlar yuqorida
+        <br>• Timeline effekti
+        <br><br>
+        <strong>Foydalanuvchi tajribasini yaxshilaydi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">reverse: true misoli</div>
+    <div class="slide-description">Teskari tartibda</div>
+    <div class="code-block">ListView.builder(
+  reverse: true,
+  itemCount: 15,
+  itemBuilder: (context, index) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.deepPurple,
+          child: Text('${15 - index}'),
+        ),
+        title: Text('Xabar ${15 - index}'),
+        subtitle: Text('${DateTime.now().hour}:${DateTime.now().minute}'),
+        trailing: Icon(Icons.more_vert),
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">physics parametri</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Scroll harakatining xususiyatlarini belgilaydi.
+        <br><br>
+        <strong>Turlar:</strong>
+        <br>• BouncingScrollPhysics() - iOS kabi
+        <br>• ClampingScrollPhysics() - Android kabi
+        <br>• NeverScrollableScrollPhysics() - scroll yo'q
+        <br>• AlwaysScrollableScrollPhysics() - doimo scroll
+        <br><br>
+        <strong>Default:</strong> Platform'ga bog'liq.
+        <br><br>
+        <strong>Foydalanuvchi kutgancha harakat qiladi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">controller parametri</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> ListView'ni dasturiy ravishda boshqarish.
+        <br><br>
+        <strong>ScrollController imkoniyatlari:</strong>
+        <br>• Scroll position olish
+        <br>• Muayyan joyga scroll qilish
+        <br>• Scroll hodisalarini tinglash
+        <br>• Animatsiya bilan scroll
+        <br><br>
+        <strong>Muhim:</strong> Controller'ni dispose qilishni unutmang!
+        <br><br>
+        <strong>Advanced funksiyalar uchun kerak.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">padding va shrinkWrap</div>
+    <div class="theory-content">
+        <strong>padding:</strong> ListView atrofidagi bo'shliq.
+        <br>• EdgeInsets.all(16)
+        <br>• EdgeInsets.symmetric(horizontal: 16)
+        <br><br>
+        <strong>shrinkWrap:</strong> ListView'ni minimal joy egallash majburlaydi.
+        <br>• false - maksimal joy egallaydi (default)
+        <br>• true - faqat kerakli joy egallaydi
+        <br><br>
+        <strong>shrinkWrap: true - Column ichida ListView uchun kerak.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">shrinkWrap misoli</div>
+    <div class="slide-description">Column ichida ListView</div>
+    <div class="code-block">Column(
+  children: [
+    Text(
+      'Ro\'yxat sarlavhasi',
+      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    ),
+    SizedBox(height: 16),
+    ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            leading: Icon(Icons.star),
+            title: Text('Element ${index + 1}'),
+            subtitle: Text('Bu qisqa ro\'yxat elementi'),
+          ),
+        );
+      },
+    ),
+    SizedBox(height: 16),
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Tugma'),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">itemExtent parametri</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Har bir elementning aniq balandligini (yoki kengligini) belgilaydi.
+        <br><br>
+        <strong>Afzalliklari:</strong>
+        <br>• Performance yaxshilanadi
+        <br>• Scroll indikatori aniqroq
+        <br>• Layout hisoblash tezroq
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong>
+        <br>• Barcha elementlar bir xil o'lchamda
+        <br>• Katta ro'yxatlar uchun
+        <br><br>
+        <strong>Performance optimization uchun muhim!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">itemExtent misoli</div>
+    <div class="slide-description">Performance optimizatsiyasi</div>
+    <div class="code-block">ListView.builder(
+  itemCount: 1000,
+  itemExtent: 80,
+  itemBuilder: (context, index) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.deepPurple[50],
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.deepPurple),
+      ),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.deepPurple,
+          child: Text('${index + 1}'),
+        ),
+        title: Text('Element ${index + 1}'),
+        subtitle: Text('Bir xil balandlikdagi element'),
+        trailing: Icon(Icons.arrow_forward_ios),
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Advanced parametrlar</div>
+    <div class="theory-content">
+        <strong>cacheExtent:</strong> Ekrandan tashqarida qancha element cache qilish.
+        <br><br>
+        <strong>addAutomaticKeepAlives:</strong> Element holatini saqlab qolish.
+        <br><br>
+        <strong>addRepaintBoundaries:</strong> Render optimizatsiyasi.
+        <br><br>
+        <strong>semanticChildCount:</strong> Accessibility uchun.
+        <br><br>
+        <strong>keyboardDismissBehavior:</strong> Klaviatura yashirish.
+        <br><br>
+        <strong>Ko'pincha default qiymatlar yetarli.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Uy vazifasi 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> To-Do list yarating. ListView.builder ishlatib, 15 ta vazifa qo'shing. Har birida checkbox, vazifa nomi va vaqt ko'rsatilsin. CheckboxListTile ishlatmasdan oddiy ListTile va Checkbox kombinatsiyasidan foydalaning.
+    </div>
+    <div class="code-block">class TodoList extends StatefulWidget {
+  @override
+  _TodoListState createState() => _TodoListState();
+}
+
+class _TodoListState extends State<TodoList> {
+  List<bool> checkedStates = List.generate(15, (index) => false);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 15,
+      itemBuilder: (context, index) {
+        return Card(
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: ListTile(
+            leading: Checkbox(
+              value: checkedStates[index],
+              onChanged: (bool? value) {
+                setState(() {
+                  checkedStates[index] = value ?? false;
+                });
+              },
+            ),
+            title: Text(
+              'Vazifa ${index + 1}',
+              style: TextStyle(
+                decoration: checkedStates[index] 
+                  ? TextDecoration.lineThrough 
+                  : TextDecoration.none,
+              ),
+            ),
+            subtitle: Text('${9 + index}:00 da bajarish'),
+            trailing: Icon(
+              checkedStates[index] ? Icons.check_circle : Icons.radio_button_unchecked,
+              color: checkedStates[index] ? Colors.green : Colors.grey,
+            ),
+            onTap: () {
+              setState(() {
+                checkedStates[index] = !checkedStates[index];
+              });
+            },
+          ),
+        );
+      },
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Uy vazifasi 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> News feed yarating. ListView.separated ishlatib, 20 ta yangilik maqolasi qo'shing. Har birida sarlavha, qisqacha tavsif, muallif nomi va nashr vaqti ko'rsatilsin. Divider o'rniga SizedBox(height: 8) ishlatib elementlarni ajrating.
+    </div>
+    <div class="code-block">ListView.separated(
+  itemCount: 20,
+  separatorBuilder: (context, index) => SizedBox(height: 8),
+  itemBuilder: (context, index) {
+    List<String> authors = ['Ali Valiyev', 'Malika Tosheva', 'Jasur Karimov', 'Nigora Saidova'];
+    List<String> categories = ['Texnologiya', 'Sport', 'Biznes', 'Fan'];
+    
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16),
+      elevation: 3,
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.deepPurple,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                categories[index % categories.length],
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 12),
+            Text(
+              'Yangilik ${index + 1}: Flutter dasturlashda yangi imkoniyatlar',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Bu maqolada Flutter frameworkining eng so\'ngi yangilanishlari va dasturchilar uchun foydali maslahatlar keltirilgan. Mobil dasturlash sohasidagi eng yangi trendlar.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[600],
+                height: 1.4,
+              ),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: 12),
+            Row(
+              children: [
+                Icon(Icons.person, size: 16, color: Colors.grey[600]),
+                SizedBox(width: 4),
+                Text(
+                  authors[index % authors.length],
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                Spacer(),
+                Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
+                SizedBox(width: 4),
+                Text(
+                  '${index + 1} soat oldin',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Uy vazifasi 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Horizontal categories list yarating. Container ichida ListView.builder qo'ying, scrollDirection: Axis.horizontal ishlatib, 12 ta kategoriya tugmasini yarating. Har biri bosilganda rang o'zgarsin va print qilsin.
+    </div>
+    <div class="code-block">class CategoriesList extends StatefulWidget {
+  @override
+  _CategoriesListState createState() => _CategoriesListState();
+}
+
+class _CategoriesListState extends State<CategoriesList> {
+  int selectedIndex = 0;
+  
+  final List<String> categories = [
+    'Barchasi', 'Texnologiya', 'Sport', 'Biznes', 'Fan', 'Sog\'liq',
+    'Ovqat', 'Sayohat', 'Moda', 'Avtomobil', 'O\'yin', 'Kino'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        itemBuilder: (context, index) {
+          bool isSelected = index == selectedIndex;
+          
+          return Container(
+            margin: EdgeInsets.only(right: 12),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = index;
+                });
+                print('${categories[index]} kategoriyasi tanlandi');
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                decoration: BoxDecoration(
+                  color: isSelected ? Colors.deepPurple : Colors.grey[200],
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(
+                    color: isSelected ? Colors.deepPurple : Colors.grey[300]!,
+                    width: 1,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    categories[index],
+                    style: TextStyle(
+                      color: isSelected ? Colors.white : Colors.grey[700],
+                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Best Practices</div>
+    <div class="theory-content">
+        <strong>1. To'g'ri konstruktor tanlang:</strong>
+        <br>• Kichik ro'yxat - ListView()
+        <br>• Katta ro'yxat - ListView.builder()
+        <br>• Separator kerak - ListView.separated()
+        <br><br>
+        <strong>2. itemExtent ishlatting:</strong> Bir xil balandlikdagi elementlar uchun
+        <br><br>
+        <strong>3. shrinkWrap: true:</strong> Column ichida ListView uchun
+        <br><br>
+        <strong>4. itemCount ni aniq belgilang:</strong> Performance uchun
+        <br><br>
+        <strong>5. ScrollController ni dispose qiling:</strong> Xotira oqishi oldini olish
+        <br><br>
+        <strong>6. Const widget'lar ishlatting:</strong> Qayta yaratilishni oldini olish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. RenderFlex overflow:</strong>
+        <br>• ListView ni Expanded yoki Flexible ichiga qo'yish
+        <br>• shrinkWrap: true ishlatish
+        <br><br>
+        <strong>2. Performance muammolari:</strong>
+        <br>• ListView() ni ko'p elementlar uchun ishlatish
+        <br>• itemExtent ni belgilamaslik
+        <br><br>
+        <strong>3. Xotira oqishi:</strong>
+        <br>• ScrollController ni dispose qilmaslik
+        <br><br>
+        <strong>4. Cheksiz scroll:</strong>
+        <br>• itemCount ni belgilamaslik
+        <br><br>
+        <strong>5. setState ni noto'g'ri ishlatish:</strong>
+        <br>• itemBuilder ichida setState chaqirish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 31</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>ListView - </strong>Flutter'dagi eng muhim widget'lardan biri
+        <br><br>
+        <strong>Asosiy konstruktorlar:</strong>
+        <br>• ListView() - kichik ro'yxatlar
+        <br>• ListView.builder() - katta ro'yxatlar
+        <br>• ListView.separated() - separator bilan
+        <br>• ListView.custom() - maxsus talablar
+        <br><br>
+        <strong>Muhim parametrlar:</strong>
+        <br>• itemBuilder va itemCount
+        <br>• scrollDirection va reverse
+        <br>• physics va controller
+        <br>• shrinkWrap va itemExtent
+        <br><br>
+        <strong>Performance va foydalanuvchi tajribasini hisobga oling!</strong>
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ListView_Flutter_Darsi.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flutter'da Rasmlar - Bolalar uchun dars</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #FF6B6B;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6B6B;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #FFE5E5;
+            border-left: 4px solid #FF6B6B;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #FFE5E5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FF6B6B;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #4CAF50;
+            margin: 15px 0;
+            font-style: italic;
+            color: #2E7D32;
+        }
+
+        .homework-section {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .section-divider {
+            background: #FF6B6B;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .progress-note {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            color: #e65100;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Flutter'da rasmlar dunyosi!</div>
+    <div class="theory-content">
+        <strong>Salom bolalar!</strong> Bugun biz Flutter'da rasmlar bilan qanday ishlashni o'rganamiz. Xuddi stiker yopishtirish yoki rasm chizish kabi!
+        <br><br>
+        <strong>Nega rasmlar kerak?</strong> Har qanday chiroyli ilova rasmlarsiz bo'lmaydi. WhatsApp'dagi emoji, Instagram'dagi fotosuratlar, o'yinlardagi belgilar - bularning barchasi rasmlar!
+        <br><br>
+        <strong>Bugun nimani o'rganamiz:</strong> Ilovamizga qanday qilib rasmlar qo'yishni va ularni chiroyli ko'rsatishni o'rganamiz.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Bugungi dars rejamiz</div>
+    <div class="plan-list">
+        <strong>BIRINCHI SOAT: RASM TURLARI</strong>
+        <ul>
+            <li>1. Rasmlar haqida umumiy tushuncha</li>
+            <li>2. Assets rasmlar nima?</li>
+            <li>3. Network rasmlar nima?</li>
+            <li>4. Qaysi birini qachon ishlatish?</li>
+            <li>5. Rasm formatlarini tanlash</li>
+        </ul>
+        <strong>IKKINCHI SOAT: ASSETS VA YAML</strong>
+        <ul>
+            <li>6. Assets papka yaratish</li>
+            <li>7. pubspec.yaml fayl bilan tanishish</li>
+            <li>8. Rasmlarni yaml ga qo'shish</li>
+            <li>9. Xatoliklardan qochish</li>
+        </ul>
+        <strong>UCHINCHI SOAT: RASMLARNI KO'RSATISH</strong>
+        <ul>
+            <li>10. Image.asset() ishlatish</li>
+            <li>11. Image.network() ishlatish</li>
+            <li>12. Rasm o'lchamini sozlash</li>
+            <li>13. Chiroyli dizayn yaratish</li>
+            <li>14. Amaliy loyiha</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-divider">BIRINCHI QISM: RASM TURLARI BILAN TANISHISH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Rasmlar haqida umumiy tushuncha</div>
+    <div class="theory-content">
+        <strong>Rasmlar har yerda!</strong> Bizning telefonimizda har qanday ilovada rasmlar bor. Bu ilovalarni chiroyli va qiziqarli qiladi.
+        <br><br>
+        <strong>Flutter'da rasmlar ikki xil:</strong>
+        <br>🖼️ Assets rasmlar - ilovaning ichida saqlanadigan rasmlar
+        <br>🌐 Network rasmlar - internetdan olinadigan rasmlar
+        <br><br>
+        <strong>Misol bilan:</strong> Telegram ilovasida Telegram logosi assets rasm, lekin sizning profil rasminiz network rasm.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Assets rasmlar nima?</div>
+    <div class="theory-content">
+        <strong>Assets rasmlar deganda:</strong> Bu sizning ilovangizning ichida saqlangan rasmlar. Xuddi telefondagi "Galeriya" da saqlangan rasmlar kabi.
+        <br><br>
+        <strong>Qanday ishlaydi:</strong> Bu rasmlar ilovani telefonga o'rnatganda birga o'rnatiladi. Internet kerak emas!
+        <br><br>
+        <strong>Afzalliklari:</strong>
+        <br>✅ Juda tez yukladi
+        <br>✅ Internet kerak emas
+        <br>✅ Har doim ishlaydi
+        <br><br>
+        <strong>Kamchiligi:</strong> Ilova hajmini biroz oshiradi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Network rasmlar nima?</div>
+    <div class="theory-content">
+        <strong>Network rasmlar deganda:</strong> Bu internetdan olinadigan rasmlar. Xuddi Google'dan rasm qidirganda chiqqan rasmlar kabi.
+        <br><br>
+        <strong>Qanday ishlaydi:</strong> Ilova internetga ulansib, server'dan rasmni yuklab oladi.
+        <br><br>
+        <strong>Afzalliklari:</strong>
+        <br>✅ Ilova hajmini oshirmaydi
+        <br>✅ Har doim yangi rasmlar olish mumkin
+        <br>✅ Foydalanuvchilar o'z rasmlarini yuklashi mumkin
+        <br><br>
+        <strong>Kamchiligi:</strong> Internet kerak, sekinroq yuklashi mumkin
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Qaysi birini qachon ishlatish?</div>
+    <div class="theory-content">
+        <strong>Assets rasmlarni ishlating:</strong>
+        <br>🏠 Ilova logosi uchun
+        <br>🎮 O'yin belgilari uchun
+        <br>🔘 Tugma ikonlari uchun
+        <br>🎨 Fon rasmlari uchun
+        <br><br>
+        <strong>Network rasmlarni ishlating:</strong>
+        <br>👤 Foydalanuvchi profil rasmlari
+        <br>📷 Instagram kabi ijtimoiy tarmoq rasmlari
+        <br>📰 Yangiliklar rasmlari
+        <br>🛍️ Mahsulot rasmlari
+        <br><br>
+        <strong>Oddiy qoida:</strong> Agar rasm doimo bir xil bo'lsa - Assets, o'zgaradigan bo'lsa - Network
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Rasm formatlarini tanlash</div>
+    <div class="theory-content">
+        <strong>Flutter qaysi formatlarni tushunadi:</strong>
+        <br>🖼️ PNG - eng yaxshisi, shaffof fon mumkin
+        <br>📸 JPG - katta rasmlar uchun yaxshi
+        <br>🎭 GIF - harakatlanuvchi rasmlar
+        <br>🌐 WebP - zamonaviy format
+        <br><br>
+        <strong>Qaysi birini tanlash:</strong>
+        <br>• Logo va ikonlar uchun - PNG
+        <br>• Fotosuratlar uchun - JPG
+        <br>• Kichik animatsiya uchun - GIF
+        <br><br>
+        <strong>Maslahat:</strong> Boshlang'ich uchun PNG formatini ishlatamiz
+    </div>
+</div>
+
+<div class="section-divider">IKKINCHI QISM: ASSETS PAPKA VA YAML BILAN ISHLASH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">Assets papka yaratish</div>
+    <div class="theory-content">
+        <strong>Assets papka nima:</strong> Bu maxsus papka - bu yerda barcha rasmlarimizni saqlaymiz. Xuddi uy'dagi kiyim shkafi kabi.
+        <br><br>
+        <strong>Qayerda yaratish:</strong> Flutter loyihamizning asosiy joyida, "lib" papka yonida "assets" nomli papka yaratamiz.
+        <br><br>
+        <strong>Ichida qanday papkalar:</strong>
+        <br>📁 assets/images/ - rasmlar uchun
+        <br>📁 assets/icons/ - ikonlar uchun
+        <br>📁 assets/fonts/ - harflar uchun
+        <br><br>
+        <strong>Birinchi qadam:</strong> "assets" papka yaratib, ichiga "images" papka qo'shamiz
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">pubspec.yaml fayl bilan tanishish</div>
+    <div class="theory-content">
+        <strong>pubspec.yaml nima:</strong> Bu Flutter loyihasining ID kartasi. Bu yerda loyiha haqida barcha ma'lumot yozilgan.
+        <br><br>
+        <strong>Nega kerak:</strong> Flutter'ga "men qaysi rasmlarni ishlatmoqchiman" deb aytish uchun bu faylga yozishimiz kerak.
+        <br><br>
+        <strong>Qayerda:</strong> Loyihaning eng asosiy joyida, "lib" papka yonida joylashgan.
+        <br><br>
+        <strong>Muhim qoida:</strong> Bu faylda bo'shliqlar juda muhim! Noto'g'ri bo'shliq qo'ysak, xatolik chiqadi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">pubspec.yaml ga birinchi rasm qo'shish</div>
+    <div class="slide-description">Flutter'ga rasmni tanishtiramiz</div>
+    <div class="progress-note">
+        assets/images/apple.png nomli rasm bor deb faraz qilamiz. pubspec.yaml faylini ochib, flutter qismini topamiz.
+    </div>
+    <div class="code-block">flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/apple.png</div>
+    <div class="result-placeholder">[pubspec.yaml fayli o'zgaradi - rasm ro'yxatga qo'shiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Ko'p rasmni birdan qo'shish</div>
+    <div class="slide-description">Butun papkani qo'shish</div>
+    <div class="progress-note">
+        Agar assets/images da ko'p rasm bo'lsa, har birini alohida yozish o'rniga, butun papkani qo'shish mumkin.
+    </div>
+    <div class="code-block">flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/</div>
+    <div class="result-placeholder">[images papkadagi barcha rasmlar qo'shiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Turli papkalarni qo'shish</div>
+    <div class="slide-description">Tartibli tashkil qilish</div>
+    <div class="progress-note">
+        Rasmlarni turli papkalarga ajratib saqlash yaxshi. Har bir turdagi fayl o'z joyida.
+    </div>
+    <div class="code-block">flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/backgrounds/</div>
+    <div class="result-placeholder">[Barcha papkalar ro'yxatga qo'shiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Tez-tez uchraydigan xatoliklar</div>
+    <div class="theory-content">
+        <strong>Bu xatoliklardan saqlaning:</strong>
+        <br>❌ Noto'g'ri bo'shliqlar qo'yish
+        <br>❌ Rasm nomini noto'g'ri yozish
+        <br>❌ Papka nomini adashish
+        <br>❌ Vergul qo'yishni unutish
+        <br><br>
+        <strong>To'g'ri yozish uchun:</strong>
+        <br>✅ Har doim ikki bo'shliq qo'ying
+        <br>✅ Rasm nomini aynan bir xil yozing
+        <br>✅ Kichik harflar bilan yozing
+        <br>✅ Tire (dash) dan foydalaning
+    </div>
+</div>
+
+<div class="section-divider">UCHINCHI QISM: RASMLARNI EKRANDA KO'RSATISH</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Birinchi Assets rasm ko'rsatish</div>
+    <div class="slide-description">Image.asset() widget bilan</div>
+    <div class="progress-note">
+        Image.asset() widget Assets papkadagi rasmni ekranda ko'rsatadi. Rasm yo'lini to'liq yozish kerak.
+    </div>
+    <div class="code-block">Center(
+  child: Image.asset('assets/images/apple.png'),
+)</div>
+    <div class="result-placeholder">[Ekranda olma rasmi ko'rinadi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Rasm o'lchamini kichiklashtirish</div>
+    <div class="slide-description">width va height bilan</div>
+    <div class="progress-note">
+        Rasm juda katta bo'lishi mumkin. width va height berib, kerakli o'lchamga keltirish mumkin.
+    </div>
+    <div class="code-block">Center(
+  child: Image.asset(
+    'assets/images/apple.png',
+    width: 100,
+    height: 100,
+  ),
+)</div>
+    <div class="result-placeholder">[100x100 o'lchamdagi olma rasmi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Bir nechta rasm yonma-yon</div>
+    <div class="slide-description">Row widget bilan</div>
+    <div class="progress-note">
+        Row widget ichiga bir nechta Image.asset qo'yib, rasmlarni yonma-yon joylashtirish mumkin.
+    </div>
+    <div class="code-block">Center(
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Image.asset('assets/images/apple.png', width: 80, height: 80),
+      SizedBox(width: 20),
+      Image.asset('assets/images/banana.png', width: 80, height: 80),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Olma va banan rasmlari yonma-yon]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Rasmlarni ustma-ust</div>
+    <div class="slide-description">Column widget bilan</div>
+    <div class="progress-note">
+        Column widget ichiga rasmlarni qo'yib, ularni vertikal (ustma-ust) joylashtirish mumkin.
+    </div>
+    <div class="code-block">Center(
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Image.asset('assets/images/sun.png', width: 100, height: 100),
+      SizedBox(height: 20),
+      Image.asset('assets/images/moon.png', width: 100, height: 100),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Quyosh va oy rasmlari ustma-ust]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Birinchi Network rasm</div>
+    <div class="slide-description">Image.network() bilan internetdan</div>
+    <div class="progress-note">
+        Image.network() ishlatib, internet havolasi orqali rasm olamiz. Bu yerda picsum.photos dan tasodifiy rasm olamiz.
+    </div>
+    <div class="code-block">Center(
+  child: Image.network(
+    'https://picsum.photos/200/200',
+  ),
+)</div>
+    <div class="result-placeholder">[Internetdan 200x200 tasodifiy rasm]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">Network rasm o'lchamini sozlash</div>
+    <div class="slide-description">width va height qo'shish</div>
+    <div class="progress-note">
+        Network rasmning ham o'lchamini width va height bilan sozlash mumkin.
+    </div>
+    <div class="code-block">Center(
+  child: Image.network(
+    'https://picsum.photos/300/300',
+    width: 150,
+    height: 150,
+  ),
+)</div>
+    <div class="result-placeholder">[150x150 o'lchamdagi internet rasmi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">Rasmni dumaloq qilish</div>
+    <div class="slide-description">CircleAvatar bilan</div>
+    <div class="progress-note">
+        CircleAvatar widget rasmni avtomatik dumaloq qiladi. Profil rasmlari uchun juda yaxshi.
+    </div>
+    <div class="code-block">Center(
+  child: CircleAvatar(
+    radius: 50,
+    backgroundImage: AssetImage('assets/images/user.png'),
+  ),
+)</div>
+    <div class="result-placeholder">[Dumaloq profil rasmi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">Network rasm bilan CircleAvatar</div>
+    <div class="slide-description">NetworkImage bilan</div>
+    <div class="progress-note">
+        NetworkImage ishlatib, internet havolasidagi rasmni ham dumaloq qilish mumkin.
+    </div>
+    <div class="code-block">Center(
+  child: CircleAvatar(
+    radius: 60,
+    backgroundImage: NetworkImage('https://picsum.photos/200/200'),
+  ),
+)</div>
+    <div class="result-placeholder">[Internetdan dumaloq rasm]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Rasm galereyasi yaratish</div>
+    <div class="slide-description">GridView bilan</div>
+    <div class="progress-note">
+        GridView.count ishlatib, rasmlarni kataklar ko'rinishida joylashtirish mumkin. Xuddi telefondagi galereya kabi.
+    </div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 2,
+  children: [
+    Image.asset('assets/images/cat.png'),
+    Image.asset('assets/images/dog.png'),
+    Image.asset('assets/images/bird.png'),
+    Image.asset('assets/images/fish.png'),
+  ],
+)</div>
+    <div class="result-placeholder">[2x2 kataklar ichida hayvon rasmlari]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Rasmga matn qo'shish</div>
+    <div class="slide-description">Stack widget bilan</div>
+    <div class="progress-note">
+        Stack widget rasmning ustiga matn yoki boshqa elementlarni qo'yish imkonini beradi.
+    </div>
+    <div class="code-block">Center(
+  child: Stack(
+    children: [
+      Image.asset('assets/images/background.jpg', width: 200, height: 200),
+      Positioned(
+        bottom: 10,
+        left: 10,
+        child: Text('Chiroyli manzara', style: TextStyle(color: Colors.white)),
+      ),
+    ],
+  ),
+)</div>
+    <div class="result-placeholder">[Rasm ustida oq matn]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Amaliy loyiha - meva do'koni</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Meva do'koni ilovasi yarating. 4 ta meva rasmi (olma, banan, apelsin, uzum) GridView da ko'rsating. Har birining ostiga nomi va narxi yozilsin.
+    </div>
+    <div class="code-block">GridView.count(
+  crossAxisCount: 2,
+  children: [
+    Column(
+      children: [
+        Image.asset('assets/images/apple.png', width: 80, height: 80),
+        Text('Olma'),
+        Text('5000 so\'m'),
+      ],
+    ),
+    Column(
+      children: [
+        Image.asset('assets/images/banana.png', width: 80, height: 80),
+        Text('Banan'),
+        Text('3000 so\'m'),
+      ],
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Meva do'koni ko'rinishi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Dars xulosas</div>
+    <div class="theory-content">
+        <strong>Bugun nimalarni o'rgandik:</strong>
+        <br>🎯 Assets va Network rasmlar orasidagi farq
+        <br>📁 Assets papka yaratish va tashkil qilish
+        <br>📝 pubspec.yaml faylga rasmlarni qo'shish
+        <br>🖼️ Image.asset() va Image.network() ishlatish
+        <br>📐 Rasm o'lchamini sozlash
+        <br>🎨 Rasmlarni chiroyli joylashtirish
+        <br><br>
+        <strong>Keyingi darsda:</strong> Rasmlarni yanada professional ko'rinishga keltirish, animatsiya qo'shish va foydalanuvchi bilan o'zaro aloqa o'rnatishni o'rganamiz.
+        <br><br>
+        <strong>Uy vazifasi:</strong> O'zingizning sevimli hayvonlaringiz bilan galereya yarating!
+    </div>
+</div>
+
+</body>
+</html>

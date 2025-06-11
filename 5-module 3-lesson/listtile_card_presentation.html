@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ListTile & Card Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #4CAF50;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #e8f5e8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">ListTile & Card nima?</div>
+    <div class="theory-content">
+        <strong>ListTile:</strong> Ma'lumotlarni ro'yxat shaklida ko'rsatish uchun tayyor widget.
+        <br><br>
+        <strong>Card:</strong> Ma'lumotlarni karta ko'rinishida joylashtiradigan container.
+        <br><br>
+        <strong>Birgalikda:</strong> Chiroyli va tartibli ro'yxatlar yaratish uchun ishlatiladi.
+        <br><br>
+        <strong>Qachon kerak:</strong> Kontaktlar, sozlamalar, mahsulotlar ro'yxati va h.k.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>ListTile asoslari</li>
+            <li>Leading, title, subtitle</li>
+            <li>Trailing va onTap</li>
+            <li>Card widget asoslari</li>
+            <li>Card elevation va margin</li>
+            <li>ListTile + Card kombinatsiyasi</li>
+            <li>Divider bilan ajratish</li>
+            <li>Custom ListTile yaratish</li>
+            <li>ExpansionTile</li>
+            <li>CheckboxListTile</li>
+            <li>RadioListTile</li>
+            <li>SwitchListTile</li>
+            <li>ListView bilan ishlash</li>
+            <li>3 ta uy vazifasi</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Eng oddiy ListTile</div>
+    <div class="slide-description">Asosiy ListTile tuzilishi</div>
+    <div class="code-block">ListTile(
+  title: Text('Mening elementim'),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">ListTile parametrlari nima?</div>
+    <div class="theory-content">
+        <strong>title:</strong> Asosiy matn (majburiy emas, lekin odatda kerak).
+        <br><br>
+        <strong>subtitle:</strong> Qo'shimcha matn (title ostida).
+        <br><br>
+        <strong>leading:</strong> Chap tomondagi widget (icon, rasm).
+        <br><br>
+        <strong>trailing:</strong> O'ng tomondagi widget (tugma, icon).
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">To'liq ListTile</div>
+    <div class="slide-description">Barcha parametrlar bilan</div>
+    <div class="code-block">ListTile(
+  leading: Icon(Icons.person),
+  title: Text('Ali Valiyev'),
+  subtitle: Text('Dasturchi'),
+  trailing: Icon(Icons.arrow_forward_ios),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Leading va trailing farqi nima?</div>
+    <div class="theory-content">
+        <strong>Leading:</strong> Chap tomonda joylashadi. Odatda icon, CircleAvatar yoki rasm.
+        <br><br>
+        <strong>Trailing:</strong> O'ng tomonda joylashadi. Ko'pincha tugma, switch yoki qo'shimcha ma'lumot.
+        <br><br>
+        <strong>Farq:</strong> Leading ko'proq identifikatsiya, trailing amal uchun ishlatiladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Avatar bilan ListTile</div>
+    <div class="slide-description">CircleAvatar leading sifatida</div>
+    <div class="code-block">ListTile(
+  leading: CircleAvatar(
+    backgroundColor: Colors.blue,
+    child: Text('A'),
+  ),
+  title: Text('Akmal Toshmatov'),
+  subtitle: Text('akmal@email.com'),
+  trailing: Icon(Icons.more_vert),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">onTap nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> ListTile bosilganda ishlaydigan funksiya.
+        <br><br>
+        <strong>Ishlatilishi:</strong> Sahifa o'tish, ma'lumot ko'rsatish, amal bajarish.
+        <br><br>
+        <strong>Visual effekt:</strong> Bosilganda ripple effect ko'rsatadi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Bosiladigan ListTile</div>
+    <div class="slide-description">onTap hodisasi bilan</div>
+    <div class="code-block">ListTile(
+  leading: Icon(Icons.settings),
+  title: Text('Sozlamalar'),
+  subtitle: Text('Ilova sozlamalari'),
+  trailing: Icon(Icons.arrow_forward_ios),
+  onTap: () {
+    print('Sozlamalar bosildi');
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">Card nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Material Design bo'yicha karta ko'rinishidagi container.
+        <br><br>
+        <strong>Xususiyatlari:</strong>
+        <br>• Avtomatik soya (elevation)
+        <br>• Yumaloq burchaklar
+        <br>• Material effektlari
+        <br><br>
+        <strong>Foydalanish:</strong> Ma'lumotlarni guruhlab ko'rsatish.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Eng oddiy Card</div>
+    <div class="slide-description">Asosiy Card tuzilishi</div>
+    <div class="code-block">Card(
+  child: Padding(
+    padding: EdgeInsets.all(16),
+    child: Text('Bu Card ichidagi matn'),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Card elevation va margin</div>
+    <div class="theory-content">
+        <strong>elevation:</strong> Soya chuqurligi (0 dan 24 gacha).
+        <br><br>
+        <strong>margin:</strong> Card atrofidagi bo'shliq.
+        <br><br>
+        <strong>Default elevation:</strong> 1.0
+        <br><br>
+        <strong>Tavsiya:</strong> Elevation 8 dan oshmasin.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Sozlangan Card</div>
+    <div class="slide-description">Elevation va margin bilan</div>
+    <div class="code-block">Card(
+  elevation: 4,
+  margin: EdgeInsets.all(8),
+  child: Padding(
+    padding: EdgeInsets.all(16),
+    child: Column(
+      children: [
+        Text('Card sarlavhasi'),
+        SizedBox(height: 8),
+        Text('Card tarkibi'),
+      ],
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">ListTile + Card = Perfect!</div>
+    <div class="theory-content">
+        <strong>Nima uchun birgalikda?</strong>
+        <br>• Card - chiroyli container
+        <br>• ListTile - tayyor struktura
+        <br>• Birgalikda - professional ko'rinish
+        <br><br>
+        <strong>Eng ko'p ishlatiladigan kombinatsiya.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Card ichida ListTile</div>
+    <div class="slide-description">Professional ko'rinish</div>
+    <div class="code-block">Card(
+  margin: EdgeInsets.all(8),
+  child: ListTile(
+    leading: Icon(Icons.music_note),
+    title: Text('Sevimli qo\'shiq'),
+    subtitle: Text('Ijrochi nomi'),
+    trailing: IconButton(
+      icon: Icon(Icons.play_arrow),
+      onPressed: () {},
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Divider bilan ajratish</div>
+    <div class="theory-content">
+        <strong>Divider nima?</strong> ListTile'lar orasiga chiziq chizish uchun widget.
+        <br><br>
+        <strong>Parametrlari:</strong>
+        <br>• height - balandlik
+        <br>• color - rang
+        <br>• thickness - qalinlik
+        <br><br>
+        <strong>Foydalanish:</strong> Elementlarni vizual ajratish.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Divider misoli</div>
+    <div class="slide-description">ListTile'lar orasida chiziq</div>
+    <div class="code-block">Column(
+  children: [
+    ListTile(
+      title: Text('Birinchi element'),
+      leading: Icon(Icons.star),
+    ),
+    Divider(),
+    ListTile(
+      title: Text('Ikkinchi element'),
+      leading: Icon(Icons.favorite),
+    ),
+    Divider(),
+    ListTile(
+      title: Text('Uchinchi element'),
+      leading: Icon(Icons.thumb_up),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">ExpansionTile nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Bosilganda kengayadigan ListTile.
+        <br><br>
+        <strong>Parametrlari:</strong>
+        <br>• title - asosiy sarlavha
+        <br>• children - kengaygandagi elementlar
+        <br>• leading - chap icon
+        <br>• trailing - o'ng icon (avtomatik ok)
+        <br><br>
+        <strong>Foydasi:</strong> Joy tejash, ma'lumotlarni kategoriyalash.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">ExpansionTile misoli</div>
+    <div class="slide-description">Kengayadigan ro'yxat</div>
+    <div class="code-block">ExpansionTile(
+  title: Text('Sozlamalar'),
+  leading: Icon(Icons.settings),
+  children: [
+    ListTile(
+      title: Text('Tilni o\'zgartirish'),
+      leading: Icon(Icons.language),
+    ),
+    ListTile(
+      title: Text('Bildirishnoma'),
+      leading: Icon(Icons.notifications),
+    ),
+    ListTile(
+      title: Text('Xavfsizlik'),
+      leading: Icon(Icons.security),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">CheckboxListTile nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Checkbox bilan jihozlangan ListTile.
+        <br><br>
+        <strong>Parametrlari:</strong>
+        <br>• value - checkbox holati (true/false)
+        <br>• onChanged - o'zgarish hodisasi
+        <br>• title - asosiy matn
+        <br><br>
+        <strong>Ishlatilishi:</strong> Ko'p tanlovli ro'yxatlar, sozlamalar.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">CheckboxListTile misoli</div>
+    <div class="slide-description">Belgilanadigan ro'yxat</div>
+    <div class="code-block">CheckboxListTile(
+  title: Text('Push bildirishnomalar'),
+  subtitle: Text('Yangi xabarlar haqida xabardor bo\'ling'),
+  value: true,
+  onChanged: (bool? value) {
+    print('Checkbox: $value');
+  },
+  secondary: Icon(Icons.notifications),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">RadioListTile nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Radio button bilan jihozlangan ListTile.
+        <br><br>
+        <strong>Xususiyat:</strong> Faqat bitta variant tanlanadi.
+        <br><br>
+        <strong>Parametrlari:</strong>
+        <br>• value - bu elementning qiymati
+        <br>• groupValue - tanlangan qiymat
+        <br>• onChanged - o'zgarish hodisasi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">RadioListTile misoli</div>
+    <div class="slide-description">Bitta tanlov</div>
+    <div class="code-block">Column(
+  children: [
+    RadioListTile<String>(
+      title: Text('Erkak'),
+      value: 'erkak',
+      groupValue: 'erkak',
+      onChanged: (String? value) {
+        print('Tanlandi: $value');
+      },
+    ),
+    RadioListTile<String>(
+      title: Text('Ayol'),
+      value: 'ayol',
+      groupValue: 'erkak',
+      onChanged: (String? value) {
+        print('Tanlandi: $value');
+      },
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">SwitchListTile nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Switch (o'chir-yoq) bilan jihozlangan ListTile.
+        <br><br>
+        <strong>Parametrlari:</strong>
+        <br>• value - switch holati
+        <br>• onChanged - o'zgarish hodisasi
+        <br>• title - asosiy matn
+        <br><br>
+        <strong>Ishlatilishi:</strong> Sozlamalarni yoqish/o'chirish.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">SwitchListTile misoli</div>
+    <div class="slide-description">Yoq/o'chir tugma</div>
+    <div class="code-block">SwitchListTile(
+  title: Text('Qorong\'u mavzu'),
+  subtitle: Text('Tungi rejimni yoqish'),
+  value: false,
+  onChanged: (bool value) {
+    print('Qorong\'u mavzu: $value');
+  },
+  secondary: Icon(Icons.dark_mode),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">ListView bilan ishlash</div>
+    <div class="theory-content">
+        <strong>ListView.builder:</strong> Ko'p elementlar uchun eng yaxshi tanlov.
+        <br><br>
+        <strong>Afzalliklari:</strong>
+        <br>• Lazy loading - faqat ko'rinadigan elementlar yasaladi
+        <br>• Xotira tejash
+        <br>• Tez ishlash
+        <br><br>
+        <strong>itemCount:</strong> Elementlar soni
+        <br><strong>itemBuilder:</strong> Har bir element uchun widget
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">ListView + Card + ListTile</div>
+    <div class="slide-description">Kuchli kombinatsiya</div>
+    <div class="code-block">ListView.builder(
+  itemCount: 10,
+  itemBuilder: (context, index) {
+    return Card(
+      margin: EdgeInsets.all(8),
+      child: ListTile(
+        leading: CircleAvatar(
+          child: Text('${index + 1}'),
+        ),
+        title: Text('Element ${index + 1}'),
+        subtitle: Text('Bu ${index + 1}-element tavsifi'),
+        trailing: Icon(Icons.arrow_forward_ios),
+        onTap: () {
+          print('${index + 1}-element bosildi');
+        },
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Uy vazifasi 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Kontaktlar ro'yxatini yarating. Har bir kontakt Card ichida bo'lsin, avatar, ism, telefon raqami ko'rsatilsin. onTap da "Qo'ng'iroq qilish" xabari chiqsin.
+    </div>
+    <div class="code-block">ListView.builder(
+  itemCount: 5,
+  itemBuilder: (context, index) {
+    return Card(
+      margin: EdgeInsets.all(8),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.blue,
+          child: Text('${String.fromCharCode(65 + index)}'),
+        ),
+        title: Text('Kontakt ${index + 1}'),
+        subtitle: Text('+998 90 123 45 6${index}'),
+        trailing: Icon(Icons.phone),
+        onTap: () {
+          print('Qo\'ng\'iroq qilish: Kontakt ${index + 1}');
+        },
+      ),
+    );
+  },
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Uy vazifasi 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Sozlamalar sahifasini yarating. ExpansionTile ishlatib, "Umumiy", "Xavfsizlik", "Bildirishnoma" bo'limlarini yarating. Har birida 3 tadan SwitchListTile bo'lsin.
+    </div>
+    <div class="code-block">Column(
+  children: [
+    ExpansionTile(
+      title: Text('Umumiy sozlamalar'),
+      leading: Icon(Icons.settings),
+      children: [
+        SwitchListTile(
+          title: Text('Avtomatik yangilash'),
+          value: true,
+          onChanged: (value) {},
+        ),
+        SwitchListTile(
+          title: Text('WiFi orqali'),
+          value: false,
+          onChanged: (value) {},
+        ),
+        SwitchListTile(
+          title: Text('Batareya tejash'),
+          value: true,
+          onChanged: (value) {},
+        ),
+      ],
+    ),
+    ExpansionTile(
+      title: Text('Xavfsizlik'),
+      leading: Icon(Icons.security),
+      children: [
+        SwitchListTile(
+          title: Text('Face ID'),
+          value: false,
+          onChanged: (value) {},
+        ),
+        SwitchListTile(
+          title: Text('Touch ID'),
+          value: true,
+          onChanged: (value) {},
+        ),
+        SwitchListTile(
+          title: Text('PIN kod'),
+          value: true,
+          onChanged: (value) {},
+        ),
+      ],
+    ),
+  ],
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Uy vazifasi 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Musiqa pleyeri ro'yxatini yarating. Har bir qo'shiq Card ichida bo'lsin, qo'shiq nomi, ijrochi, davomiyligi ko'rsatilsin. Trailing da play/pause tugmasi bo'lsin.
+    </div>
+    <div class="code-block">ListView.builder(
+  itemCount: 8,
+  itemBuilder: (context, index) {
+    bool isPlaying = index == 0;
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: ListTile(
+        leading: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.purple,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(Icons.music_note, color: Colors.white),
+        ),
+        title: Text('Qo\'shiq ${index + 1}'),
+        subtitle: Text('Ijrochi nomi • 3:${20 + index}'),
+        trailing: IconButton(
+          icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+          onPressed: () {
+            print('${isPlaying ? "Pause" : "Play"}: Qo\'shiq ${index + 1}');
+          },
+        ),
+        onTap: () {
+          print('Tanlandi: Qo\'shiq ${index + 1}');
+        },
+      ),
+    );
+  },
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 31</div>
+    <div class="slide-title">Best Practices</div>
+    <div class="theory-content">
+        <strong>1. ListView.builder foydalaning</strong> - ko'p elementlar uchun
+        <br><br>
+        <strong>2. Card margin ni unutmang</strong> - 8px yetarli
+        <br><br>
+        <strong>3. Subtitle qisqa bo'lsin</strong> - 2 qatordan ko'p emas
+        <br><br>
+        <strong>4. onTap ni qo'shing</strong> - foydalanuvchi kutadi
+        <br><br>
+        <strong>5. Leading uchun CircleAvatar ishlatting</strong>
+        <br><br>
+        <strong>6. Divider ga rang bering</strong> - default juda och
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 32</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div
