@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TextField Flutter Darsi 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #E3F2FD;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">TextField nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> TextField - foydalanuvchi matn kiritishi uchun mo'ljallangan widget.
+        <br><br>
+        <strong>Asosiy vazifasi:</strong> Nom, email, parol, xabar va boshqa ma'lumotlarni olish.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Ro'yxatdan o'tish, login, qidiruv, formalar to'ldirish.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>TextField ning asosiy tuzilishi</li>
+            <li>Decoration va InputDecoration</li>
+            <li>LabelText va HintText</li>
+            <li>Klaviatura turlari</li>
+            <li>Parol maydonlari</li>
+            <li>Controller bilan ishlash</li>
+            <li>onChanged eventi</li>
+            <li>Validation asoslari</li>
+            <li>Icon qo'shish</li>
+            <li>Border va fokus</li>
+            <li>Rang va stil berish</li>
+            <li>Oddiy form yaratish</li>
+            <li>3 ta amaliy mashq</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Eng oddiy TextField</div>
+    <div class="slide-description">Asosiy TextField tuzilishi</div>
+    <div class="code-block">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('TextField Darsi')),
+        body: Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(),
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">InputDecoration nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>Javob:</strong> TextField ning ko'rinishini bezash va foydalanuvchiga yo'riqnoma berish uchun.
+        <br><br>
+        <strong>Asosiy parametrlari:</strong>
+        <br>• labelText - tepada ko'rinadigan nom
+        <br>• hintText - ichida ko'rinadigan maslahat
+        <br>• border - atrofdagi chegara
+        <br>• prefixIcon - oldidagi icon
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Label va Hint qo'shish</div>
+    <div class="slide-description">Matn ko'rsatish</div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('Matn kiritish')),
+  body: Padding(
+    padding: EdgeInsets.all(16),
+    child: TextField(
+      decoration: InputDecoration(
+        labelText: 'Ismingiz',
+        hintText: 'Bu yerga ismingizni yozing',
+      ),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Klaviatura turlari nimalar?</div>
+    <div class="theory-content">
+        <strong>TextInputType.text:</strong> Oddiy matn klaviaturasi
+        <br><br>
+        <strong>TextInputType.number:</strong> Raqamlar klaviaturasi
+        <br><br>
+        <strong>TextInputType.emailAddress:</strong> Email klaviaturasi
+        <br><br>
+        <strong>TextInputType.phone:</strong> Telefon klaviaturasi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Turli klaviaturalar</div>
+    <div class="slide-description">Har xil keyboard turlari</div>
+    <div class="code-block">Column(
+  children: [
+    TextField(
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
+        labelText: 'Ism',
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        labelText: 'Yosh',
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        labelText: 'Email',
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">obscureText nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>Javob:</strong> Parol kabi maxfiy ma'lumotlarni yashirish uchun.
+        <br><br>
+        <strong>true qiymat:</strong> Matn yulduzcha (*) ko'rinishida ko'rsatiladi.
+        <br><br>
+        <strong>false qiymat:</strong> Matn oddiy ko'rinishda ko'rsatiladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Parol maydoni</div>
+    <div class="slide-description">Yashirin matn kiritish</div>
+    <div class="code-block">Column(
+  children: [
+    TextField(
+      decoration: InputDecoration(
+        labelText: 'Foydalanuvchi nomi',
+        prefixIcon: Icon(Icons.person),
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+        labelText: 'Parol',
+        prefixIcon: Icon(Icons.lock),
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">TextEditingController nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> TextField ichidagi matnni boshqarish uchun ishlatiladigan controller.
+        <br><br>
+        <strong>Imkoniyatlari:</strong>
+        <br>• Matnni o'qish - controller.text
+        <br>• Matnni o'zgartirish
+        <br>• Matnni tozalash - controller.clear()
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Controller misoli</div>
+    <div class="slide-description">Matnni boshqarish</div>
+    <div class="code-block">class MyApp extends StatefulWidget {
+  createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  TextEditingController controller = TextEditingController();
+  
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            children: [
+              TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  labelText: 'Matn kiriting',
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  print(controller.text);
+                },
+                child: Text('Matnni ko\'rsat'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">onChanged nima qiladi?</div>
+    <div class="theory-content">
+        <strong>Javob:</strong> Har bir harf yozilganda yoki o'chirilganda ishga tushadigan funksiya.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong>
+        <br>• Real vaqtda matnni ko'rish
+        <br>• Validation qilish
+        <br>• Qidiruv amalga oshirish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Real vaqtda matn ko'rish</div>
+    <div class="slide-description">onChanged eventi</div>
+    <div class="code-block">class _MyAppState extends State<MyApp> {
+  String yozilganMatn = '';
+  
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextField(
+          decoration: InputDecoration(
+            labelText: 'Yozing',
+          ),
+          onChanged: (matn) {
+            setState(() {
+              yozilganMatn = matn;
+            });
+          },
+        ),
+        SizedBox(height: 20),
+        Text(
+          'Siz yozdingiz: $yozilganMatn',
+          style: TextStyle(fontSize: 18),
+        ),
+      ],
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Border qanday qo'shiladi?</div>
+    <div class="theory-content">
+        <strong>OutlineInputBorder:</strong> Atrofida to'rtburchak chegara
+        <br><br>
+        <strong>UnderlineInputBorder:</strong> Pastida chiziq
+        <br><br>
+        <strong>InputBorder.none:</strong> Chegarasiz
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Chegara bilan TextField</div>
+    <div class="slide-description">Border qo'shish</div>
+    <div class="code-block">TextField(
+  decoration: InputDecoration(
+    labelText: 'Ismingiz',
+    border: OutlineInputBorder(),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.blue,
+        width: 2,
+      ),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Icon qo'shish</div>
+    <div class="theory-content">
+        <strong>prefixIcon:</strong> Chap tomonda icon
+        <br><br>
+        <strong>suffixIcon:</strong> O'ng tomonda icon
+        <br><br>
+        <strong>Foydalanuvchiga qanday ma'lumot kiritishni tushuntiradi.</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Icon bilan TextField</div>
+    <div class="slide-description">Prefix va suffix icon</div>
+    <div class="code-block">Column(
+  children: [
+    TextField(
+      decoration: InputDecoration(
+        labelText: 'Email',
+        prefixIcon: Icon(Icons.email),
+        border: OutlineInputBorder(),
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      decoration: InputDecoration(
+        labelText: 'Telefon',
+        prefixIcon: Icon(Icons.phone),
+        suffixIcon: Icon(Icons.contact_phone),
+        border: OutlineInputBorder(),
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Rang berish</div>
+    <div class="slide-description">Color va filled</div>
+    <div class="code-block">TextField(
+  decoration: InputDecoration(
+    labelText: 'Rangdor TextField',
+    border: OutlineInputBorder(),
+    fillColor: Colors.blue.shade50,
+    filled: true,
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.blue,
+        width: 2,
+      ),
+    ),
+    prefixIcon: Icon(
+      Icons.person,
+      color: Colors.blue,
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">errorText nima uchun ishlatiladi?</div>
+    <div class="theory-content">
+        <strong>Maqsad:</strong> Foydalanuvchiga xato haqida xabar berish.
+        <br><br>
+        <strong>Qachon ko'rinadi:</strong> errorText null bo'lmagan paytda.
+        <br><br>
+        <strong>Rangi:</strong> Odatda qizil rangda ko'rsatiladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">Xato ko'rsatish</div>
+    <div class="slide-description">Error validation</div>
+    <div class="code-block">class _MyAppState extends State<MyApp> {
+  String xato = '';
+  
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: 'Yosh',
+        errorText: xato.isEmpty ? null : xato,
+        border: OutlineInputBorder(),
+      ),
+      onChanged: (matn) {
+        setState(() {
+          if (matn.isEmpty) {
+            xato = 'Yoshni kiriting';
+          } else if (int.tryParse(matn) == null) {
+            xato = 'Faqat raqam kiriting';
+          } else {
+            xato = '';
+          }
+        });
+      },
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">MaxLength nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> TextField ga kiritilishi mumkin bo'lgan maksimal belgilar soni.
+        <br><br>
+        <strong>Counter:</strong> Avtomatik ravishda belgilar hisoblagich ko'rsatiladi.
+        <br><br>
+        <strong>Limitga yetganda:</strong> Keyingi belgilar kiritilmaydi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Belgi cheklash</div>
+    <div class="slide-description">MaxLength va counter</div>
+    <div class="code-block">TextField(
+  maxLength: 20,
+  decoration: InputDecoration(
+    labelText: 'Qisqa xabar',
+    border: OutlineInputBorder(),
+    helperText: 'Maksimal 20 ta belgi',
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Amaliy mashq 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Login sahifasi yarating. Username va password maydonlari bo'lsin. Username uchun person icon, password uchun lock icon qo'ying.
+    </div>
+    <div class="code-block">Column(
+  children: [
+    TextField(
+      decoration: InputDecoration(
+        labelText: 'Foydalanuvchi nomi',
+        prefixIcon: Icon(Icons.person),
+        border: OutlineInputBorder(),
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+        labelText: 'Parol',
+        prefixIcon: Icon(Icons.lock),
+        border: OutlineInputBorder(),
+      ),
+    ),
+    SizedBox(height: 20),
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Kirish'),
+    ),
+  ],
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Amaliy mashq 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Qidiruv maydonini yarating. Qidiruv icon bilan, hintText "Qidirish..." bo'lsin va yumaloq border qiling.
+    </div>
+    <div class="code-block">TextField(
+  decoration: InputDecoration(
+    hintText: 'Qidirish...',
+    prefixIcon: Icon(Icons.search),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+    filled: true,
+    fillColor: Colors.grey.shade100,
+  ),
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Amaliy mashq 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Ro'yxatdan o'tish formasi yarating. Ism, email, telefon, parol maydonlari bo'lsin. Har birida tegishli icon qo'ying.
+    </div>
+    <div class="code-block">Column(
+  children: [
+    TextField(
+      decoration: InputDecoration(
+        labelText: 'To\'liq ism',
+        prefixIcon: Icon(Icons.person),
+        border: OutlineInputBorder(),
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        labelText: 'Email',
+        prefixIcon: Icon(Icons.email),
+        border: OutlineInputBorder(),
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      keyboardType: TextInputType.phone,
+      decoration: InputDecoration(
+        labelText: 'Telefon',
+        prefixIcon: Icon(Icons.phone),
+        border: OutlineInputBorder(),
+      ),
+    ),
+    SizedBox(height: 16),
+    TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+        labelText: 'Parol',
+        prefixIcon: Icon(Icons.lock),
+        border: OutlineInputBorder(),
+      ),
+    ),
+  ],
+)</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Best Practices</div>
+    <div class="theory-content">
+        <strong>1. To'g'ri klaviatura tanlang</strong> - email uchun emailAddress
+        <br><br>
+        <strong>2. Hint text yozing</strong> - foydalanuvchiga yordam beradi
+        <br><br>
+        <strong>3. Icon qo'ying</strong> - qanday ma'lumot kiritishni ko'rsatadi
+        <br><br>
+        <strong>4. Validation qiling</strong> - noto'g'ri ma'lumotlarni tekshiring
+        <br><br>
+        <strong>5. Controller dispose qiling</strong> - xotira tozalash uchun
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. Controller dispose qilmaslik:</strong>
+        <br>• dispose() metodini unutish
+        <br><br>
+        <strong>2. setState ishlatmaslik:</strong>
+        <br>• onChanged da UI yangilanmaydi
+        <br><br>
+        <strong>3. Noto'g'ri validation:</strong>
+        <br>• Hamma holatlarni tekshirmaslik
+        <br><br>
+        <strong>4. KeyboardType unutish:</strong>
+        <br>• Email uchun text keyboard ishlatish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>TextField - </strong>Flutter da eng ko'p ishlatiladigan widget
+        <br><br>
+        <strong>Asosiy komponentlar:</strong>
+        <br>• decoration - ko'rinish
+        <br>• controller - matnni boshqarish
+        <br>• keyboardType - klaviatura turi
+        <br>• onChanged - o'zgarish eventi
+        <br><br>
+        <strong>Eslab qoling:</strong>
+        <br>• Foydalanuvchi uchun qulay qiling
+        <br>• Doimo validation qo'ying
+        <br>• To'g'ri keyboard tanlang
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'TextField_Flutter_Darsi_1.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>
