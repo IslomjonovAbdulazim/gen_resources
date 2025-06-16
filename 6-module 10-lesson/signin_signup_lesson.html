@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In va Sign Up Sahifalari - Oddiy Dars</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #E3F2FD;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Login sahifalari nima?</div>
+    <div class="theory-content">
+        <strong>Login sahifa:</strong> Foydalanuvchi ilovaga kirish uchun email va parol kiritadigan sahifa.
+        <br><br>
+        <strong>Register sahifa:</strong> Yangi foydalanuvchi ro'yxatdan o'tish uchun ma'lumot kiritadigan sahifa.
+        <br><br>
+        <strong>Nima uchun kerak:</strong> Har bir foydalanuvchi o'zining shaxsiy ma'lumotlariga kirishi uchun.
+        <br><br>
+        <strong>Misollar:</strong> Instagram, WhatsApp, Telegram da login qilish kabi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>Login sahifa nima va nima uchun kerak</li>
+            <li>Oddiy sahifa strukturasi</li>
+            <li>TextField lar qanday joylashtiriladi</li>
+            <li>Login sahifasini yaratish</li>
+            <li>Register sahifasini yaratish</li>
+            <li>Sahifalar orasida o'tish</li>
+            <li>Oddiy dizayn berish</li>
+            <li>Tugmalar qanday ishlaydi</li>
+            <li>Xatolar qanday ko'rsatiladi</li>
+            <li>3 ta oddiy mashq</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Login sahifada nimalar bo'ladi?</div>
+    <div class="theory-content">
+        <strong>1. Sarlavha:</strong> "Kirish" yoki "Login" yozuvi
+        <br><br>
+        <strong>2. Email maydoni:</strong> Foydalanuvchi emailini kiritadi
+        <br><br>
+        <strong>3. Parol maydoni:</strong> Parolni kiritadi (ko'rinmaydi)
+        <br><br>
+        <strong>4. Login tugmasi:</strong> Sahifaga kirish uchun tugma
+        <br><br>
+        <strong>5. Register havolasi:</strong> "Hisob yo'qmi? Ro'yxatdan o'ting" yozuvi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Eng oddiy login sahifasi</div>
+    <div class="slide-description">Faqat zarur elementlar</div>
+    <div class="code-block">class LoginScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Kirish'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            SizedBox(height: 50),
+            Text(
+              'Ilovaga xush kelibsiz!',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 40),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Parol',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Kirish'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">SizedBox nima uchun ishlatiladi?</div>
+    <div class="theory-content">
+        <strong>SizedBox:</strong> Elementlar orasida bo'sh joy yaratish uchun ishlatiladi.
+        <br><br>
+        <strong>SizedBox(height: 20):</strong> Vertikal ravishda 20 piksel bo'sh joy
+        <br><br>
+        <strong>SizedBox(width: 10):</strong> Gorizontal ravishda 10 piksel bo'sh joy
+        <br><br>
+        <strong>Nima uchun kerak:</strong> Elementlar bir-biriga yopishib qolmasin, chiroyli ko'rinsin.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Padding nima va qanday ishlatiladi?</div>
+    <div class="theory-content">
+        <strong>Padding:</strong> Element ichidagi bo'sh joyni boshqaradi.
+        <br><br>
+        <strong>EdgeInsets.all(20):</strong> Har tomondan 20 piksel bo'sh joy
+        <br><br>
+        <strong>EdgeInsets.symmetric(horizontal: 16):</strong> Faqat chap va o'ngdan 16 piksel
+        <br><br>
+        <strong>Misol:</strong> Sahifa chetidan elementlar 20 piksel uzoqda bo'lsin degan ma'no.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Tugmani katta qilish</div>
+    <div class="slide-description">To'liq kenglikdagi tugma</div>
+    <div class="code-block">SizedBox(
+  width: double.infinity,
+  height: 50,
+  child: ElevatedButton(
+    onPressed: () {
+      print('Login bosildi');
+    },
+    child: Text(
+      'Kirish',
+      style: TextStyle(fontSize: 18),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">double.infinity nima?</div>
+    <div class="theory-content">
+        <strong>double.infinity:</strong> Elementni to'liq kenglikka cho'zadi.
+        <br><br>
+        <strong>width: double.infinity:</strong> Tugma sahifaning to'liq kengligini egallaydi
+        <br><br>
+        <strong>height: 50:</strong> Tugmaning balandligi 50 piksel bo'ladi
+        <br><br>
+        <strong>Foyda:</strong> Tugma katta va bosish oson bo'ladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Icon qo'shish</div>
+    <div class="slide-description">TextField ga icon qo'yish</div>
+    <div class="code-block">TextField(
+  decoration: InputDecoration(
+    labelText: 'Email',
+    prefixIcon: Icon(Icons.email),
+    border: OutlineInputBorder(),
+  ),
+)
+
+TextField(
+  obscureText: true,
+  decoration: InputDecoration(
+    labelText: 'Parol',
+    prefixIcon: Icon(Icons.lock),
+    border: OutlineInputBorder(),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">prefixIcon nima?</div>
+    <div class="theory-content">
+        <strong>prefixIcon:</strong> TextField ning chap tomonida ko'rinadigan rasm.
+        <br><br>
+        <strong>Icons.email:</strong> Email uchun zarf rasmi
+        <br><br>
+        <strong>Icons.lock:</strong> Parol uchun qulf rasmi
+        <br><br>
+        <strong>Foyda:</strong> Foydalanuvchi qaysi ma'lumot kiritishni tushunadi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Register sahifasiga o'tish</div>
+    <div class="slide-description">Sahifalar orasida navigatsiya</div>
+    <div class="code-block">Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Text('Hisobingiz yo\'qmi? '),
+    GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RegisterScreen(),
+          ),
+        );
+      },
+      child: Text(
+        'Ro\'yxatdan o\'ting',
+        style: TextStyle(
+          color: Colors.blue,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Navigator.push nima qiladi?</div>
+    <div class="theory-content">
+        <strong>Navigator.push:</strong> Yangi sahifaga o'tish uchun ishlatiladi.
+        <br><br>
+        <strong>MaterialPageRoute:</strong> Sahifani qanday ochishni ko'rsatadi.
+        <br><br>
+        <strong>builder:</strong> Qaysi sahifa ochilishini belgilaydi.
+        <br><br>
+        <strong>context:</strong> Qayerdan boshlab o'tishni ko'rsatadi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">GestureDetector nima?</div>
+    <div class="theory-content">
+        <strong>GestureDetector:</strong> Matnni bosiladigan qilish uchun ishlatiladi.
+        <br><br>
+        <strong>onTap:</strong> Bosilganda nima qilish kerakligini belgilaydi.
+        <br><br>
+        <strong>child:</strong> Qaysi elementni bosiladigan qilish.
+        <br><br>
+        <strong>Misol:</strong> "Ro'yxatdan o'ting" matnini bosiladigan link qilish.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Register sahifasi</div>
+    <div class="slide-description">Ro'yxatdan o'tish uchun sahifa</div>
+    <div class="code-block">class RegisterScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Ro\'yxatdan o\'tish'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            SizedBox(height: 30),
+            Text(
+              'Yangi hisob yarating',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 40),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Ism',
+                prefixIcon: Icon(Icons.person),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+                prefixIcon: Icon(Icons.email),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Parol',
+                prefixIcon: Icon(Icons.lock),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Ro\'yxatdan o\'tish',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Register sahifada qanday farq bor?</div>
+    <div class="theory-content">
+        <strong>Ko'proq maydon:</strong> Ism uchun qo'shimcha TextField
+        <br><br>
+        <strong>Boshqa sarlavha:</strong> "Yangi hisob yarating" yozuvi
+        <br><br>
+        <strong>Boshqa tugma:</strong> "Ro'yxatdan o'tish" yozuvi
+        <br><br>
+        <strong>AppBar:</strong> Orqaga qaytish tugmasi avtomatik paydo bo'ladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Register dan Login ga qaytish</div>
+    <div class="slide-description">Orqaga navigatsiya</div>
+    <div class="code-block">Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Text('Hisobingiz bormi? '),
+    GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Text(
+        'Kiring',
+        style: TextStyle(
+          color: Colors.blue,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Navigator.pop nima qiladi?</div>
+    <div class="theory-content">
+        <strong>Navigator.pop:</strong> Oldingi sahifaga qaytish uchun ishlatiladi.
+        <br><br>
+        <strong>Farqi push dan:</strong> Yangi sahifa ochish emas, eski sahifaga qaytish.
+        <br><br>
+        <strong>Misolda:</strong> Register sahifasidan Login sahifasiga qaytish.
+        <br><br>
+        <strong>AppBar tugmasi:</strong> Bu ham pop qiladi, lekin avtomatik.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Rang berish</div>
+    <div class="slide-description">Sahifaga rang qo'shish</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {},
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.blue,
+    foregroundColor: Colors.white,
+  ),
+  child: Text(
+    'Kirish',
+    style: TextStyle(fontSize: 18),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">backgroundColor va foregroundColor</div>
+    <div class="theory-content">
+        <strong>backgroundColor:</strong> Tugmaning orqa fon rangi
+        <br><br>
+        <strong>foregroundColor:</strong> Tugmadagi matn rangi
+        <br><br>
+        <strong>Colors.blue:</strong> Ko'k rang
+        <br><br>
+        <strong>Colors.white:</strong> Oq rang
+        <br><br>
+        <strong>Boshqa ranglar:</strong> Colors.red, Colors.green, Colors.purple
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">TextField rangini o'zgartirish</div>
+    <div class="slide-description">Input maydoniga rang berish</div>
+    <div class="code-block">TextField(
+  decoration: InputDecoration(
+    labelText: 'Email',
+    prefixIcon: Icon(Icons.email),
+    border: OutlineInputBorder(),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.blue),
+    ),
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">focusedBorder nima?</div>
+    <div class="theory-content">
+        <strong>focusedBorder:</strong> TextField tanlanganda ko'rinadigan chegara rangi.
+        <br><br>
+        <strong>BorderSide:</strong> Chegaraning rangi va qalinligini belgilaydi.
+        <br><br>
+        <strong>color: Colors.blue:</strong> Ko'k rangda chegara
+        <br><br>
+        <strong>Qachon ko'rinadi:</strong> Foydalanuvchi TextField ga bosib yoza boshlaganda.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Oddiy xato ko'rsatish</div>
+    <div class="slide-description">SnackBar bilan xabar</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Muvaffaqiyatli kirildi!'),
+        backgroundColor: Colors.green,
+      ),
+    );
+  },
+  child: Text('Kirish'),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">SnackBar nima?</div>
+    <div class="theory-content">
+        <strong>SnackBar:</strong> Sahifa pastida qisqa vaqt ko'rinadigan xabar.
+        <br><br>
+        <strong>content:</strong> Xabar matni
+        <br><br>
+        <strong>backgroundColor:</strong> Xabar rangi
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Muvaffaqiyat yoki xato haqida xabar berish uchun.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Controller qo'shish</div>
+    <div class="slide-description">TextField dan ma'lumot olish</div>
+    <div class="code-block">class LoginScreen extends StatefulWidget {
+  createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          TextField(
+            controller: emailController,
+            decoration: InputDecoration(labelText: 'Email'),
+          ),
+          TextField(
+            controller: passwordController,
+            decoration: InputDecoration(labelText: 'Parol'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              String email = emailController.text;
+              String password = passwordController.text;
+              print('Email: $email, Parol: $password');
+            },
+            child: Text('Kirish'),
+          ),
+        ],
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">TextEditingController nima?</div>
+    <div class="theory-content">
+        <strong>TextEditingController:</strong> TextField ichidagi matnni olish uchun ishlatiladi.
+        <br><br>
+        <strong>.text:</strong> Controller ichidagi matnni oladi
+        <br><br>
+        <strong>Nima uchun kerak:</strong> Foydalanuvchi yozgan ma'lumotni olish uchun.
+        <br><br>
+        <strong>Misol:</strong> Email va parolni olish kerak bo'lganda.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">StatefulWidget nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>StatefulWidget:</strong> O'zgaradigan ma'lumot bo'lganda ishlatiladi.
+        <br><br>
+        <strong>Controller:</strong> TextEditingController ishlatish uchun.
+        <br><br>
+        <strong>setState:</strong> Ekranni yangilash uchun.
+        <br><br>
+        <strong>Farqi StatelessWidget dan:</strong> Ma'lumot o'zgarishi mumkin.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Oddiy tekshirish</div>
+    <div class="slide-description">Bo'sh maydon tekshirish</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    String email = emailController.text;
+    String password = passwordController.text;
+    
+    if (email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Email kiriting!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else if (password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Parol kiriting!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Muvaffaqiyatli kirildi!'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    }
+  },
+  child: Text('Kirish'),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">if-else nima qiladi?</div>
+    <div class="theory-content">
+        <strong>if (email.isEmpty):</strong> Agar email bo'sh bo'lsa
+        <br><br>
+        <strong>else if (password.isEmpty):</strong> Aks holda agar parol bo'sh bo'lsa
+        <br><br>
+        <strong>else:</strong> Aks holda (hamma to'ldirilgan bo'lsa)
+        <br><br>
+        <strong>.isEmpty:</strong> Matn bo'shligini tekshiradi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Amaliy mashq 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Welcome sahifasi yarating. Sahifada "Xush kelibsiz!" sarlavhasi va 2 ta tugma bo'lsin: "Kirish" va "Ro'yxatdan o'tish". Tugmalar Login va Register sahifalariga o'tsin.
+        <br><br>
+        <strong>Qadamlar:</strong>
+        <br>1. WelcomeScreen nomli yangi class yarating
+        <br>2. Scaffold va Column ishlatting
+        <br>3. Text widget bilan sarlavha qo'ying
+        <br>4. 2 ta ElevatedButton yarating
+        <br>5. Navigator.push bilan sahifalarga o'ting
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Amaliy mashq 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Login sahifasiga "Parolni unutdingizmi?" havolasini qo'shing. Bosilganda "Parol qayta tiklash xabari yuborildi!" SnackBar ko'rsatsin.
+        <br><br>
+        <strong>Qadamlar:</strong>
+        <br>1. Login sahifasiga TextButton qo'shing
+        <br>2. "Parolni unutdingizmi?" matni bo'lsin
+        <br>3. onPressed da SnackBar ko'rsatting
+        <br>4. SnackBar rangi ko'k bo'lsin
+        <br>5. Parol TextField dan keyin joylashtiring
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 31</div>
+    <div class="slide-title">Amaliy mashq 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Register sahifasiga "Parolni tasdiqlang" maydoni qo'shing. Ikkala parol bir xil emasligini tekshiring va xato SnackBar ko'rsatting.
+        <br><br>
+        <strong>Qadamlar:</strong>
+        <br>1. Yangi TextField qo'shing (parol tasdiqi uchun)
+        <br>2. Yangi TextEditingController yarating
+        <br>3. obscureText: true qo'ying
+        <br>4. Tugma bosilganda parollarni solishtiring
+        <br>5. Agar farq bo'lsa, qizil SnackBar ko'rsatting
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 32</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. StatelessWidget ishlatish:</strong>
+        <br>• Controller ishlatish uchun StatefulWidget kerak
+        <br><br>
+        <strong>2. Controller unutish:</strong>
+        <br>• TextField ga controller qo'yishni unutish
+        <br><br>
+        <strong>3. Navigation xatosi:</strong>
+        <br>• context ni noto'g'ri ishlatish
+        <br><br>
+        <strong>4. Bo'sh tekshirish:</strong>
+        <br>• .isEmpty tekshirishni unutish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 33</div>
+    <div class="slide-title">Foydali maslahatlar</div>
+    <div class="theory-content">
+        <strong>1. Oddiy kod yozing:</strong>
+        <br>• Murakkab qilmang, sodda va tushunarli bo'lsin
+        <br><br>
+        <strong>2. Elementlar orasida bo'shliq:</strong>
+        <br>• SizedBox ishlatishni unutmang
+        <br><br>
+        <strong>3. Ranglarni mos qiling:</strong>
+        <br>• Bir xil ranglarni ishlatting
+        <br><br>
+        <strong>4. Tekshirishlarni qo'ying:</strong>
+        <br>• Bo'sh maydon va xatolarni tekshiring
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 34</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>Bugun nima o'rgandik:</strong>
+        <br>• Login va Register sahifalari yaratdik
+        <br>• TextField va ElevatedButton ishlatdik
+        <br>• Sahifalar orasida o'tishni o'rgandik
+        <br>• Controller bilan ma'lumot oldik
+        <br>• Oddiy tekshirish qildik
+        <br>• SnackBar bilan xabar ko'rsatdik
+        <br><br>
+        <strong>Endi nima qila olasiz:</strong>
+        <br>• O'zingizning login tizimingizni yaratishingiz mumkin
+        <br>• Turli xil sahifalarda navigatsiya qilishingiz mumkin
+        <br>• Foydalanuvchi ma'lumotlarini to'plashingiz mumkin
+        <br><br>
+        <strong>🎉 Tabriklaymiz! Login sahifalari yarata olasiz!</strong>
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Login_Sahifalari_Oddiy_Dars.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>

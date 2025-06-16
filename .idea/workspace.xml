@@ -5,21 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92063f7f-2dcd-4bb8-8277-8735c3a9ff4b" name="Changes" comment="imp">
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/10.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/12.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/14.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/16.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/18.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/20.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/22.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/24.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/25.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/26.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/27.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/4.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/6.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/8.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6-module 9-lesson/textfield_lesson2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749994769728</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="imp">
+      <option name="closed" value="true" />
+      <created>1749995906704</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749995906704</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -153,14 +146,20 @@
           <option name="totalLines" value="1388125" />
           <option name="info" value="imp" />
         </TimePoint>
+        <TimePoint>
+          <option name="timestamp" value="1749995907095" />
+          <option name="linesCode" value="9130" />
+          <option name="totalLines" value="1584804" />
+          <option name="info" value="imp" />
+        </TimePoint>
       </list>
     </option>
     <option name="genericTimePoints">
       <list>
         <TimePoint>
-          <option name="timestamp" value="1749994770005" />
-          <option name="linesCode" value="8292" />
-          <option name="totalLines" value="1388125" />
+          <option name="timestamp" value="1749995907095" />
+          <option name="linesCode" value="9130" />
+          <option name="totalLines" value="1584804" />
           <option name="info" value="Jun 15, 2025" />
         </TimePoint>
       </list>
