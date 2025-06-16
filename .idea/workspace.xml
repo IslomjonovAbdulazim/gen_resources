@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92063f7f-2dcd-4bb8-8277-8735c3a9ff4b" name="Changes" comment="imp">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="92063f7f-2dcd-4bb8-8277-8735c3a9ff4b" name="Changes" comment="imp" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749995906704</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="imp">
+      <option name="closed" value="true" />
+      <created>1750043321883</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1750043321883</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -152,6 +158,12 @@
           <option name="totalLines" value="1584804" />
           <option name="info" value="imp" />
         </TimePoint>
+        <TimePoint>
+          <option name="timestamp" value="1750043322268" />
+          <option name="linesCode" value="9898" />
+          <option name="totalLines" value="1788086" />
+          <option name="info" value="imp" />
+        </TimePoint>
       </list>
     </option>
     <option name="genericTimePoints">
@@ -161,6 +173,12 @@
           <option name="linesCode" value="9130" />
           <option name="totalLines" value="1584804" />
           <option name="info" value="Jun 15, 2025" />
+        </TimePoint>
+        <TimePoint>
+          <option name="timestamp" value="1750043322268" />
+          <option name="linesCode" value="9898" />
+          <option name="totalLines" value="1788086" />
+          <option name="info" value="Jun 16, 2025" />
         </TimePoint>
       </list>
     </option>
