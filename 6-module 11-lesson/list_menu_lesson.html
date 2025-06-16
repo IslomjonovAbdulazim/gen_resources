@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ro'yxat va Menyular - Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #E3F2FD;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Ro'yxat (List) nima?</div>
+    <div class="theory-content">
+        <strong>Ro'yxat:</strong> Bir nechta elementlarni vertikal tartibda ko'rsatuvchi widget.
+        <br><br>
+        <strong>Misollar:</strong> Sozlamalar menyusi, kontaktlar ro'yxati, mahsulotlar ro'yxati.
+        <br><br>
+        <strong>Hayotiy misol:</strong> Telefondagi sozlamalar menyusi - WiFi, Bluetooth, Ovoz kabi.
+        <br><br>
+        <strong>Flutter da:</strong> ListView widget bilan yaratiladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>Ro'yxat nima va qayerda ishlatiladi</li>
+            <li>ListView widget asoslari</li>
+            <li>ListTile widget bilan ishlash</li>
+            <li>Icon va matn qo'shish</li>
+            <li>Oddiy menyular yaratish</li>
+            <li>Bosiladigan ro'yxat elementlari</li>
+            <li>Sahifalarga navigatsiya</li>
+            <li>Divider bilan bo'lish</li>
+            <li>Scrollable ro'yxatlar</li>
+            <li>3 ta amaliy vazifa</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Qayerda ro'yxat ishlatiladi?</div>
+    <div class="theory-content">
+        <strong>Sozlamalar sahifasi:</strong> WiFi, Bluetooth, Ovoz sozlamalari
+        <br><br>
+        <strong>Menyu:</strong> Kategoriya, Sozlamalar, Profil kabi bo'limlar
+        <br><br>
+        <strong>Kontaktlar:</strong> Telefon raqamlari ro'yxati
+        <br><br>
+        <strong>Mahsulotlar:</strong> Do'kon ilovasida mahsulotlar ko'rsatish
+        <br><br>
+        <strong>Xabarlar:</strong> Chat ro'yxati, email ro'yxati
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Eng oddiy ro'yxat</div>
+    <div class="slide-description">Column bilan oddiy ro'yxat</div>
+    <div class="code-block">class SimpleListScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Menyu'),
+      ),
+      body: Column(
+        children: [
+          ListTile(
+            title: Text('Kategoriya'),
+          ),
+          ListTile(
+            title: Text('Sozlamalar'),
+          ),
+          ListTile(
+            title: Text('Profil'),
+          ),
+        ],
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">ListTile nima?</div>
+    <div class="theory-content">
+        <strong>ListTile:</strong> Ro'yxat elementi uchun tayyor widget.
+        <br><br>
+        <strong>title:</strong> Asosiy matn
+        <br><br>
+        <strong>subtitle:</strong> Qo'shimcha matn (kichikroq)
+        <br><br>
+        <strong>leading:</strong> Chap tomondagi icon yoki rasm
+        <br><br>
+        <strong>trailing:</strong> O'ng tomondagi icon (strelka kabi)
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Icon qo'shish</div>
+    <div class="slide-description">Leading icon bilan</div>
+    <div class="code-block">Column(
+  children: [
+    ListTile(
+      leading: Icon(Icons.category),
+      title: Text('Kategoriya'),
+    ),
+    ListTile(
+      leading: Icon(Icons.settings),
+      title: Text('Sozlamalar'),
+    ),
+    ListTile(
+      leading: Icon(Icons.person),
+      title: Text('Profil'),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">leading va trailing farqi</div>
+    <div class="theory-content">
+        <strong>leading:</strong> Chap tomonda joylashgan icon yoki widget
+        <br><br>
+        <strong>trailing:</strong> O'ng tomonda joylashgan icon yoki widget
+        <br><br>
+        <strong>Misol:</strong> leading da kategoriya icon, trailing da strelka
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Foydalanuvchiga ko'rsatish uchun
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">O'ng tomonda strelka</div>
+    <div class="slide-description">Trailing icon qo'shish</div>
+    <div class="code-block">ListTile(
+  leading: Icon(Icons.category),
+  title: Text('Kategoriya'),
+  trailing: Icon(Icons.arrow_forward_ios),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Icons.arrow_forward_ios nima?</div>
+    <div class="theory-content">
+        <strong>arrow_forward_ios:</strong> O'ngga yo'nalgan kichik strelka icon
+        <br><br>
+        <strong>Nima uchun ishlatiladi:</strong> Bu elementni bosish mumkinligini ko'rsatish
+        <br><br>
+        <strong>iOS style:</strong> iPhone ilovalaridagi kabi ko'rinish
+        <br><br>
+        <strong>Boshqa variantlar:</strong> Icons.chevron_right, Icons.arrow_forward
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">Bosiladigan ro'yxat elementi</div>
+    <div class="slide-description">onTap bilan hodisa qo'shish</div>
+    <div class="code-block">ListTile(
+  leading: Icon(Icons.settings),
+  title: Text('Sozlamalar'),
+  trailing: Icon(Icons.arrow_forward_ios),
+  onTap: () {
+    print('Sozlamalar bosildi');
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">onTap nima qiladi?</div>
+    <div class="theory-content">
+        <strong>onTap:</strong> ListTile ga bosilganda ishlaydigan funksiya
+        <br><br>
+        <strong>Vazifasi:</strong> Foydalanuvchi element bosganida harakat bajarish
+        <br><br>
+        <strong>Misol:</strong> Yangi sahifa ochish, xabar ko'rsatish
+        <br><br>
+        <strong>Sintaksis:</strong> onTap: () { // kod }
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Sahifaga o'tish</div>
+    <div class="slide-description">Navigator bilan navigatsiya</div>
+    <div class="code-block">ListTile(
+  leading: Icon(Icons.person),
+  title: Text('Profil'),
+  trailing: Icon(Icons.arrow_forward_ios),
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(),
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">To'liq menyu misoli</div>
+    <div class="slide-description">Barcha elementlar bilan</div>
+    <div class="code-block">class MenuScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Asosiy Menyu'),
+      ),
+      body: Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.category),
+            title: Text('Kategoriya'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CategoryScreen(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Sozlamalar'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsScreen(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Profil'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Subtitle qo'shish</div>
+    <div class="theory-content">
+        <strong>subtitle:</strong> Asosiy matn ostida ko'rinadigan qo'shimcha matn
+        <br><br>
+        <strong>Rangi:</strong> Odatda kulrang va kichikroq
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Qo'shimcha ma'lumot berish uchun
+        <br><br>
+        <strong>Misol:</strong> "Hisobingizni boshqaring" kabi tavsif
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Subtitle bilan ListTile</div>
+    <div class="slide-description">Qo'shimcha matn qo'shish</div>
+    <div class="code-block">ListTile(
+  leading: Icon(Icons.person),
+  title: Text('Profil'),
+  subtitle: Text('Hisobingizni boshqaring'),
+  trailing: Icon(Icons.arrow_forward_ios),
+  onTap: () {},
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Divider nima uchun kerak?</div>
+    <div class="theory-content">
+        <strong>Divider:</strong> Ro'yxat elementlari orasidagi chiziq
+        <br><br>
+        <strong>Vazifasi:</strong> Elementlarni bir-biridan ajratish
+        <br><br>
+        <strong>Ko'rinishi:</strong> Yupqa kulrang chiziq
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Ko'p elementlar bo'lganda
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Divider bilan ro'yxat</div>
+    <div class="slide-description">Elementlar orasida chiziq</div>
+    <div class="code-block">Column(
+  children: [
+    ListTile(
+      leading: Icon(Icons.category),
+      title: Text('Kategoriya'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+    Divider(),
+    ListTile(
+      leading: Icon(Icons.settings),
+      title: Text('Sozlamalar'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+    Divider(),
+    ListTile(
+      leading: Icon(Icons.person),
+      title: Text('Profil'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">ListView vs Column farqi</div>
+    <div class="theory-content">
+        <strong>Column:</strong> Faqat ko'rinadigan miqdordagi elementlar uchun
+        <br><br>
+        <strong>ListView:</strong> Ko'p elementlar bo'lganda, scroll qilish mumkin
+        <br><br>
+        <strong>Qachon Column:</strong> 3-5 ta element bo'lganda
+        <br><br>
+        <strong>Qachon ListView:</strong> 10+ element yoki noma'lum miqdor
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">ListView bilan scrollable ro'yxat</div>
+    <div class="slide-description">Ko'p elementlar uchun</div>
+    <div class="code-block">ListView(
+  children: [
+    ListTile(
+      leading: Icon(Icons.home),
+      title: Text('Bosh sahifa'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+    ListTile(
+      leading: Icon(Icons.category),
+      title: Text('Kategoriya'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+    ListTile(
+      leading: Icon(Icons.favorite),
+      title: Text('Sevimlilar'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+    ListTile(
+      leading: Icon(Icons.shopping_cart),
+      title: Text('Savatcha'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+    ListTile(
+      leading: Icon(Icons.settings),
+      title: Text('Sozlamalar'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+    ListTile(
+      leading: Icon(Icons.person),
+      title: Text('Profil'),
+      trailing: Icon(Icons.arrow_forward_ios),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">ListView.builder nima?</div>
+    <div class="theory-content">
+        <strong>ListView.builder:</strong> Ko'p elementlarni samarali ko'rsatish uchun
+        <br><br>
+        <strong>itemCount:</strong> Nechta element borligini belgilaydi
+        <br><br>
+        <strong>itemBuilder:</strong> Har bir elementni qanday yaratishni ko'rsatadi
+        <br><br>
+        <strong>Afzalligi:</strong> Xotiradan kam foydalanadi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">ListView.builder misoli</div>
+    <div class="slide-description">Dinamik ro'yxat yaratish</div>
+    <div class="code-block">class MenuScreen extends StatelessWidget {
+  final List<String> menuItems = [
+    'Bosh sahifa',
+    'Kategoriya', 
+    'Sevimlilar',
+    'Savatcha',
+    'Sozlamalar',
+    'Profil'
+  ];
+
+  final List<IconData> menuIcons = [
+    Icons.home,
+    Icons.category,
+    Icons.favorite,
+    Icons.shopping_cart,
+    Icons.settings,
+    Icons.person
+  ];
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Menyu')),
+      body: ListView.builder(
+        itemCount: menuItems.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: Icon(menuIcons[index]),
+            title: Text(menuItems[index]),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              print('${menuItems[index]} bosildi');
+            },
+          );
+        },
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">List<String> va List<IconData> nima?</div>
+    <div class="theory-content">
+        <strong>List<String>:</strong> Matnlar ro'yxati
+        <br><br>
+        <strong>List<IconData>:</strong> Iconlar ro'yxati
+        <br><br>
+        <strong>index:</strong> Ro'yxatdagi element o'rni (0, 1, 2...)
+        <br><br>
+        <strong>menuItems[index]:</strong> O'sha indexdagi matnni olish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Rang berish</div>
+    <div class="slide-description">ListTile ga rang qo'shish</div>
+    <div class="code-block">ListTile(
+  leading: Icon(
+    Icons.settings,
+    color: Colors.blue,
+  ),
+  title: Text(
+    'Sozlamalar',
+    style: TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+  ),
+  trailing: Icon(
+    Icons.arrow_forward_ios,
+    color: Colors.grey,
+  ),
+  tileColor: Colors.grey[100],
+  onTap: () {},
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">tileColor nima?</div>
+    <div class="theory-content">
+        <strong>tileColor:</strong> ListTile ning orqa fon rangi
+        <br><br>
+        <strong>Colors.grey[100]:</strong> Och kulrang
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Alohida ko'rinish berish uchun
+        <br><br>
+        <strong>Boshqa ranglar:</strong> Colors.blue[50], Colors.green[100]
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Card bilan chiroyli ko'rinish</div>
+    <div class="slide-description">ListTile ni Card ga o'rash</div>
+    <div class="code-block">Card(
+  margin: EdgeInsets.all(8),
+  child: ListTile(
+    leading: Icon(Icons.settings),
+    title: Text('Sozlamalar'),
+    subtitle: Text('Ilovani sozlang'),
+    trailing: Icon(Icons.arrow_forward_ios),
+    onTap: () {},
+  ),
+)</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Card widget nima?</div>
+    <div class="theory-content">
+        <strong>Card:</strong> Soya va border radius bilan o'ralgan konteyner
+        <br><br>
+        <strong>margin:</strong> Card atrofidagi bo'shliq
+        <br><br>
+        <strong>child:</strong> Card ichidagi widget
+        <br><br>
+        <strong>Ko'rinishi:</strong> Chiroyli, zamonaviy dizayn
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Oddiy sahifalar yaratish</div>
+    <div class="slide-description">Navigatsiya uchun sahifalar</div>
+    <div class="code-block">class SettingsScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sozlamalar'),
+      ),
+      body: Center(
+        child: Text(
+          'Sozlamalar sahifasi',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profil'),
+      ),
+      body: Center(
+        child: Text(
+          'Profil sahifasi',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Amaliy vazifa 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Do'kon ilovasi menyusi yarating. 5 ta element bo'lsin: "Mahsulotlar", "Kategoriyalar", "Savatcha", "Sevimlilar", "Hisobim". Har biriga mos icon qo'ying.
+    </div>
+    <div class="code-block">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ShopMenuScreen(),
+    );
+  }
+}
+
+class ShopMenuScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Do\'kon Menyusi'),
+        backgroundColor: Colors.blue,
+      ),
+      body: Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.shopping_bag, color: Colors.green),
+            title: Text('Mahsulotlar'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              print('Mahsulotlar bosildi');
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.category, color: Colors.orange),
+            title: Text('Kategoriyalar'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              print('Kategoriyalar bosildi');
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.shopping_cart, color: Colors.blue),
+            title: Text('Savatcha'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              print('Savatcha bosildi');
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.favorite, color: Colors.red),
+            title: Text('Sevimlilar'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              print('Sevimlilar bosildi');
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.person, color: Colors.purple),
+            title: Text('Hisobim'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              print('Hisobim bosildi');
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Amaliy vazifa 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Kontaktlar ro'yxati yarating. ListView.builder ishlatib, 10 ta kontakt ko'rsatting. Har birida ism, telefon raqami (subtitle) va qo'ng'iroq icon bo'lsin.
+    </div>
+    <div class="code-block">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ContactsScreen(),
+    );
+  }
+}
+
+class ContactsScreen extends StatelessWidget {
+  final List<String> names = [
+    'Ali Valiyev',
+    'Madina Karimova',
+    'Bobur Toshmatov',
+    'Nigora Rahimova',
+    'Sardor Umarov',
+    'Laylo Nazarova',
+    'Javohir Salimov',
+    'Zilola Abdullayeva',
+    'Doniyor Hasanov',
+    'Malika Yusupova'
+  ];
+
+  final List<String> phones = [
+    '+998 90 123 45 67',
+    '+998 91 234 56 78',
+    '+998 93 345 67 89',
+    '+998 94 456 78 90',
+    '+998 95 567 89 01',
+    '+998 97 678 90 12',
+    '+998 98 789 01 23',
+    '+998 99 890 12 34',
+    '+998 90 901 23 45',
+    '+998 91 012 34 56'
+  ];
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Kontaktlar'),
+        backgroundColor: Colors.green,
+      ),
+      body: ListView.builder(
+        itemCount: names.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              ListTile(
+                leading: Icon(Icons.person, color: Colors.blue),
+                title: Text(names[index]),
+                subtitle: Text(phones[index]),
+                trailing: Icon(Icons.phone, color: Colors.green),
+                onTap: () {
+                  print('${names[index]} ga qo\'ng\'iroq qilinyapti');
+                },
+              ),
+              Divider(),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Amaliy vazifa 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Sozlamalar sahifasi yarating. Card widget ishlatib chiroyli ko'rinish bering. "Tilni o'zgartirish", "Xavfsizlik", "Bildirishnomalar" elementlari bo'lsin.
+    </div>
+    <div class="code-block">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SettingsMenuScreen(),
+    );
+  }
+}
+
+class SettingsMenuScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sozlamalar'),
+        backgroundColor: Colors.purple,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Card(
+              margin: EdgeInsets.all(8),
+              child: ListTile(
+                leading: Icon(Icons.language, color: Colors.blue),
+                title: Text('Tilni o\'zgartirish'),
+                subtitle: Text('Tilni tanlang'),
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LanguageScreen(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(8),
+              child: ListTile(
+                leading: Icon(Icons.security, color: Colors.red),
+                title: Text('Xavfsizlik'),
+                subtitle: Text('Parol va xavfsizlik'),
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SecurityScreen(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(8),
+              child: ListTile(
+                leading: Icon(Icons.notifications, color: Colors.orange),
+                title: Text('Bildirishnomalar'),
+                subtitle: Text('Push xabarlar sozlamalari'),
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NotificationsScreen(),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LanguageScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tilni o\'zgartirish'),
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
+        child: Text(
+          'Til sozlamalari sahifasi',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+class SecurityScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Xavfsizlik'),
+        backgroundColor: Colors.red,
+      ),
+      body: Center(
+        child: Text(
+          'Xavfsizlik sozlamalari sahifasi',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+class NotificationsScreen extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bildirishnomalar'),
+        backgroundColor: Colors.orange,
+      ),
+      body: Center(
+        child: Text(
+          'Bildirishnomalar sozlamalari sahifasi',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Bu yerda telefon ekranidagi natija ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 31</div>
+    <div class="slide-title">Foydali maslahatlar</div>
+    <div class="theory-content">
+        <strong>1. To'g'ri widget tanlang:</strong>
+        <br>• 3-5 element: Column + ListTile
+        <br>• Ko'p element: ListView + ListTile
+        <br><br>
+        <strong>2. Icon lar mos bo'lsin:</strong>
+        <br>• Sozlamalar uchun Icons.settings
+        <br>• Profil uchun Icons.person
+        <br><br>
+        <strong>3. Navigatsiya qo'ying:</strong>
+        <br>• onTap da Navigator.push
+        <br>• trailing da arrow icon
+        <br><br>
+        <strong>4. Divider ishlatting:</strong>
+        <br>• Elementlarni ajratish uchun
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 32</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. itemCount unutish:</strong>
+        <br>• ListView.builder da itemCount shart
+        <br><br>
+        <strong>2. index xatosi:</strong>
+        <br>• List indexi 0 dan boshlanadi
+        <br><br>
+        <strong>3. Navigator context:</strong>
+        <br>• context ni to'g'ri uzatish
+        <br><br>
+        <strong>4. Icon va matn mos kelmasligi:</strong>
+        <br>• List elementlari soni bir xil bo'lishi kerak
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 33</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>Bugun nima o'rgandik:</strong>
+        <br>• ListView va ListTile widgetlari
+        <br>• leading, title, subtitle, trailing
+        <br>• onTap bilan bosiladigan elementlar
+        <br>• Navigator bilan sahifalarga o'tish
+        <br>• Divider va Card bilan dizayn
+        <br>• ListView.builder bilan dinamik ro'yxat
+        <br><br>
+        <strong>Endi nima qila olasiz:</strong>
+        <br>• Ilovalar uchun menyular yaratishingiz mumkin
+        <br>• Kontaktlar, mahsulotlar ro'yxatini yaratishingiz mumkin
+        <br>• Sozlamalar sahifalarini yaratishingiz mumkin
+        <br>• Navigatsiya bilan sahifalar bog'lashingiz mumkin
+        <br><br>
+        <strong>🎉 Tabriklaymiz! Professional ro'yxatlar yarata olasiz!</strong>
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Royxat_Menu_Flutter_Darsi.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>
