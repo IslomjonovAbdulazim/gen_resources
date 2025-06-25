@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flutter Navigation Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #E3F2FD;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #FF9800;
+            margin: 15px 0;
+            font-style: italic;
+            color: #E65100;
+        }
+
+        .homework-section {
+            background: #E8F5E8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .exercise-section {
+            background: #FFF3E0;
+            border-left: 4px solid #FF9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Flutter Navigation - Sahifalar orasida harakat</div>
+    <div class="theory-content">
+        <strong>Bugungi mavzu:</strong> Flutter da sahifalar orasida qanday o'tish kerak
+        <br><br>
+        <strong>Nima o'rganamiz:</strong>
+        <br>• Sahifalarga o'tish (push)
+        <br>• Orqaga qaytish (pop)
+        <br>• Ma'lumot uzatish
+        <br>• Nomilab navigatsiya qilish
+        <br><br>
+        <strong>Dars davomi:</strong> 2 soat
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>Navigation nima va nima uchun kerak?</li>
+            <li>3 ta sahifa yaratamiz (pages papkasi)</li>
+            <li>Push - yangi sahifaga o'tish</li>
+            <li>Pop - orqaga qaytish</li>
+            <li>PushReplacement - almashtirish</li>
+            <li>Named routes - nomilab navigatsiya</li>
+            <li>Ma'lumot uzatish (data transfer)</li>
+            <li>Uy vazifasi 1: 4 sahifali ilova</li>
+            <li>Uy vazifasi 2: Ma'lumot uzatuvchi ilova</li>
+            <li>Uy vazifasi 3: Menu bilan navigatsiya</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Navigation nima?</div>
+    <div class="theory-content">
+        <strong>Oddiy qilib aytganda:</strong> Telefondagi ilovalar ichida sahifalar orasida o'tish
+        <br><br>
+        <strong>Misol:</strong>
+        <br>• Instagram'da profil sahifasiga o'tish
+        <br>• WhatsApp'da chat ochish
+        <br>• Telegram'da sozlamalar sahifasini ochish
+        <br><br>
+        <strong>Flutter'da:</strong> Navigator widget yordamida amalga oshiriladi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Loyiha tuzilmasi - 3 ta sahifa yaratamiz</div>
+    <div class="slide-description">lib/pages/ papkasida 3 ta sahifa</div>
+    <div class="code-block">lib/
+  pages/
+    home_page.dart
+    profile_page.dart
+    settings_page.dart
+  main.dart</div>
+    <div class="result-placeholder">[Bu yerda papka tuzilmasi ko'rsatiladi]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">1-sahifa: home_page.dart</div>
+    <div class="slide-description">Asosiy sahifa yaratamiz</div>
+    <div class="code-block">import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Asosiy sahifa'),
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Salom! Bu asosiy sahifa',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Bu yerga navigation yozamiz
+              },
+              child: Text('Profile ga o\'tish'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">2-sahifa: profile_page.dart</div>
+    <div class="slide-description">Profile sahifasi</div>
+    <div class="code-block">import 'package:flutter/material.dart';
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profil'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.grey,
+              child: Icon(Icons.person, size: 50),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Mening profilim',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Orqaga qaytish'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">3-sahifa: settings_page.dart</div>
+    <div class="slide-description">Sozlamalar sahifasi</div>
+    <div class="code-block">import 'package:flutter/material.dart';
+
+class SettingsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sozlamalar'),
+        backgroundColor: Colors.purple,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.settings, size: 80, color: Colors.purple),
+            SizedBox(height: 20),
+            Text(
+              'Sozlamalar',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Orqaga'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">main.dart ni sozlaymiz</div>
+    <div class="slide-description">Asosiy fayl</div>
+    <div class="code-block">import 'package:flutter/material.dart';
+import 'pages/home_page.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Navigation Darsi',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Navigator.push() nima?</div>
+    <div class="theory-content">
+        <strong>Push:</strong> Yangi sahifaga o'tish
+        <br><br>
+        <strong>Qanday ishlaydi:</strong>
+        <br>• Hozirgi sahifani stack ga qo'yadi
+        <br>• Yangi sahifani yuqoridan qo'yadi
+        <br>• Orqaga tugmasini avtomatik qo'shadi
+        <br><br>
+        <strong>Misol:</strong> Telegram'da chat ochganingizda
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">Birinchi navigation - push misoli</div>
+    <div class="slide-description">HomePage'dan ProfilePage'ga o'tish</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfilePage(),
+      ),
+    );
+  },
+  child: Text('Profile ga o\'tish'),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Navigator.pop() nima?</div>
+    <div class="theory-content">
+        <strong>Pop:</strong> Orqaga qaytish
+        <br><br>
+        <strong>Qanday ishlaydi:</strong>
+        <br>• Hozirgi sahifani stack dan olib tashlaydi
+        <br>• Oldingi sahifaga qaytadi
+        <br>• Orqaga tugması avtomatik ishlaydı
+        <br><br>
+        <strong>Qachon kerak:</strong> Tugma bosilganda orqaga qaytish uchun
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Pop misoli</div>
+    <div class="slide-description">ProfilePage'dan orqaga qaytish</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    Navigator.pop(context);
+  },
+  child: Text('Orqaga qaytish'),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Mashq vaqti 1</div>
+    <div class="exercise-section">
+        <strong>Vazifa:</strong> HomePage'ga yana bir tugma qo'shing va SettingsPage'ga o'tish uchun navigation yozing.
+        <br><br>
+        <strong>5 daqiqa vaqt beriladi!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Mashq javobi</div>
+    <div class="slide-description">HomePage'ga settings tugmasi qo'shamiz</div>
+    <div class="code-block">Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Text('Salom! Bu asosiy sahifa'),
+    SizedBox(height: 20),
+    ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProfilePage()),
+        );
+      },
+      child: Text('Profile ga o\'tish'),
+    ),
+    SizedBox(height: 10),
+    ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingsPage()),
+        );
+      },
+      child: Text('Sozlamalar'),
+    ),
+  ],
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Navigator.pushReplacement() nima?</div>
+    <div class="theory-content">
+        <strong>PushReplacement:</strong> Hozirgi sahifani yangi sahifa bilan almashtirish
+        <br><br>
+        <strong>Farqi:</strong>
+        <br>• Push - sahifani stack ga qo'shadi
+        <br>• PushReplacement - sahifani almashtiradi
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> Login dan Home'ga o'tganda
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">PushReplacement misoli</div>
+    <div class="slide-description">Profile'dan Settings'ga almashtirish</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SettingsPage(),
+      ),
+    );
+  },
+  child: Text('Settings ga almashtir'),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Named Routes nima?</div>
+    <div class="theory-content">
+        <strong>Named Routes:</strong> Sahifalarga nom berish va shu nom orqali o'tish
+        <br><br>
+        <strong>Foydasi:</strong>
+        <br>• Kodning oqilishi
+        <br>• Xatolar kamayadi
+        <br>• Katta loyihalarda qulay
+        <br><br>
+        <strong>Misol:</strong> '/home', '/profile', '/settings'
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Named Routes o'rnatish</div>
+    <div class="slide-description">main.dart da routes qo'shamiz</div>
+    <div class="code-block">MaterialApp(
+  title: 'Navigation Darsi',
+  theme: ThemeData(primarySwatch: Colors.blue),
+  home: HomePage(),
+  routes: {
+    '/home': (context) => HomePage(),
+    '/profile': (context) => ProfilePage(),
+    '/settings': (context) => SettingsPage(),
+  },
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">Named Routes bilan navigation</div>
+    <div class="slide-description">Navigator.pushNamed() ishlatamiz</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    Navigator.pushNamed(context, '/profile');
+  },
+  child: Text('Profile ga o\'tish'),
+),
+
+ElevatedButton(
+  onPressed: () {
+    Navigator.pushNamed(context, '/settings');
+  },
+  child: Text('Sozlamalar'),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">Ma'lumot uzatish - oddiy yo'li</div>
+    <div class="theory-content">
+        <strong>Constructor orqali:</strong> Sahifa yaratayotganda ma'lumot berish
+        <br><br>
+        <strong>Misol:</strong>
+        <br>• Foydalanuvchi ismini uzatish
+        <br>• Raqamni uzatish
+        <br>• Rasmni uzatish
+        <br><br>
+        <strong>Shartlar:</strong> StatelessWidget'da constructor bo'lishi kerak
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">ProfilePage ni o'zgartiramiz</div>
+    <div class="slide-description">Ism qabul qiluvchi qilamiz</div>
+    <div class="code-block">class ProfilePage extends StatelessWidget {
+  final String userName;
+  
+  ProfilePage({required this.userName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profil'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.grey,
+              child: Icon(Icons.person, size: 50),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Salom, $userName!',
+              style: TextStyle(fontSize: 24),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Ma'lumot bilan navigation</div>
+    <div class="slide-description">HomePage'dan ism uzatamiz</div>
+    <div class="code-block">ElevatedButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfilePage(
+          userName: 'Anvar',
+        ),
+      ),
+    );
+  },
+  child: Text('Profile ga o\'tish'),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Mashq vaqti 2</div>
+    <div class="exercise-section">
+        <strong>Vazifa:</strong> SettingsPage ga ham ma'lumot uzating. Masalan, "theme" degan String uzating va sahifada ko'rsating.
+        <br><br>
+        <strong>7 daqiqa vaqt beriladi!</strong>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Mashq javobi</div>
+    <div class="slide-description">SettingsPage ga theme uzatamiz</div>
+    <div class="code-block">class SettingsPage extends StatelessWidget {
+  final String theme;
+  
+  SettingsPage({required this.theme});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Sozlamalar')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.settings, size: 80),
+            SizedBox(height: 20),
+            Text('Hozirgi tema: $theme'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// HomePage'da:
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => SettingsPage(theme: 'Qorong\'u'),
+  ),
+);</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Uy vazifasi 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> 4 ta sahifali ilova yarating: Home, About, Contact, Gallery. Har birida alohida rang va icon bo'lsin. Har sahifadan har sahifaga o'ta olish kerak.
+    </div>
+    <div class="code-block">// about_page.dart
+class AboutPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Biz haqimizda'), backgroundColor: Colors.orange),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.info, size: 80, color: Colors.orange),
+            Text('Bu bizning kompaniya'),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/home'),
+                  child: Text('Home'),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/contact'),
+                  child: Text('Contact'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[To'liq kod: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Uy vazifasi 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Ma'lumot uzatuvchi ilova yarating. HomePage'da TextField bo'lsin, u yerga yozilgan matn ProfilePage'da ko'rinsin.
+    </div>
+    <div class="code-block">// home_page.dart
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Asosiy sahifa')),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                labelText: 'Ismingizni yozing',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(
+                      userName: _controller.text,
+                    ),
+                  ),
+                );
+              },
+              child: Text('Profile ga o\'tish'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[To'liq kod: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Uy vazifasi 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Drawer menu bilan navigatsiya yarating. Menu ichida Home, Profile, Settings, About bo'lsin va har biriga o'tish mumkin bo'lsin.
+    </div>
+    <div class="code-block">Scaffold(
+  appBar: AppBar(title: Text('Menu bilan ilova')),
+  drawer: Drawer(
+    child: ListView(
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Colors.blue),
+          child: Text(
+            'Menu',
+            style: TextStyle(color: Colors.white, fontSize: 24),
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Asosiy sahifa'),
+          onTap: () {
+            Navigator.pushNamed(context, '/home');
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.person),
+          title: Text('Profil'),
+          onTap: () {
+            Navigator.pushNamed(context, '/profile');
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.settings),
+          title: Text('Sozlamalar'),
+          onTap: () {
+            Navigator.pushNamed(context, '/settings');
+          },
+        ),
+      ],
+    ),
+  ),
+  body: Center(child: Text('Asosiy sahifa')),
+)</div>
+    <div class="result-placeholder">[To'liq kod: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. Import unutish:</strong>
+        <br>• Sahifa fayllarini import qilishni unutish
+        <br><br>
+        <strong>2. Context yo'q:</strong>
+        <br>• Navigator.push() da context bermaslik
+        <br><br>
+        <strong>3. Required parameter:</strong>
+        <br>• Constructor'da required yozib, ma'lumot bermaslik
+        <br><br>
+        <strong>4. Pop dan keyin code:</strong>
+        <br>• Navigator.pop() dan keyin kod yozish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Navigation best practices</div>
+    <div class="theory-content">
+        <strong>1. Named routes ishlatng</strong> - katta loyihalarda
+        <br><br>
+        <strong>2. Ma'lumotni to'g'ri uzating</strong> - xavfsizlik uchun
+        <br><br>
+        <strong>3. Back tugmasini to'g'ri ishlatng</strong> - foydalanuvchi uchun
+        <br><br>
+        <strong>4. Loading state qo'shing</strong> - network da ma'lumot olayotganda
+        <br><br>
+        <strong>5. Error handling</strong> - xatolik bo'lganda nima qilish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>Bugun o'rgandik:</strong>
+        <br>• Navigator.push() - yangi sahifaga o'tish
+        <br>• Navigator.pop() - orqaga qaytish
+        <br>• Navigator.pushReplacement() - almashtirish
+        <br>• Named routes - nomlangan yo'nalishlar
+        <br>• Ma'lumot uzatish - constructor orqali
+        <br><br>
+        <strong>Keyingi darsda:</strong>
+        <br>• BottomNavigationBar
+        <br>• TabBar navigation
+        <br>• Advanced ma'lumot uzatish
+        <br><br>
+        <strong>Eslab qoling:</strong> Navigation - ilovaning asosi!
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Flutter_Navigation_Darsi.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>
