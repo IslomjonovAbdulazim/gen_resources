@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe App I Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #FF6B35;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #FFF4E6;
+            border-left: 4px solid #FF6B35;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #FFF4E6;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FF6B35;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #4CAF50;
+            margin: 15px 0;
+            font-style: italic;
+            color: #2E7D32;
+        }
+
+        .homework-section {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Recipe App I - Retsept Ilovasi Yaratamiz</div>
+    <div class="theory-content">
+        <strong>Bugun o'rganamiz:</strong> Ovqat retseptlari ilovasining asosiy qismini yaratish.
+        <br><br>
+        <strong>Nima qilamiz:</strong> Ma'lumotlar modeli, retseptlar ro'yxati va rasmlar bilan ishlash.
+        <br><br>
+        <strong>Natija:</strong> Chiroyli retseptlar ro'yxati ko'rsatadigan ilova.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>Data Model nima va qanday yaratiladi</li>
+            <li>Recipe class yaratish</li>
+            <li>Static retseptlar ro'yxati yaratish</li>
+            <li>Assets papka qo'shish va sozlash</li>
+            <li>Rasmlarni loyihaga qo'shish</li>
+            <li>ListView.builder bilan ro'yxat ko'rsatish</li>
+            <li>Retseptlarni ekranda chiroyli ko'rsatish</li>
+            <li>Amaliy mashqlar</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Data Model nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ma'lumotlarni tartibli saqlash uchun ishlatiladigan shablon.
+        <br><br>
+        <strong>Misol:</strong> Retsept haqidagi barcha ma'lumotlar (nomi, rasmi, vaqti) bitta joyda.
+        <br><br>
+        <strong>Nima uchun kerak:</strong> Ma'lumotlarni oson boshqarish va ishlatish uchun.
+        <br><br>
+        <strong>Flutter da:</strong> Class yordamida yaratiladi.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Recipe class yaratamiz</div>
+    <div class="slide-description">Retsept uchun ma'lumotlar modeli</div>
+    <div class="code-block">class Recipe {
+  String name;
+  String image;
+  String cookTime;
+  String description;
+
+  Recipe({
+    required this.name,
+    required this.image,
+    required this.cookTime,
+    required this.description,
+  });
+}</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - Recipe class yaratildi</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Static ro'yxat nima demak?</div>
+    <div class="theory-content">
+        <strong>Static:</strong> O'zgarmaydigan, doimiy ma'lumotlar.
+        <br><br>
+        <strong>Bizning holatda:</strong> Oldindan tayyorlangan retseptlar ro'yxati.
+        <br><br>
+        <strong>Keyinchalik:</strong> Bu ma'lumotlarni internet yoki bazadan olamiz.
+        <br><br>
+        <strong>Hozir:</strong> Oddiy ro'yxat yaratamiz va ishlatamiz.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">Retseptlar ro'yxati yaratamiz</div>
+    <div class="slide-description">Bir nechta retsept ma'lumotlari</div>
+    <div class="code-block">List<Recipe> recipes = [
+  Recipe(
+    name: 'Osh',
+    image: 'assets/images/osh.jpg',
+    cookTime: '2 soat',
+    description: 'An\'anaviy o\'zbek taomi',
+  ),
+  Recipe(
+    name: 'Lag\'mon',
+    image: 'assets/images/lagmon.jpg',
+    cookTime: '1 soat',
+    description: 'Mazali ko\'k va go\'sht',
+  ),
+  Recipe(
+    name: 'Manti',
+    image: 'assets/images/manti.jpg',
+    cookTime: '45 daqiqa',
+    description: 'Bug\'da pishirilgan',
+  ),
+];</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - 3 ta retsept ro'yxati</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Assets papka nima?</div>
+    <div class="theory-content">
+        <strong>Assets:</strong> Ilovada ishlatiladigan fayllar (rasmlar, audio, matn).
+        <br><br>
+        <strong>Joylashuvi:</strong> Loyiha papkasining ildizida.
+        <br><br>
+        <strong>Tuzilishi:</strong>
+        <br>• assets/images/ - rasmlar
+        <br>• assets/fonts/ - shriftlar
+        <br>• assets/data/ - ma'lumotlar
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">Assets papka yaratish</div>
+    <div class="slide-description">Loyiha strukturasini sozlash</div>
+    <div class="code-block">my_recipe_app/
+├── lib/
+├── assets/
+│   └── images/
+│       ├── osh.jpg
+│       ├── lagmon.jpg
+│       └── manti.jpg
+└── pubspec.yaml</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - papka tuzilishi</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">pubspec.yaml da sozlash</div>
+    <div class="slide-description">Assets fayllarni ro'yxatga olish</div>
+    <div class="code-block">flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - pubspec.yaml sozlandi</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">Birinchi mashq vaqti!</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> O'zingizning Recipe class yarating. Pizza, Burger va Pasta uchun 3 ta retsept qo'shing.
+        <br><br>
+        <strong>Eslatma:</strong> Har bir retsept uchun nom, rasm yo'li, vaqt va tavsif yozing.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">ListView.builder nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Ko'p miqdordagi ma'lumotni ro'yxat ko'rinishida ko'rsatadigan widget.
+        <br><br>
+        <strong>Afzalligi:</strong> Faqat ko'rinadigan elementlarni yaratadi - tez ishlaydi.
+        <br><br>
+        <strong>Qachon ishlatiladi:</strong> 10+ ta element bo'lganda.
+        <br><br>
+        <strong>Parametrlar:</strong> itemCount va itemBuilder.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Oddiy ListView yaratamiz</div>
+    <div class="slide-description">Retseptlar ro'yxatini ko'rsatish</div>
+    <div class="code-block">ListView.builder(
+  itemCount: recipes.length,
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text(recipes[index].name),
+      subtitle: Text(recipes[index].cookTime),
+      leading: Image.asset(
+        recipes[index].image,
+        width: 50,
+        height: 50,
+        fit: BoxFit.cover,
+      ),
+    );
+  },
+)</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - oddiy retseptlar ro'yxati</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">itemBuilder qanday ishlaydi?</div>
+    <div class="theory-content">
+        <strong>itemBuilder:</strong> Har bir element uchun widget qaytaradigan funksiya.
+        <br><br>
+        <strong>context:</strong> Ilova konteksti (har doim kerak).
+        <br><br>
+        <strong>index:</strong> Hozirgi elementning tartib raqami (0 dan boshlanadi).
+        <br><br>
+        <strong>Qaytaradi:</strong> Bitta widget (ListTile, Container, Card).
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">To'liq RecipeList widget</div>
+    <div class="slide-description">Barcha qismlarni birlashtirish</div>
+    <div class="code-block">class RecipeList extends StatelessWidget {
+  final List<Recipe> recipes = [
+    Recipe(
+      name: 'Osh',
+      image: 'assets/images/osh.jpg',
+      cookTime: '2 soat',
+      description: 'An\'anaviy o\'zbek taomi',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Retseptlar')),
+      body: ListView.builder(
+        itemCount: recipes.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(recipes[index].name),
+            subtitle: Text(recipes[index].cookTime),
+          );
+        },
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - to'liq retseptlar sahifasi</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Image.asset bilan ishlash</div>
+    <div class="slide-description">Rasmlarni to'g'ri ko'rsatish</div>
+    <div class="code-block">Image.asset(
+  'assets/images/osh.jpg',
+  width: 60,
+  height: 60,
+  fit: BoxFit.cover,
+  errorBuilder: (context, error, stackTrace) {
+    return Icon(Icons.error);
+  },
+)</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - rasm ko'rsatildi</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Ikkinchi mashq vaqti!</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> ListView.builder yarating. 5 ta turli taom ro'yxatini ko'rsating. Har birida rasm, nom va pishirish vaqti bo'lsin.
+        <br><br>
+        <strong>Qo'shimcha:</strong> Agar rasm yuklanmasa, Icon(Icons.fastfood) ko'rsating.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Chiroyli Card widget</div>
+    <div class="slide-description">Retseptlarni Card ichida ko'rsatish</div>
+    <div class="code-block">Card(
+  margin: EdgeInsets.all(8),
+  child: ListTile(
+    leading: ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.asset(
+        recipes[index].image,
+        width: 60,
+        height: 60,
+        fit: BoxFit.cover,
+      ),
+    ),
+    title: Text(recipes[index].name),
+    subtitle: Text(recipes[index].cookTime),
+    trailing: Icon(Icons.arrow_forward_ios),
+  ),
+)</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - chiroyli Card ko'rinishi</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Container bilan bezash</div>
+    <div class="slide-description">Yanada chiroyli ko'rinish</div>
+    <div class="code-block">Container(
+  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(12),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.2),
+        spreadRadius: 1,
+        blurRadius: 5,
+      ),
+    ],
+  ),
+  child: ListTile(
+    title: Text(recipes[index].name),
+    subtitle: Text(recipes[index].description),
+  ),
+)</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - soyali chiroyli konteyner</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">Padding va Margin farqi</div>
+    <div class="theory-content">
+        <strong>Padding:</strong> Widget ichidagi bo'sh joy.
+        <br><br>
+        <strong>Margin:</strong> Widget tashqarisidagi bo'sh joy.
+        <br><br>
+        <strong>EdgeInsets.all(8):</strong> Hamma tomondan 8 piksel.
+        <br><br>
+        <strong>EdgeInsets.symmetric:</strong> Faqat kerakli tomonlardan.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">To'liq loyiha kodi</div>
+    <div class="slide-description">Barcha qismlar birgalikda</div>
+    <div class="code-block">class RecipeApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Retseptlar',
+      home: RecipeHomePage(),
+    );
+  }
+}
+
+class RecipeHomePage extends StatelessWidget {
+  final List<Recipe> recipes = [
+    Recipe(
+      name: 'Osh',
+      image: 'assets/images/osh.jpg',
+      cookTime: '2 soat',
+      description: 'An\'anaviy o\'zbek taomi',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Retseptlar'),
+        backgroundColor: Colors.orange,
+      ),
+      body: ListView.builder(
+        itemCount: recipes.length,
+        itemBuilder: (context, index) {
+          return Card(
+            margin: EdgeInsets.all(8),
+            child: ListTile(
+              leading: Image.asset(recipes[index].image),
+              title: Text(recipes[index].name),
+              subtitle: Text(recipes[index].cookTime),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">Natija: Men taqdim etaman - ishlaydigan to'liq ilova</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">Uchinchi mashq vaqti!</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> To'liq retsept ilovasi yarating:
+        <br>• 7 ta turli retsept
+        <br>• Har birida rasm, nom, vaqt, tavsif
+        <br>• Card widget ichida chiroyli ko'rinish
+        <br>• AppBar rangi va sarlavhasi
+        <br><br>
+        <strong>Bonus:</strong> Floating action button qo'shing.
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Nima o'rgandik?</div>
+    <div class="theory-content">
+        <strong>1. Data Model:</strong> Ma'lumotlarni class da saqlash
+        <br><br>
+        <strong>2. Static ro'yxat:</strong> Oldindan tayyorlangan ma'lumotlar
+        <br><br>
+        <strong>3. Assets:</strong> Rasmlar va boshqa fayllar bilan ishlash
+        <br><br>
+        <strong>4. ListView.builder:</strong> Ko'p ma'lumotni ko'rsatish
+        <br><br>
+        <strong>Keyingi dars:</strong> Card widget va detail sahifa qo'shamiz!
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="theory-content">
+        <strong>1. pubspec.yaml xatosi:</strong>
+        <br>• Assets yo'lini to'g'ri yozish kerak
+        <br><br>
+        <strong>2. Rasm topilmaydi:</strong>
+        <br>• Flutter pub get ishlatishni unutmaslik
+        <br><br>
+        <strong>3. itemCount yo'q:</strong>
+        <br>• ListView.builder da itemCount majburiy
+        <br><br>
+        <strong>4. index xatosi:</strong>
+        <br>• 0 dan boshlanadi, length dan kichik bo'lishi kerak
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">🏠 Uy vazifasi 1: Kitoblar ilovasi</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Kitoblar ro'yxati ilovasini yarating
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>• Book class yarating (title, author, pages, image)
+        <br>• 5 ta kitob qo'shing
+        <br>• ListView.builder ishlatib ko'rsating
+        <br>• Har bir kitobda rasm, nom, muallif ko'rsating
+        <br><br>
+        <strong>Bonus:</strong> Kitob sahifalar soni ham ko'rsating
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">🏠 Uy vazifasi 2: O'yinlar do'koni</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Mobil o'yinlar ro'yxati yarating
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>• Game class (name, genre, rating, price, image)
+        <br>• 6 ta mashhur o'yin qo'shing
+        <br>• Card widget ichida chiroyli ko'rinish
+        <br>• Rating yulduzchalar bilan ko'rsating
+        <br>• Narx rangini yashil qiling
+        <br><br>
+        <strong>Bonus:</strong> AppBar da qidiruv tugmasi qo'shing
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">🏠 Uy vazifasi 3: Studentlar ro'yxati</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Sinf rahbari uchun studentlar ilovasi
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>• Student class (name, age, grade, subject, photo)
+        <br>• 8 ta student ma'lumoti
+        <br>• Circular avatar bilan foto
+        <br>• Baho rangini: A-yashil, B-sariq, C-qizil
+        <br>• Floating action button "Yangi student"
+        <br><br>
+        <strong>Bonus:</strong> Yosh bo'yicha tartiblash tugmasi
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Recipe_App_I_Flutter_Darsi.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>
