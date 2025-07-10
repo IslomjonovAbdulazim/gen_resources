@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Carousel Slider va Smooth Page Indicator Flutter Darsi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        
+        .slide {
+            page-break-before: always;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-left: 4px solid #FF6B35;
+            background-color: #f9f9f9;
+        }
+        
+        .slide:first-child {
+            page-break-before: auto;
+        }
+        
+        .slide-number {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 15px;
+        }
+        
+        .slide-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .theory-content {
+            background-color: #FFF3E0;
+            border-left: 4px solid #FF6B35;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .plan-list {
+            background: #FFF8E1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FF6B35;
+        }
+        
+        .plan-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .plan-list li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .result-placeholder {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #4CAF50;
+            margin: 15px 0;
+            font-style: italic;
+            color: #2E7D32;
+        }
+
+        .homework-section {
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .practice-section {
+            background: #F3E5F5;
+            border-left: 4px solid #9C27B0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .warning-section {
+            background: #FFEBEE;
+            border-left: 4px solid #F44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            .slide {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <div class="slide-number">Slayd 1</div>
+    <div class="slide-title">Carousel Slider va Smooth Page Indicator</div>
+    <div class="theory-content">
+        <strong>Mavzu:</strong> Flutter UI Komponentlari - Zamonaviy Slaydlar
+        <br><br>
+        <strong>Package 1:</strong> carousel_slider ^4.2.1 - Chiroyli slider yaratish uchun
+        <br><br>
+        <strong>Package 2:</strong> smooth_page_indicator ^1.3.0 - Animatsiyali indikatorlar uchun
+        <br><br>
+        <strong>Maqsad:</strong> Professional va interaktiv UI komponentlar yaratishni o'rganish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 2</div>
+    <div class="slide-title">Dars rejasi</div>
+    <div class="plan-list">
+        <ul>
+            <li>Carousel Slider nima va qayerda ishlatiladi?</li>
+            <li>Carousel Slider o'rnatish va sozlash</li>
+            <li>AutoPlay va customization</li>
+            <li>Smooth Page Indicator tanishuv</li>
+            <li>Turli xil effektlar (Worm, Slide, Jumping)</li>
+            <li>Carousel va Indicator birlashtirish</li>
+            <li>Responsive design va performance</li>
+            <li>Real Project - Image Gallery App</li>
+            <li>Advanced Features - Infinite Loop, Gestures</li>
+            <li>Best Practices va xatolardan qochish</li>
+            <li>3 ta amaliy mashq</li>
+            <li>Takrorlash va keyingi qadamlar</li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 3</div>
+    <div class="slide-title">Carousel Slider nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Carousel Slider - bir necha elementni gorizontal yoki vertikal ravishda scroll qilish imkonini beruvchi widget.
+        <br><br>
+        <strong>Ishlatilishi:</strong>
+        <br>• Rasm galereya ko'rsatish
+        <br>• Mahsulot tanishuvi
+        <br>• Banner va reklama
+        <br>• Onboarding sahifalari
+        <br>• News va blog postlar
+        <br><br>
+        <strong>Afzalliklari:</strong> Infinite scroll, Auto-play, Custom animations
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 4</div>
+    <div class="slide-title">Package o'rnatish</div>
+    <div class="slide-description">pubspec.yaml fayliga qo'shish</div>
+    <div class="code-block">dependencies:
+  flutter:
+    sdk: flutter
+  carousel_slider: ^4.2.1
+  smooth_page_indicator: ^1.3.0</div>
+    <div class="result-placeholder">[Terminal: flutter pub get]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 5</div>
+    <div class="slide-title">Birinchi Carousel Slider</div>
+    <div class="slide-description">Oddiy slider yaratish</div>
+    <div class="code-block">import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+class SimpleCarousel extends StatelessWidget {
+  final List<String> images = [
+    'https://picsum.photos/800/400?random=1',
+    'https://picsum.photos/800/400?random=2',
+    'https://picsum.photos/800/400?random=3',
+  ];
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Carousel Slider')),
+      body: Center(
+        child: CarouselSlider(
+          items: images.map((imageUrl) {
+            return Container(
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: NetworkImage(imageUrl),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          }).toList(),
+          options: CarouselOptions(
+            height: 200,
+            autoPlay: true,
+            enlargeCenterPage: true,
+          ),
+        ),
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 6</div>
+    <div class="slide-title">CarouselOptions nima?</div>
+    <div class="theory-content">
+        <strong>height:</strong> Carousel balandligi (default: 400)
+        <br><br>
+        <strong>autoPlay:</strong> Avtomatik harakat (true/false)
+        <br><br>
+        <strong>autoPlayInterval:</strong> Harakat vaqti (Duration)
+        <br><br>
+        <strong>enlargeCenterPage:</strong> Markazdagi elementni kattalashtirish
+        <br><br>
+        <strong>viewportFraction:</strong> Har bir element kengligi (0.0-1.0)
+        <br><br>
+        <strong>enableInfiniteScroll:</strong> Cheksiz aylanish
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 7</div>
+    <div class="slide-title">Customized Carousel</div>
+    <div class="slide-description">Ko'proq sozlamalar bilan</div>
+    <div class="code-block">CarouselSlider(
+  items: images.map((imageUrl) {
+    return Builder(
+      builder: (BuildContext context) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 8,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+            ),
+          ),
+        );
+      },
+    );
+  }).toList(),
+  options: CarouselOptions(
+    height: 250,
+    autoPlay: true,
+    autoPlayInterval: Duration(seconds: 3),
+    autoPlayAnimationDuration: Duration(milliseconds: 800),
+    enlargeCenterPage: true,
+    viewportFraction: 0.8,
+    aspectRatio: 16/9,
+    initialPage: 0,
+  ),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 8</div>
+    <div class="slide-title">Birinchi mashq</div>
+    <div class="practice-section">
+        <strong>Vazifa:</strong> News Carousel yarating.
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>1. 5 ta news card (Container bilan)
+        <br>2. AutoPlay 4 soniyada
+        <br>3. Shadow va border radius qo'shing
+        <br>4. Har bir card da title va subtitle bo'lsin
+        <br><br>
+        <strong>Vaqt:</strong> 15 daqiqa
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 9</div>
+    <div class="slide-title">Smooth Page Indicator nima?</div>
+    <div class="theory-content">
+        <strong>Ta'rif:</strong> Page Indicator - foydalanuvchiga qaysi sahifada ekanini ko'rsatuvchi animatsiyali nuqtalar.
+        <br><br>
+        <strong>Effektlar:</strong>
+        <br>• WormEffect - qurt kabi harakat
+        <br>• SlideEffect - siljish animatsiyasi
+        <br>• JumpingDotEffect - sakrash animatsiyasi
+        <br>• ExpandingDotsEffect - kengayish animatsiyasi
+        <br>• ScaleEffect - kattalashish animatsiyasi
+        <br><br>
+        <strong>Afzalligi:</strong> User Experience ni yaxshilaydi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 10</div>
+    <div class="slide-title">Oddiy Page Indicator</div>
+    <div class="slide-description">PageView bilan ishlash</div>
+    <div class="code-block">import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+class PageViewWithIndicator extends StatefulWidget {
+  @override
+  _PageViewWithIndicatorState createState() => _PageViewWithIndicatorState();
+}
+
+class _PageViewWithIndicatorState extends State<PageViewWithIndicator> {
+  final PageController _controller = PageController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: _controller,
+              children: [
+                Container(color: Colors.red, child: Center(child: Text('Page 1', style: TextStyle(fontSize: 24, color: Colors.white)))),
+                Container(color: Colors.blue, child: Center(child: Text('Page 2', style: TextStyle(fontSize: 24, color: Colors.white)))),
+                Container(color: Colors.green, child: Center(child: Text('Page 3', style: TextStyle(fontSize: 24, color: Colors.white)))),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: SmoothPageIndicator(
+              controller: _controller,
+              count: 3,
+              effect: WormEffect(
+                dotHeight: 12,
+                dotWidth: 12,
+                activeDotColor: Colors.orange,
+                dotColor: Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 11</div>
+    <div class="slide-title">Turli xil effektlar</div>
+    <div class="slide-description">Indicator animatsiya turlari</div>
+    <div class="code-block">// Worm Effect
+WormEffect(
+  dotHeight: 16,
+  dotWidth: 16,
+  activeDotColor: Colors.blue,
+  dotColor: Colors.grey,
+)
+
+// Slide Effect
+SlideEffect(
+  spacing: 8,
+  radius: 4,
+  dotWidth: 24,
+  dotHeight: 16,
+  paintStyle: PaintingStyle.stroke,
+  strokeWidth: 1.5,
+  activeDotColor: Colors.indigo,
+  dotColor: Colors.grey,
+)
+
+// Jumping Dot Effect
+JumpingDotEffect(
+  dotHeight: 16,
+  dotWidth: 16,
+  jumpScale: 1.7,
+  activeDotColor: Colors.purple,
+  dotColor: Colors.grey,
+)
+
+// Expanding Dots Effect
+ExpandingDotsEffect(
+  expansionFactor: 3,
+  dotHeight: 16,
+  activeDotColor: Colors.green,
+  dotColor: Colors.grey,
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 12</div>
+    <div class="slide-title">Carousel + Indicator birlashishi</div>
+    <div class="slide-description">Eng muhim qism - ikkalasini birlashtirish</div>
+    <div class="code-block">class CarouselWithIndicator extends StatefulWidget {
+  @override
+  _CarouselWithIndicatorState createState() => _CarouselWithIndicatorState();
+}
+
+class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
+  int currentIndex = 0;
+  final List<String> images = [
+    'https://picsum.photos/800/400?random=1',
+    'https://picsum.photos/800/400?random=2',
+    'https://picsum.photos/800/400?random=3',
+    'https://picsum.photos/800/400?random=4',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          CarouselSlider(
+            items: images.map((url) => Container(
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: NetworkImage(url),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )).toList(),
+            options: CarouselOptions(
+              height: 200,
+              autoPlay: true,
+              enlargeCenterPage: true,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+            ),
+          ),</div>
+    <div class="result-placeholder">[Davomi keyingi slaydda...]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 13</div>
+    <div class="slide-title">Carousel + Indicator davomi</div>
+    <div class="slide-description">AnimatedSmoothIndicator ishlatish</div>
+    <div class="code-block">          SizedBox(height: 20),
+          AnimatedSmoothIndicator(
+            activeIndex: currentIndex,
+            count: images.length,
+            effect: JumpingDotEffect(
+              dotHeight: 12,
+              dotWidth: 12,
+              activeDotColor: Colors.orange,
+              dotColor: Colors.grey,
+              spacing: 16,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 14</div>
+    <div class="slide-title">Muhim farq: PageController vs activeIndex</div>
+    <div class="warning-section">
+        <strong>Muammo:</strong> Carousel Slider PageController ishlatmaydi!
+        <br><br>
+        <strong>Yechim 1:</strong> AnimatedSmoothIndicator + activeIndex ishlatish
+        <br><br>
+        <strong>Yechim 2:</strong> onPageChanged callback orqali state yangilash
+        <br><br>
+        <strong>Noto'g'ri:</strong> SmoothPageIndicator + CarouselSlider ❌
+        <br><br>
+        <strong>To'g'ri:</strong> AnimatedSmoothIndicator + CarouselSlider ✅
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 15</div>
+    <div class="slide-title">Ikkinchi mashq</div>
+    <div class="practice-section">
+        <strong>Vazifa:</strong> Product Showcase yarating.
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>1. Carousel bilan mahsulot rasmlari
+        <br>2. AnimatedSmoothIndicator qo'shing
+        <br>3. ExpandingDotsEffect ishlatng
+        <br>4. onPageChanged orqali currentIndex yangilang
+        <br>5. Har bir mahsulot uchun nomi va narxi ko'rsating
+        <br><br>
+        <strong>Vaqt:</strong> 20 daqiqa
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 16</div>
+    <div class="slide-title">Amaliy loyiha - Image Gallery App</div>
+    <div class="slide-description">To'liq funksional gallereya</div>
+    <div class="code-block">class ImageGalleryApp extends StatefulWidget {
+  @override
+  _ImageGalleryAppState createState() => _ImageGalleryAppState();
+}
+
+class _ImageGalleryAppState extends State<ImageGalleryApp> {
+  int currentIndex = 0;
+  final CarouselController carouselController = CarouselController();
+  
+  final List<Map<String, String>> galleryItems = [
+    {
+      'image': 'https://picsum.photos/800/600?random=1',
+      'title': 'Tog\'lar manzarasi',
+      'description': 'Chiroyli tog\'lar va bulutlar'
+    },
+    {
+      'image': 'https://picsum.photos/800/600?random=2', 
+      'title': 'Okean qirg\'og\'i',
+      'description': 'To\'lqinli okean va qum'
+    },
+    {
+      'image': 'https://picsum.photos/800/600?random=3',
+      'title': 'O\'rmon manzarasi', 
+      'description': 'Yashil daraxtlar va yo\'lak'
+    },
+    {
+      'image': 'https://picsum.photos/800/600?random=4',
+      'title': 'Shahar manzarasi',
+      'description': 'Zamonaviy binolar va ko\'chalar'
+    },
+  ];</div>
+    <div class="result-placeholder">[Davomi keyingi slaydda...]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 17</div>
+    <div class="slide-title">Image Gallery - UI qismi</div>
+    <div class="slide-description">Carousel va ma'lumotlarni ko'rsatish</div>
+    <div class="code-block">  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text('Image Gallery'),
+        backgroundColor: Colors.black,
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: CarouselSlider(
+              carouselController: carouselController,
+              items: galleryItems.map((item) {
+                return Container(
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white24,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.network(
+                      item['image']!,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
+                );
+              }).toList(),</div>
+    <div class="result-placeholder">[Davomi keyingi slaydda...]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 18</div>
+    <div class="slide-title">Image Gallery - Options va Indicator</div>
+    <div class="slide-description">Sozlamalar va animatsiya</div>
+    <div class="code-block">              options: CarouselOptions(
+                height: double.infinity,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 4),
+                enlargeCenterPage: true,
+                viewportFraction: 0.8,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  AnimatedSmoothIndicator(
+                    activeIndex: currentIndex,
+                    count: galleryItems.length,
+                    effect: WormEffect(
+                      dotHeight: 12,
+                      dotWidth: 12,
+                      activeDotColor: Colors.white,
+                      dotColor: Colors.grey,
+                    ),
+                    onDotClicked: (index) {
+                      carouselController.animateToPage(index);
+                    },
+                  ),</div>
+    <div class="result-placeholder">[Davomi keyingi slaydda...]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 19</div>
+    <div class="slide-title">Image Gallery - Ma'lumotlar qismi</div>
+    <div class="slide-description">Title va description ko'rsatish</div>
+    <div class="code-block">                  SizedBox(height: 20),
+                  Text(
+                    galleryItems[currentIndex]['title']!,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    galleryItems[currentIndex]['description']!,
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          carouselController.previousPage();
+                        },
+                        icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          carouselController.nextPage();
+                        },
+                        icon: Icon(Icons.arrow_forward_ios, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 20</div>
+    <div class="slide-title">Vertical Carousel</div>
+    <div class="slide-description">Vertikal yo'nalishda siljish</div>
+    <div class="code-block">CarouselSlider(
+  items: items,
+  options: CarouselOptions(
+    height: 400,
+    scrollDirection: Axis.vertical,
+    autoPlay: true,
+    autoPlayInterval: Duration(seconds: 3),
+    enlargeCenterPage: true,
+    viewportFraction: 0.8,
+    onPageChanged: (index, reason) {
+      setState(() {
+        currentIndex = index;
+      });
+    },
+  ),
+)
+
+// Vertikal indicator
+AnimatedSmoothIndicator(
+  activeIndex: currentIndex,
+  count: items.length,
+  axisDirection: Axis.vertical,
+  effect: SlideEffect(
+    spacing: 8,
+    radius: 4,
+    dotWidth: 24,
+    dotHeight: 16,
+    activeDotColor: Colors.purple,
+    dotColor: Colors.grey,
+  ),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 21</div>
+    <div class="slide-title">Performance Optimization</div>
+    <div class="theory-content">
+        <strong>Image Loading:</strong>
+        <br>• CachedNetworkImage ishlatng rasmlar uchun
+        <br>• Lazy loading qo'llab-quvvatlaydi
+        <br><br>
+        <strong>Memory Management:</strong>
+        <br>• dispose() method da controller'larni tozalang
+        <br>• Katta rasmlarni compress qiling
+        <br><br>
+        <strong>Smooth Animation:</strong>
+        <br>• animationDuration ni optimal saqlang
+        <br>• autoPlayAnimationDuration = 800ms ideal
+        <br><br>
+        <strong>Responsive Design:</strong>
+        <br>• MediaQuery ishlatib ekran o'lchamiga moslashtiring
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 22</div>
+    <div class="slide-title">Best Practices</div>
+    <div class="theory-content">
+        <strong>Carousel uchun:</strong>
+        <br>• viewportFraction 0.6-0.9 oralig'ida saqlang
+        <br>• autoPlayInterval 3-5 soniya bo'lsin
+        <br>• enlargeCenterPage foydalanuvchi e'tiborini jalb qiladi
+        <br>• Controller orqali programmatik boshqaruv qo'shing
+        <br><br>
+        <strong>Indicator uchun:</strong>
+        <br>• AnimatedSmoothIndicator CarouselSlider bilan ishlatng
+        <br>• Dot o'lchami 10-16px oralig'ida bo'lsin
+        <br>• onDotClicked orqali foydalanuvchi interaksiyasini qo'shing
+        <br>• Rang kontrastiga e'tibor bering
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 23</div>
+    <div class="slide-title">Keng tarqalgan xatolar</div>
+    <div class="warning-section">
+        <strong>1. Noto'g'ri controller ishlatish:</strong>
+        <br>• SmoothPageIndicator + CarouselSlider ❌
+        <br>• AnimatedSmoothIndicator + CarouselSlider ✅
+        <br><br>
+        <strong>2. State yangilanmasligi:</strong>
+        <br>• onPageChanged callback qo'shmaslik ❌
+        <br>• setState() orqali currentIndex yangilash ✅
+        <br><br>
+        <strong>3. Performance muammolari:</strong>
+        <br>• Katta rasmlarni optimize qilmaslik ❌
+        <br>• dispose() qilmaslik ❌
+        <br><br>
+        <strong>4. UI responsiveness:</strong>
+        <br>• Fixed size berish ❌
+        <br>• MediaQuery ishlatish ✅
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 24</div>
+    <div class="slide-title">Uchinchi mashq</div>
+    <div class="practice-section">
+        <strong>Vazifa:</strong> Complete Onboarding Screen yarating.
+        <br><br>
+        <strong>Funksiyalar:</strong>
+        <br>1. 4 ta onboarding sahifasi
+        <br>2. Har sahifada rasm, title, description
+        <br>3. Smooth Page Indicator (WormEffect)
+        <br>4. "Skip" va "Next" tugmalari
+        <br>5. Oxirgi sahifada "Get Started" tugmasi
+        <br>6. Manual va Auto navigation
+        <br><br>
+        <strong>Vaqt:</strong> 30 daqiqa
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 25</div>
+    <div class="slide-title">Onboarding Screen - Struktura</div>
+    <div class="slide-description">Onboarding sahifasi uchun model</div>
+    <div class="code-block">class OnboardingData {
+  final String image;
+  final String title;
+  final String description;
+
+  OnboardingData({
+    required this.image,
+    required this.title,
+    required this.description,
+  });
+}
+
+final List<OnboardingData> onboardingPages = [
+  OnboardingData(
+    image: 'https://picsum.photos/300/300?random=1',
+    title: 'Xush kelibsiz!',
+    description: 'Bizning ilovamizga xush kelibsiz. Bu yerda ko\'p qiziq narsalar bor.',
+  ),
+  OnboardingData(
+    image: 'https://picsum.photos/300/300?random=2',
+    title: 'Oson foydalanish',
+    description: 'Ilova juda oson va qulay. Barcha funksiyalar bir joyda.',
+  ),
+  OnboardingData(
+    image: 'https://picsum.photos/300/300?random=3',
+    title: 'Tez va ishonchli',
+    description: 'Yuqori tezlik va ishonchlilik bizning asosiy maqsadimiz.',
+  ),
+  OnboardingData(
+    image: 'https://picsum.photos/300/300?random=4',
+    title: 'Boshlaylik!',
+    description: 'Endi hamma narsa tayyor. Keling, ilovani ishlatishni boshlaylik!',
+  ),
+];</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 26</div>
+    <div class="slide-title">Advanced Carousel Features</div>
+    <div class="slide-description">Qo'shimcha imkoniyatlar</div>
+    <div class="code-block">CarouselSlider(
+  options: CarouselOptions(
+    height: 400,
+    // Cheksiz aylanish
+    enableInfiniteScroll: true,
+    
+    // Reverse yo'nalishda harakat
+    reverse: false,
+    
+    // Boshlang'ich sahifa
+    initialPage: 0,
+    
+    // Scroll yo'nalishi
+    scrollDirection: Axis.horizontal,
+    
+    // Auto-play parametrlari
+    autoPlay: true,
+    autoPlayInterval: Duration(seconds: 3),
+    autoPlayAnimationDuration: Duration(milliseconds: 800),
+    autoPlayCurve: Curves.fastOutSlowIn,
+    
+    // Physic parametrlari
+    pageSnapping: true,
+    
+    // Pause on touch
+    pauseAutoPlayOnTouch: true,
+    
+    // Aspect ratio
+    aspectRatio: 16/9,
+    
+    // Viewport fraction
+    viewportFraction: 0.8,
+    
+    // Padded slivery 
+    disableCenter: false,
+  ),
+)</div>
+    <div class="result-placeholder">[Natija: Men taqdim etaman]</div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 27</div>
+    <div class="slide-title">Uy vazifasi 1</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Food Delivery App carousel yarating.
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>• Restaurant bannerlar uchun carousel
+        <br>• Food categoriyalar uchun horizontal scroll
+        <br>• AnimatedSmoothIndicator qo'shing  
+        <br>• Restaurant nomi, rating, delivery time ko'rsating
+        <br>• JumpingDotEffect ishlatng
+        <br><br>
+        <strong>Bonus:</strong> onDotClicked orqali tezkor navigatsiya
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 28</div>
+    <div class="slide-title">Uy vazifasi 2</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Travel App carousel yarating.
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>• Destination rasmlari carousel
+        <br>• Vertical Carousel ham qo'shing
+        <br>• Smooth indicator (WormEffect)
+        <br>• Har destination uchun: nomi, narxi, rating
+        <br>• CarouselController orqali next/previous tugmalari
+        <br><br>
+        <strong>Bonus:</strong> Favorite icon va animatsiya qo'shing
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 29</div>
+    <div class="slide-title">Uy vazifasi 3</div>
+    <div class="homework-section">
+        <strong>Vazifa:</strong> Social Media Stories carousel yarating.
+        <br><br>
+        <strong>Talablar:</strong>
+        <br>• Circular avatar carousel (horizontal)
+        <br>• Har story uchun progress indicator 
+        <br>• Auto-play 2 soniyada
+        <br>• Story ko'rilgan/ko'rilmagan status
+        <br>• Tap orqali keyingi story ga o'tish
+        <br><br>
+        <strong>Bonus:</strong> Long press orqali pause funksiyasi
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 30</div>
+    <div class="slide-title">Keyingi qadamlar</div>
+    <div class="theory-content">
+        <strong>Alternative packages:</strong>
+        <br>• card_swiper - 3D effektlar uchun
+        <br>• flutter_swiper - ko'proq customization
+        <br>• photo_view - image zoom uchun
+        <br><br>
+        <strong>Advanced topics:</strong>
+        <br>• Custom Page Route Transitions
+        <br>• Hero animations bilan integratsiya
+        <br>• Parallax effects
+        <br>• Video carousel yaratish
+        <br><br>
+        <strong>Learning resources:</strong>
+        <br>• pub.dev documentation
+        <br>• Flutter community samples
+        <br>• GitHub repositories
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-number">Slayd 31</div>
+    <div class="slide-title">Xulosa</div>
+    <div class="theory-content">
+        <strong>Carousel Slider:</strong> Zamonaviy UI uchun zarur komponent
+        <br>• Infinite scroll va auto-play
+        <br>• Keng customization imkoniyatlari
+        <br>• Performance optimized
+        <br><br>
+        <strong>Smooth Page Indicator:</strong> UX ni yaxshilaydigan indicator
+        <br>• Ko'plab animatsiya effektlari
+        <br>• Oson integratsiya
+        <br>• Professional ko'rinish
+        <br><br>
+        <strong>Birgalikda:</strong> Modern mobile app'lar uchun ideal kombinatsiya
+        <br>• E-commerce product showcase
+        <br>• Image galleries
+        <br>• Onboarding screens
+        <br>• News va content sliders
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Carousel_Slider_Smooth_Indicator_Darsi.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+window.onload = function() {
+    setTimeout(() => {
+        downloadHTML();
+    }, 1000);
+};
+</script>
+
+</body>
+</html>
